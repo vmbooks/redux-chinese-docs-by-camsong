@@ -1,18 +1,16 @@
 {
+  "title": "Redux 中文文档",
   "gitbook": "3.2.3",
   "root": "./",
   "structure": {
     "summary": "SUMMARY.md"
   },
-  "plugins": ["edit-link", "prism", "ga", "advanced-emoji"],
+  "plugins": ["edit-link", "prism", "advanced-emoji"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/camsong/redux-in-chinese/tree/master",
       "label": "开始纠错"
     },
-    "ga": {
-      "token": "UA-66122997-1"
-    }
   },
   "language": "zh-hans"
 }
