@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -115,81 +109,81 @@
 <p>(<em>Function</em> or <em>Object</em>): &#x4E00;&#x4E2A;&#x4E0E;&#x539F;&#x5BF9;&#x8C61;&#x7C7B;&#x4F3C;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684; value &#x90FD;&#x662F;&#x4F1A;&#x76F4;&#x63A5; dispatch &#x539F; action creator &#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x7684;&#x51FD;&#x6570;&#x3002;&#x5982;&#x679C;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x51FD;&#x6570;&#x4F5C;&#x4E3A; <code>actionCreators</code>&#xFF0C;&#x90A3;&#x4E48;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
 <h4 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;</h4>
 <h4 id="todoactioncreatorsjs"><code>TodoActionCreators.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodo</span>(<span class="hljs-params">text</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: <span class="hljs-string">&apos;ADD_TODO&apos;</span>,
     text
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">removeTodo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token string">&apos;REMOVE_TODO&apos;</span><span class="token punctuation">,</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeTodo</span>(<span class="hljs-params">id</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: <span class="hljs-string">&apos;REMOVE_TODO&apos;</span>,
     id
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 </code></pre>
 <h4 id="somecomponentjs"><code>SomeComponent.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> bindActionCreators <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { bindActionCreators } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
 
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> TodoActionCreators <span class="token keyword">from</span> <span class="token string">&apos;./TodoActionCreators&apos;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>TodoActionCreators<span class="token punctuation">)</span>
-<span class="token comment">// {</span>
-<span class="token comment">//   addTodo: Function,</span>
-<span class="token comment">//   removeTodo: Function</span>
-<span class="token comment">// }</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> TodoActionCreators <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./TodoActionCreators&apos;</span>
+<span class="hljs-built_in">console</span>.log(TodoActionCreators)
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   addTodo: Function,</span>
+<span class="hljs-comment">//   removeTodo: Function</span>
+<span class="hljs-comment">// }</span>
 
-<span class="token keyword">class</span> <span class="token class-name">TodoListContainer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoListContainer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props)
 
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> dispatch <span class="token punctuation">}</span> <span class="token operator">=</span> props
+    <span class="hljs-keyword">const</span> { dispatch } = props
 
-    <span class="token comment">// &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684; bindActionCreators &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;</span>
-    <span class="token comment">// &#x4F60;&#x60F3;&#x8BA9;&#x4F60;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#x5B8C;&#x5168;&#x4E0D;&#x611F;&#x77E5; Redux &#x7684;&#x5B58;&#x5728;&#x3002;</span>
-    <span class="token comment">// &#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x91CC;&#x5BF9; action creator &#x7ED1;&#x5B9A; dispatch &#x65B9;&#x6CD5;&#xFF0C;</span>
-    <span class="token comment">// &#x4EE5;&#x4FBF;&#x7A0D;&#x540E;&#x5C06;&#x5176;&#x4F20;&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#x3002;</span>
+    <span class="hljs-comment">// &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684; bindActionCreators &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;</span>
+    <span class="hljs-comment">// &#x4F60;&#x60F3;&#x8BA9;&#x4F60;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#x5B8C;&#x5168;&#x4E0D;&#x611F;&#x77E5; Redux &#x7684;&#x5B58;&#x5728;&#x3002;</span>
+    <span class="hljs-comment">// &#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x91CC;&#x5BF9; action creator &#x7ED1;&#x5B9A; dispatch &#x65B9;&#x6CD5;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x4EE5;&#x4FBF;&#x7A0D;&#x540E;&#x5C06;&#x5176;&#x4F20;&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#x3002;</span>
 
-    <span class="token keyword">this</span><span class="token punctuation">.</span>boundActionCreators <span class="token operator">=</span> <span class="token function">bindActionCreators</span><span class="token punctuation">(</span>TodoActionCreators<span class="token punctuation">,</span> dispatch<span class="token punctuation">)</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>boundActionCreators<span class="token punctuation">)</span>
-    <span class="token comment">// {</span>
-    <span class="token comment">//   addTodo: Function,</span>
-    <span class="token comment">//   removeTodo: Function</span>
-    <span class="token comment">// }</span>
-  <span class="token punctuation">}</span>
+    <span class="hljs-keyword">this</span>.boundActionCreators = bindActionCreators(TodoActionCreators, dispatch)
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.boundActionCreators)
+    <span class="hljs-comment">// {</span>
+    <span class="hljs-comment">//   addTodo: Function,</span>
+    <span class="hljs-comment">//   removeTodo: Function</span>
+    <span class="hljs-comment">// }</span>
+  }
 
-  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// &#x7531; react-redux &#x6CE8;&#x5165;&#x7684; dispatch&#xFF1A;</span>
-    <span class="token keyword">let</span> <span class="token punctuation">{</span> dispatch <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+  componentDidMount() {
+    <span class="hljs-comment">// &#x7531; react-redux &#x6CE8;&#x5165;&#x7684; dispatch&#xFF1A;</span>
+    <span class="hljs-keyword">let</span> { dispatch } = <span class="hljs-keyword">this</span>.props
 
-    <span class="token comment">// &#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x6837;&#x662F;&#x884C;&#x4E0D;&#x901A;&#x7684;&#xFF1A;</span>
-    <span class="token comment">// TodoActionCreators.addTodo(&apos;Use Redux&apos;)</span>
+    <span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x6837;&#x662F;&#x884C;&#x4E0D;&#x901A;&#x7684;&#xFF1A;</span>
+    <span class="hljs-comment">// TodoActionCreators.addTodo(&apos;Use Redux&apos;)</span>
 
-    <span class="token comment">// &#x4F60;&#x53EA;&#x662F;&#x8C03;&#x7528;&#x4E86;&#x521B;&#x5EFA; action &#x7684;&#x65B9;&#x6CD5;&#x3002;</span>
-    <span class="token comment">// &#x4F60;&#x5FC5;&#x987B;&#x8981;&#x540C;&#x65F6; dispatch action&#x3002;</span>
+    <span class="hljs-comment">// &#x4F60;&#x53EA;&#x662F;&#x8C03;&#x7528;&#x4E86;&#x521B;&#x5EFA; action &#x7684;&#x65B9;&#x6CD5;&#x3002;</span>
+    <span class="hljs-comment">// &#x4F60;&#x5FC5;&#x987B;&#x8981;&#x540C;&#x65F6; dispatch action&#x3002;</span>
 
-    <span class="token comment">// &#x8FD9;&#x6837;&#x505A;&#x662F;&#x53EF;&#x884C;&#x7684;&#xFF1A;</span>
-    <span class="token keyword">let</span> action <span class="token operator">=</span> TodoActionCreators<span class="token punctuation">.</span><span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token string">&apos;Use Redux&apos;</span><span class="token punctuation">)</span>
-    <span class="token function">dispatch</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+    <span class="hljs-comment">// &#x8FD9;&#x6837;&#x505A;&#x662F;&#x53EF;&#x884C;&#x7684;&#xFF1A;</span>
+    <span class="hljs-keyword">let</span> action = TodoActionCreators.addTodo(<span class="hljs-string">&apos;Use Redux&apos;</span>)
+    dispatch(action)
+  }
 
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// &#x7531; react-redux &#x6CE8;&#x5165;&#x7684; todos&#xFF1A;</span>
-    <span class="token keyword">let</span> <span class="token punctuation">{</span> todos <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+  render() {
+    <span class="hljs-comment">// &#x7531; react-redux &#x6CE8;&#x5165;&#x7684; todos&#xFF1A;</span>
+    <span class="hljs-keyword">let</span> { todos } = <span class="hljs-keyword">this</span>.props
 
-    <span class="token keyword">return</span> <span class="token operator">&lt;</span>TodoList todos<span class="token operator">=</span><span class="token punctuation">{</span>todos<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>boundActionCreators<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="hljs-keyword">return</span> &lt;TodoList todos={todos} {...this.boundActionCreators} /&gt;
 
-    <span class="token comment">// &#x53E6;&#x4E00;&#x66FF;&#x4EE3; bindActionCreators &#x7684;&#x505A;&#x6CD5;&#x662F;</span>
-    <span class="token comment">// &#x76F4;&#x63A5;&#x628A; dispatch &#x51FD;&#x6570;&#x5F53;&#x4F5C; prop &#x4F20;&#x9012;&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F46;&#x8FD9;&#x65F6;&#x4F60;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#x9700;&#x8981;</span>
-    <span class="token comment">// &#x5F15;&#x5165; action creator &#x5E76;&#x4E14;&#x611F;&#x77E5;&#x5B83;&#x4EEC;</span>
+    // &#x53E6;&#x4E00;&#x66FF;&#x4EE3; bindActionCreators &#x7684;&#x505A;&#x6CD5;&#x662F;
+    // &#x76F4;&#x63A5;&#x628A; dispatch &#x51FD;&#x6570;&#x5F53;&#x4F5C; prop &#x4F20;&#x9012;&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F46;&#x8FD9;&#x65F6;&#x4F60;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#x9700;&#x8981;
+    // &#x5F15;&#x5165; action creator &#x5E76;&#x4E14;&#x611F;&#x77E5;&#x5B83;&#x4EEC;
 
-    <span class="token comment">// return &lt;TodoList todos={todos} dispatch={dispatch} /&gt;;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    // return &lt;TodoList todos={todos} dispatch={dispatch} /&gt;;
+  }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> todos<span class="token operator">:</span> state<span class="token punctuation">.</span>todos <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span>TodoListContainer<span class="token punctuation">)</span>
+export default connect(state =&gt; ({ todos: state.todos }))(TodoListContainer)
 </code></pre>
 <h4 id="&#x5C0F;&#x8D34;&#x58EB;">&#x5C0F;&#x8D34;&#x58EB;</h4>
 <ul>
@@ -1141,7 +1135,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"bindActionCreators","level":"1.9.5","depth":2,"next":{"title":"compose","level":"1.9.6","depth":2,"path":"docs/api/compose.md","ref":"./docs/api/compose.md","articles":[]},"previous":{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/bindActionCreators.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"bindActionCreators","level":"1.9.5","depth":2,"next":{"title":"compose","level":"1.9.6","depth":2,"path":"docs/api/compose.md","ref":"./docs/api/compose.md","articles":[]},"previous":{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/bindActionCreators.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1149,9 +1143,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

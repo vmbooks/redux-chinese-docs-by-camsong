@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -166,32 +160,32 @@ Redux &#x4E0E;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x7684;&#x7ED1;&#x5B9A;&#
 <h4 id="&#x7EC4;&#x5408;-reducer">&#x7EC4;&#x5408; Reducer</h4>
 <p><strong><a href="https://github.com/ryo33/combine-section-reducers" target="_blank">ryo33/combineSectionReducers</a></strong><br><code>combineReducers</code> &#x7684;&#x6269;&#x5C55;&#x7248;&#x672C;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5C06; <code>state</code> &#x4F5C;&#x4E3A;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;&#x6240;&#x6709;&#x7684;&#x5B50; reducer&#x3002;</p>
 <p><strong><a href="https://github.com/KodersLab/topologically-combine-reducers" target="_blank">KodersLab/topologically-combine-reducers</a></strong><br>&#x4E00;&#x79CD; <code>combineReducers</code> &#x53D8;&#x4F53;&#xFF0C;&#x5B9A;&#x4E49; reducer &#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4E92;&#x4F9D;&#x8D56;&#x7528;&#x4E8E;&#x8C03;&#x7528;&#x6392;&#x5E8F;&#x548C;&#x6570;&#x636E;&#x4F20;&#x9012;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">var</span> masterReducer <span class="token operator">=</span> <span class="token function">topologicallyCombineReducers</span><span class="token punctuation">(</span>
-  <span class="token punctuation">{</span> auth<span class="token punctuation">,</span> users<span class="token punctuation">,</span> todos <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token comment">// &#x5B9A;&#x4E49;&#x4F9D;&#x8D56;&#x6811;</span>
-  <span class="token punctuation">{</span> auth<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;users&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> todos<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;auth&apos;</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
-<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> masterReducer = topologicallyCombineReducers(
+  { auth, users, todos },
+  <span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4F9D;&#x8D56;&#x6811;</span>
+  { auth: [<span class="hljs-string">&apos;users&apos;</span>], todos: [<span class="hljs-string">&apos;auth&apos;</span>] }
+)
 </code></pre>
 <p><a id="reducer-composition"></a></p>
 <h4 id="reducer-&#x7ED3;&#x6784;">Reducer &#x7ED3;&#x6784;</h4>
 <p><strong><a href="https://github.com/acdlite/reduce-reducers" target="_blank">acdlite/reduce-reducers</a></strong><br>&#x5728;&#x540C;&#x4E00;&#x7EA7;&#x522B;&#x63D0;&#x4F9B; reducer &#x7684;&#x987A;&#x5E8F;&#x7EC4;&#x5408;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> combinedReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span> users<span class="token punctuation">,</span> posts<span class="token punctuation">,</span> comments <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">reduceReducers</span><span class="token punctuation">(</span>combinedReducer<span class="token punctuation">,</span> otherTopLevelFeatureReducer<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> combinedReducer = combineReducers({ users, posts, comments })
+<span class="hljs-keyword">const</span> rootReducer = reduceReducers(combinedReducer, otherTopLevelFeatureReducer)
 </code></pre>
 <p><strong><a href="https://github.com/mhelmer/redux-xforms" target="_blank">mhelmer/redux-xforms</a></strong><br>&#x4E00;&#x7EC4;&#x53EF;&#x7EC4;&#x5408;&#x7684; reducer &#x53D8;&#x4F53;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">createByFilter</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">predicate<span class="token punctuation">,</span> mapActionToKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-  <span class="token function">compose</span><span class="token punctuation">(</span>
-    <span class="token function">withInitialState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// inject initial state as {}</span>
-    <span class="token function">withFilter</span><span class="token punctuation">(</span>predicate<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// let through if action has filterName</span>
-    <span class="token function">updateSlice</span><span class="token punctuation">(</span>mapActionToKey<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// update a single key in the state</span>
-    <span class="token function">isolateSlice</span><span class="token punctuation">(</span>mapActionToKey<span class="token punctuation">)</span> <span class="token comment">// run the reducer on a single state slice</span>
-  <span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> createByFilter = (predicate, mapActionToKey) =&gt;
+  compose(
+    withInitialState({}), <span class="hljs-comment">// inject initial state as {}</span>
+    withFilter(predicate), <span class="hljs-comment">// let through if action has filterName</span>
+    updateSlice(mapActionToKey), <span class="hljs-comment">// update a single key in the state</span>
+    isolateSlice(mapActionToKey) <span class="hljs-comment">// run the reducer on a single state slice</span>
+  )
 </code></pre>
 <p><strong><a href="https://github.com/adrienjt/redux-data-structures" target="_blank">adrienjt/redux-data-structures</a></strong><br>Reducer &#x5DE5;&#x5382;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x5E38;&#x89C1;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x6620;&#x5C04;&#xFF0C;&#x5217;&#x8868;&#xFF08;&#x961F;&#x5217;&#xFF0C;&#x5806;&#x6808;&#xFF09;&#xFF0C;&#x96C6;&#x5408;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> myCounter <span class="token operator">=</span> <span class="token function">counter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  incrementActionTypes<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;INCREMENT&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  decrementActionTypes<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;DECREMENT&apos;</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> myCounter = counter({
+  incrementActionTypes: [<span class="hljs-string">&apos;INCREMENT&apos;</span>],
+  decrementActionTypes: [<span class="hljs-string">&apos;DECREMENT&apos;</span>]
+})
 </code></pre>
 <p><a id="higher-order-reducers"></a></p>
 <h4 id="&#x9AD8;&#x9636;-reducers">&#x9AD8;&#x9636; Reducers</h4>
@@ -201,162 +195,162 @@ Redux &#x4E0E;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x7684;&#x7ED1;&#x5B9A;&#
 <p><strong><a href="https://github.com/ForbesLindesay/redux-optimist" target="_blank">ForbesLindesay/redux-optimist</a></strong><br>reducer &#x589E;&#x5F3A;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x542F;&#x7528;&#x4E0E;&#x7C7B;&#x578B;&#x65E0;&#x5173;&#x7684;&#x4E50;&#x89C2;&#x66F4;&#x65B0;</p>
 <h2 id="actions">Actions</h2>
 <p><strong><a href="https://github.com/reduxactions/redux-actions" target="_blank">reduxactions/redux-actions</a></strong><br>Redux &#x7684; Flux &#x6807;&#x51C6; action &#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> increment <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">&apos;INCREMENT&apos;</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> reducer <span class="token operator">=</span> <span class="token function">handleActions</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token punctuation">[</span>increment<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> state <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> increment = createAction(<span class="hljs-string">&apos;INCREMENT&apos;</span>)
+<span class="hljs-keyword">const</span> reducer = handleActions({ [increment]: (state, action) =&gt; state + <span class="hljs-number">1</span> }, <span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> store = createStore(reducer)
+store.dispatch(increment())
 </code></pre>
 <p><strong><a href="https://github.com/BerkeleyTrue/redux-create-types" target="_blank">BerkeleyTrue/redux-create-types</a></strong><br>&#x6839;&#x636E;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x521B;&#x5EFA;&#x6807;&#x51C6;&#x548C;&#x5F02;&#x6B65; action type&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">const</span> types <span class="token operator">=</span> <span class="token function">createTypes</span><span class="token punctuation">(</span>
-  <span class="token punctuation">[</span><span class="token string">&apos;openModal&apos;</span><span class="token punctuation">,</span> <span class="token function">createAsyncTypes</span><span class="token punctuation">(</span><span class="token string">&apos;fetch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token string">&apos;app&apos;</span>
-<span class="token punctuation">)</span>
-<span class="token comment">// { openModal : &quot;app.openModal&quot;, fetch : { start : &quot;app.fetch.start&quot;, complete: &apos;app.fetch.complete&apos; } }</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> types = createTypes(
+  [<span class="hljs-string">&apos;openModal&apos;</span>, createAsyncTypes(<span class="hljs-string">&apos;fetch&apos;</span>)],
+  <span class="hljs-string">&apos;app&apos;</span>
+)
+<span class="hljs-comment">// { openModal : &quot;app.openModal&quot;, fetch : { start : &quot;app.fetch.start&quot;, complete: &apos;app.fetch.complete&apos; } }</span>
 </code></pre>
 <p><strong><a href="https://github.com/maxhallinan/kreighter" target="_blank">maxhallinan/kreighter</a></strong><br>&#x6839;&#x636E;&#x7C7B;&#x578B;&#x548C;&#x9884;&#x671F;&#x5B57;&#x6BB5;&#x751F;&#x6210; action creator</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">formatTitle</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">id<span class="token punctuation">,</span> title</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-  id<span class="token punctuation">,</span>
-  title<span class="token operator">:</span> <span class="token function">toTitleCase</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> updateBazTitle <span class="token operator">=</span> <span class="token function">fromType</span><span class="token punctuation">(</span><span class="token string">&apos;UPDATE_BAZ_TITLE&apos;</span><span class="token punctuation">,</span> formatTitle<span class="token punctuation">)</span>
-<span class="token function">updateBazTitle</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;foo bar baz&apos;</span><span class="token punctuation">)</span>
-<span class="token comment">// -&gt; { type: &apos;UPDATE_BAZ_TITLE&apos;, id: 1, title: &apos;Foo Bar Baz&apos;, }</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> formatTitle = (id, title) =&gt; ({
+  id,
+  title: toTitleCase(title)
+})
+<span class="hljs-keyword">const</span> updateBazTitle = fromType(<span class="hljs-string">&apos;UPDATE_BAZ_TITLE&apos;</span>, formatTitle)
+updateBazTitle(<span class="hljs-number">1</span>, <span class="hljs-string">&apos;foo bar baz&apos;</span>)
+<span class="hljs-comment">// -&gt; { type: &apos;UPDATE_BAZ_TITLE&apos;, id: 1, title: &apos;Foo Bar Baz&apos;, }</span>
 </code></pre>
 <p><a id="utilities"></a></p>
 <h2 id="&#x5DE5;&#x5177;&#x96C6;">&#x5DE5;&#x5177;&#x96C6;</h2>
 <p><strong><a href="https://github.com/reduxjs/reselect" target="_blank">reduxjs/reselect</a></strong><br>&#x521B;&#x5EFA;&#x53EF;&#x7EC4;&#x5408;&#x7684; memoized &#x9009;&#x62E9;&#x5668;&#x51FD;&#x6570;&#xFF0C;&#x4EE5;&#x4FBF;&#x4ECE; store state &#x6709;&#x6548;&#x5730;&#x5BFC;&#x51FA;&#x6570;&#x636E;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> taxSelector <span class="token operator">=</span> <span class="token function">createSelector</span><span class="token punctuation">(</span>
-  <span class="token punctuation">[</span>subtotalSelector<span class="token punctuation">,</span> taxPercentSelector<span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token punctuation">(</span><span class="token parameter">subtotal<span class="token punctuation">,</span> taxPercent</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> subtotal <span class="token operator">*</span> <span class="token punctuation">(</span>taxPercent <span class="token operator">/</span> <span class="token number">100</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> taxSelector = createSelector(
+  [subtotalSelector, taxPercentSelector],
+  (subtotal, taxPercent) =&gt; subtotal * (taxPercent / <span class="hljs-number">100</span>)
+)
 </code></pre>
 <p><strong><a href="https://github.com/paularmstrong/normalizr" target="_blank">paularmstrong/normalizr</a></strong><br>&#x6839;&#x636E;&#x6A21;&#x5F0F;&#x89C4;&#x8303;&#x5316;&#x5D4C;&#x5957; JSON</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">schema<span class="token punctuation">.</span>Entity</span><span class="token punctuation">(</span><span class="token string">&apos;users&apos;</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> comment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">schema<span class="token punctuation">.</span>Entity</span><span class="token punctuation">(</span><span class="token string">&apos;comments&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> commenter<span class="token operator">:</span> user <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> article <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">schema<span class="token punctuation">.</span>Entity</span><span class="token punctuation">(</span><span class="token string">&apos;articles&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-  author<span class="token operator">:</span> user<span class="token punctuation">,</span>
-  comments<span class="token operator">:</span> <span class="token punctuation">[</span>comment<span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> normalizedData <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>originalData<span class="token punctuation">,</span> article<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> schema.Entity(<span class="hljs-string">&apos;users&apos;</span>)
+<span class="hljs-keyword">const</span> comment = <span class="hljs-keyword">new</span> schema.Entity(<span class="hljs-string">&apos;comments&apos;</span>, { commenter: user })
+<span class="hljs-keyword">const</span> article = <span class="hljs-keyword">new</span> schema.Entity(<span class="hljs-string">&apos;articles&apos;</span>, {
+  author: user,
+  comments: [comment]
+})
+<span class="hljs-keyword">const</span> normalizedData = normalize(originalData, article)
 </code></pre>
 <p><strong><a href="https://github.com/planttheidea/selectorator" target="_blank">planttheidea/selectorator</a></strong><br>&#x5BF9;&#x4E8E;&#x5E38;&#x89C1; selector &#x7528;&#x4F8B;&#x7684; reselect &#x7684;&#x62BD;&#x8C61;&#x5316;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> getBarBaz <span class="token operator">=</span> <span class="token function">createSelector</span><span class="token punctuation">(</span>
-  <span class="token punctuation">[</span><span class="token string">&apos;foo.bar&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;baz&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token punctuation">(</span><span class="token parameter">bar<span class="token punctuation">,</span> baz</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>bar<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>baz<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
-<span class="token punctuation">)</span>
-<span class="token function">getBarBaz</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token operator">:</span> <span class="token punctuation">{</span> bar<span class="token operator">:</span> <span class="token string">&apos;a&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> baz<span class="token operator">:</span> <span class="token string">&apos;b&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// &quot;a b&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> getBarBaz = createSelector(
+  [<span class="hljs-string">&apos;foo.bar&apos;</span>, <span class="hljs-string">&apos;baz&apos;</span>],
+  (bar, baz) =&gt; <span class="hljs-string">`<span class="hljs-subst">${bar}</span> <span class="hljs-subst">${baz}</span>`</span>
+)
+getBarBaz({ foo: { bar: <span class="hljs-string">&apos;a&apos;</span> }, baz: <span class="hljs-string">&apos;b&apos;</span> }) <span class="hljs-comment">// &quot;a b&quot;</span>
 </code></pre>
 <h2 id="store">Store</h2>
 <p><a id="change-subscriptions"></a></p>
 <h4 id="&#x66F4;&#x6539;&#x8BA2;&#x9605;">&#x66F4;&#x6539;&#x8BA2;&#x9605;</h4>
 <p><strong><a href="https://github.com/jprichardson/redux-watch" target="_blank">jprichardson/redux-watch</a></strong><br>&#x6839;&#x636E; key path &#x6216; selector &#x76D1;&#x89C6;&#x72B6;&#x6001;&#x66F4;&#x6539;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">let</span> w <span class="token operator">=</span> <span class="token function">watch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">mySelector</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
-  <span class="token function">w</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">newVal<span class="token punctuation">,</span> oldVal</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newval<span class="token punctuation">,</span> oldVal<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> w = watch(() =&gt; mySelector(store.getState()))
+store.subscribe(
+  w((newVal, oldVal) =&gt; {
+    <span class="hljs-built_in">console</span>.log(newval, oldVal)
+  })
+)
 </code></pre>
 <p><strong><a href="https://github.com/ashaffer/redux-subscribe" target="_blank">ashaffer/redux-subscribe</a></strong><br>&#x96C6;&#x4E2D;&#x8BA2;&#x9605;&#x57FA;&#x4E8E; path &#x7684; state &#x66F4;&#x6539;</p>
-<pre class="language-"><code class="lang-js">store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">&quot;users.byId.abcd&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;subscription1&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="lang-js">store.dispatch( subscribe(<span class="hljs-string">&quot;users.byId.abcd&quot;</span>, <span class="hljs-string">&quot;subscription1&quot;</span>, () =&gt; {} );
 </code></pre>
 <p><a id="batching"></a></p>
 <h4 id="&#x6279;&#x5904;&#x7406;">&#x6279;&#x5904;&#x7406;</h4>
 <p><strong><a href="https://github.com/tappleby/redux-batched-subscribe" target="_blank">tappleby/redux-batched-subscribe</a></strong><br>&#x53EF;&#x4EE5;&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x901A;&#x77E5;&#x7684; store &#x589E;&#x5F3A;&#x5668;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> debounceNotify <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">debounce</span><span class="token punctuation">(</span><span class="token parameter">notify</span> <span class="token operator">=&gt;</span> <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>
-  reducer<span class="token punctuation">,</span>
-  initialState<span class="token punctuation">,</span>
-  <span class="token function">batchedSubscribe</span><span class="token punctuation">(</span>debounceNotify<span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> debounceNotify = _.debounce(notify =&gt; notify())
+<span class="hljs-keyword">const</span> store = createStore(
+  reducer,
+  initialState,
+  batchedSubscribe(debounceNotify)
+)
 </code></pre>
 <p><strong><a href="https://github.com/manaflair/redux-batch" target="_blank">manaflair/redux-batch</a></strong><br>store &#x589E;&#x5F3A;&#x5668;&#xFF0C;&#x5141;&#x8BB8; dispatch action &#x6570;&#x7EC4;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> reduxBatch<span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(reducer, reduxBatch)
+store.dispatch([{ type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }, { type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }])
 </code></pre>
 <p><strong><a href="https://github.com/laysent/redux-batch-actions-enhancer" target="_blank">laysent/redux-batch-actions-enhancer</a></strong><br>store &#x589E;&#x5F3A;&#x5668;&#xFF0C;&#x63A5;&#x53D7;&#x6279;&#x91CF; action</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> initialState<span class="token punctuation">,</span> <span class="token function">batch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>enhancer<span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">createAction</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(reducer, initialState, batch().enhancer)
+store.dispatch(createAction({ type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }, { type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }))
 </code></pre>
 <p><strong><a href="https://github.com/tshelburne/redux-batched-actions" target="_blank">tshelburne/redux-batched-actions</a></strong><br>&#x5904;&#x7406;&#x6279;&#x91CF; action &#x7684;&#x9AD8;&#x9636; reducer</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token function">enableBatching</span><span class="token punctuation">(</span>reducer<span class="token punctuation">)</span><span class="token punctuation">,</span> initialState<span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">batchActions</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(enableBatching(reducer), initialState)
+store.dispatch(batchActions([{ type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }, { type: <span class="hljs-string">&apos;INCREMENT&apos;</span> }]))
 </code></pre>
 <p><a id="persistence"></a></p>
 <h4 id="&#x6301;&#x4E45;&#x5316;">&#x6301;&#x4E45;&#x5316;</h4>
 <p><strong><a href="https://github.com/rt2zz/redux-persist" target="_blank">rt2zz/redux-persist</a></strong><br>&#x4F7F;&#x7528;&#x8BB8;&#x591A;&#x53EF;&#x6269;&#x5C55;&#x7684;&#x9009;&#x9879;&#xFF0C;&#x6301;&#x4E45;&#x5316;&#x548C;&#x8865;&#x5145; Redux store&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> <span class="token function">autoRehydrate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token function">persistStore</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(reducer, autoRehydrate())
+persistStore(store)
 </code></pre>
 <p><strong><a href="https://github.com/react-stack/redux-storage" target="_blank">react-stack/redux-storage</a></strong><br>Redux &#x7684;&#x6301;&#x4E45;&#x5C42;&#xFF0C;&#x5177;&#x6709;&#x7075;&#x6D3B;&#x7684;&#x540E;&#x7AEF;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> reducer <span class="token operator">=</span> storage<span class="token punctuation">.</span><span class="token function">reducer</span><span class="token punctuation">(</span><span class="token function">combineReducers</span><span class="token punctuation">(</span>reducers<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> engine <span class="token operator">=</span> <span class="token function">createEngineLocalStorage</span><span class="token punctuation">(</span><span class="token string">&apos;my-save-key&apos;</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> storageMiddleware <span class="token operator">=</span> storage<span class="token punctuation">.</span><span class="token function">createMiddleware</span><span class="token punctuation">(</span>engine<span class="token punctuation">)</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> <span class="token function">applyMiddleware</span><span class="token punctuation">(</span>storageMiddleware<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> reducer = storage.reducer(combineReducers(reducers))
+<span class="hljs-keyword">const</span> engine = createEngineLocalStorage(<span class="hljs-string">&apos;my-save-key&apos;</span>)
+<span class="hljs-keyword">const</span> storageMiddleware = storage.createMiddleware(engine)
+<span class="hljs-keyword">const</span> store = createStore(reducer, applyMiddleware(storageMiddleware))
 </code></pre>
 <p><strong><a href="https://github.com/redux-offline/redux-offline" target="_blank">redux-offline/redux-offline</a></strong><br>&#x7528;&#x4E8E; Offline-First &#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6301;&#x4E45; store &#xFF0C;&#x652F;&#x6301;&#x79EF;&#x6781;&#x7684; UI &#x66F4;&#x65B0;&#xFF08;optimistic UI&#xFF09;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> <span class="token function">offline</span><span class="token punctuation">(</span>offlineConfig<span class="token punctuation">)</span><span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token string">&apos;FOLLOW_USER_REQUEST&apos;</span><span class="token punctuation">,</span>
-  meta<span class="token operator">:</span> <span class="token punctuation">{</span> offline<span class="token operator">:</span> <span class="token punctuation">{</span> effect<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> commit<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> rollback<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(reducer, offline(offlineConfig))
+store.dispatch({
+  type: <span class="hljs-string">&apos;FOLLOW_USER_REQUEST&apos;</span>,
+  meta: { offline: { effect: {}, commit: {}, rollback: {} } }
+})
 </code></pre>
 <p><a id="immutable-data"></a></p>
 <h2 id="&#x4E0D;&#x53EF;&#x53D8;&#xFF08;immutable&#xFF09;&#x6570;&#x636E;">&#x4E0D;&#x53EF;&#x53D8;&#xFF08;Immutable&#xFF09;&#x6570;&#x636E;</h2>
 <p><a id="data-structures"></a></p>
 <h4 id="&#x6570;&#x636E;&#x7ED3;&#x6784;">&#x6570;&#x636E;&#x7ED3;&#x6784;</h4>
 <p><strong><a href="https://github.com/facebook/immutable-js" target="_blank">facebook/immutable-js</a></strong><br>Javascript &#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x6301;&#x4E45;&#x6570;&#x636E;&#x96C6;&#x5408;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> map1 <span class="token operator">=</span> <span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> c<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> map2 <span class="token operator">=</span> map1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;b&apos;</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
-map1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&apos;b&apos;</span><span class="token punctuation">)</span> <span class="token comment">// 2</span>
-map2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&apos;b&apos;</span><span class="token punctuation">)</span> <span class="token comment">// 50</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map1 = <span class="hljs-built_in">Map</span>({ a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span> })
+<span class="hljs-keyword">const</span> map2 = map1.set(<span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-number">50</span>)
+map1.get(<span class="hljs-string">&apos;b&apos;</span>) <span class="hljs-comment">// 2</span>
+map2.get(<span class="hljs-string">&apos;b&apos;</span>) <span class="hljs-comment">// 50</span>
 </code></pre>
 <p><strong><a href="https://github.com/rtfeldman/seamless-immutable" target="_blank">rtfeldman/seamless-immutable</a></strong><br>&#x51BB;&#x7ED3;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x6570;&#x7EC4;/&#x5BF9;&#x8C61;&#xFF0C;&#x5411;&#x540E;&#x517C;&#x5BB9; JS</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> array <span class="token operator">=</span> <span class="token function">Immutable</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;totally&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;immutable&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">42</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&apos;edited&apos;</span> <span class="token comment">// does nothing</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = Immutable([<span class="hljs-string">&apos;totally&apos;</span>, <span class="hljs-string">&apos;immutable&apos;</span>, { a: <span class="hljs-number">42</span> }])
+array[<span class="hljs-number">0</span>] = <span class="hljs-string">&apos;edited&apos;</span> <span class="hljs-comment">// does nothing</span>
 </code></pre>
 <p><strong><a href="https://github.com/planttheidea/crio" target="_blank">planttheidea/crio</a></strong><br>&#x5177;&#x6709; API &#x7684;&#x4E0D;&#x53EF;&#x53D8; JS &#x5BF9;&#x8C61;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token function">crio</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;foo&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> fooBar <span class="token operator">=</span> foo<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&apos;bar&apos;</span><span class="token punctuation">)</span> <span class="token comment">// new array: [&apos;foo&apos;, &apos;bar&apos;]</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> foo = crio([<span class="hljs-string">&apos;foo&apos;</span>])
+<span class="hljs-keyword">const</span> fooBar = foo.push(<span class="hljs-string">&apos;bar&apos;</span>) <span class="hljs-comment">// new array: [&apos;foo&apos;, &apos;bar&apos;]</span>
 </code></pre>
 <p><strong><a href="https://github.com/aearly/icepick" target="_blank">aearly/icepick</a></strong><br>&#x7528;&#x4E8E;&#x5C06;&#x51BB;&#x7ED3;&#x7684; JS &#x5BF9;&#x8C61;&#x89C6;&#x4E3A;&#x6301;&#x4E45;&#x4E0D;&#x53EF;&#x53D8;&#x96C6;&#x5408;&#x7684;&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> newObj <span class="token operator">=</span> icepick<span class="token punctuation">.</span><span class="token function">assocIn</span><span class="token punctuation">(</span><span class="token punctuation">{</span> c<span class="token operator">:</span> <span class="token punctuation">{</span> d<span class="token operator">:</span> <span class="token string">&apos;bar&apos;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;c&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;d&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&apos;baz&apos;</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> obj3 <span class="token operator">=</span> icepicke<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> newObj = icepick.assocIn({ c: { d: <span class="hljs-string">&apos;bar&apos;</span> } }, [<span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>], <span class="hljs-string">&apos;baz&apos;</span>)
+<span class="hljs-keyword">const</span> obj3 = icepicke.merge(obj1, obj2)
 </code></pre>
 <p><a id="immutable-update-utilities"></a></p>
 <h4 id="&#x4E0D;&#x53EF;&#x53D8;&#x66F4;&#x65B0;&#xFF08;immutable-update&#xFF09;&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;">&#x4E0D;&#x53EF;&#x53D8;&#x66F4;&#x65B0;&#xFF08;Immutable Update&#xFF09;&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;</h4>
 <p><strong><a href="https://github.com/mweststrate/immer" target="_blank">mweststrate/immer</a></strong><br>&#x8FD0;&#x7528;&#x4EE3;&#x7406;&#x4F7F;&#x7528;&#x666E;&#x901A;&#x7684;&#x66F4;&#x65B0;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4E0D;&#x53EF;&#x53D8;&#x66F4;&#x65B0;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> nextState <span class="token operator">=</span> <span class="token function">produce</span><span class="token punctuation">(</span>baseState<span class="token punctuation">,</span> <span class="token parameter">draftState</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  draftState<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> todo<span class="token operator">:</span> <span class="token string">&apos;Tweet about it&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  draftState<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>done <span class="token operator">=</span> <span class="token boolean">true</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> nextState = produce(baseState, draftState =&gt; {
+  draftState.push({ todo: <span class="hljs-string">&apos;Tweet about it&apos;</span> })
+  draftState[<span class="hljs-number">1</span>].done = <span class="hljs-literal">true</span>
+})
 </code></pre>
 <p><strong><a href="https://github.com/kolodny/immutability-helper" target="_blank">kolodny/immutability-helper</a></strong><br>react-addons-update &#x7684;&#x76F4;&#x63A5;&#x66FF;&#x4EE3;&#x54C1;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> newData <span class="token operator">=</span> <span class="token function">update</span><span class="token punctuation">(</span>myData<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-  x<span class="token operator">:</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token punctuation">{</span> z<span class="token operator">:</span> <span class="token punctuation">{</span> $set<span class="token operator">:</span> <span class="token number">7</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  a<span class="token operator">:</span> <span class="token punctuation">{</span> b<span class="token operator">:</span> <span class="token punctuation">{</span> $push<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> newData = update(myData, {
+  x: { y: { z: { $set: <span class="hljs-number">7</span> } } },
+  a: { b: { $push: [<span class="hljs-number">9</span>] } }
+})
 </code></pre>
 <p><strong><a href="https://github.com/mariocasciaro/object-path-immutable" target="_blank">mariocasciaro/object-path-immutable</a></strong><br>&#x66F4;&#x7B80;&#x5355;&#x7684;&#x66FF;&#x4EE3; immutability-helpers &#x548C; Immutable.js &#x7684;&#x5E93;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> newObj <span class="token operator">=</span> <span class="token function">immutable</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;a.b&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">del</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;a&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;c&apos;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> newObj = immutable(obj)
+  .set(<span class="hljs-string">&apos;a.b&apos;</span>, <span class="hljs-string">&apos;f&apos;</span>)
+  .del([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-number">0</span>])
+  .value()
 </code></pre>
 <p><strong><a href="https://github.com/debitoor/dot-prop-immutable" target="_blank">debitoor/dot-prop-immutable</a></strong><br>dot-prop &#x5E93;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#xFF08;Immutable&#xFF09;&#x7248;&#x672C;&#xFF0C;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x6269;&#x5C55;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> newState <span class="token operator">=</span> dotProp<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">todos.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>index<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.complete</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> endOfArray <span class="token operator">=</span> dotProp<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">&apos;foo.$end&apos;</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> newState = dotProp.set(state, <span class="hljs-string">`todos.<span class="hljs-subst">${index}</span>.complete`</span>, <span class="hljs-literal">true</span>)
+<span class="hljs-keyword">const</span> endOfArray = dotProp.get(obj, <span class="hljs-string">&apos;foo.$end&apos;</span>)
 </code></pre>
 <p><a id="immutable-redux-interop"></a></p>
 <h4 id="immutableredux-&#x4E92;&#x64CD;&#x4F5C;">Immutable/Redux &#x4E92;&#x64CD;&#x4F5C;</h4>
 <p><strong><a href="https://github.com/gajus/redux-immutable" target="_blank">gajus/redux-immutable</a></strong><br>&#x4E0E; Immutable.js Maps &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x7684; combineReducers &#x7B49;&#x4EF7;&#x7269;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> initialState <span class="token operator">=</span> Immutable<span class="token punctuation">.</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>rootReducer<span class="token punctuation">,</span> initialState<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> initialState = Immutable.Map()
+<span class="hljs-keyword">const</span> rootReducer = combineReducers({})
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, initialState)
 </code></pre>
 <p><strong><a href="https://github.com/eadmundo/redux-seamless-immutable" target="_blank">eadmundo/redux-seamless-immutable</a></strong><br>&#x4E0E; combineReducers &#x7B49;&#x6548;&#xFF0C;&#x4E0E; seamless-immutable value &#x4E00;&#x8D77;&#x4F7F;&#x7528;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux-seamless-immutable&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span> userReducer<span class="token punctuation">,</span> posts
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-seamless-immutable&apos;</span>;
+<span class="hljs-keyword">const</span> rootReducer = combineReducers({ userReducer, posts
 </code></pre>
 <p><a id="side-effects"></a></p>
 <h2 id="&#x526F;&#x4F5C;&#x7528;&#xFF08;side-effects&#xFF09;">&#x526F;&#x4F5C;&#x7528;&#xFF08;Side Effects&#xFF09;</h2>
@@ -364,158 +358,158 @@ array<span class="token punctuation">[</span><span class="token number">0</span>
 <h4 id="&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;">&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;</h4>
 <p><strong><a href="https://github.com/gaearon/redux-thunk" target="_blank">gaearon/redux-thunk</a></strong><br>&#x8C03;&#x5EA6;&#xFF08;dispatch&#xFF09;&#x51FD;&#x6570;&#xFF0C;&#x8C03;&#x7528;&#x5E76;&#x5C06; <code>dispatch</code> &#x548C; <code>getState</code> &#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x3002; &#x8FD9;&#x5145;&#x5F53;&#x4E86; AJAX &#x8C03;&#x7528;&#x548C;&#x5176;&#x4ED6;&#x5F02;&#x6B65;&#x884C;&#x4E3A;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
 <p><strong>&#x9002;&#x7528;&#x4E8E;</strong>: &#x5165;&#x95E8;&#x3001;&#x7B80;&#x5355;&#x7684;&#x5F02;&#x6B65;&#x548C;&#x590D;&#x6742;&#x7684;&#x540C;&#x6B65;&#x903B;&#x8F91;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token parameter">someValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token punctuation">,</span> getState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-        <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">:</span> <span class="token string">&quot;REQUEST_STARTED&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchData</span>(<span class="hljs-params">someValue</span>) </span>{
+    <span class="hljs-keyword">return</span> (dispatch, getState) =&gt; {
+        dispatch({type : <span class="hljs-string">&quot;REQUEST_STARTED&quot;</span>});
 
-        myAjaxLib<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">&quot;/someEndpoint&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>data <span class="token operator">:</span> someValue<span class="token punctuation">}</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">:</span> <span class="token string">&quot;REQUEST_SUCCEEDED&quot;</span><span class="token punctuation">,</span> payload <span class="token operator">:</span> response<span class="token punctuation">}</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">:</span> <span class="token string">&quot;REQUEST_FAILED&quot;</span><span class="token punctuation">,</span> error <span class="token operator">:</span> error<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+        myAjaxLib.post(<span class="hljs-string">&quot;/someEndpoint&quot;</span>, {data : someValue})
+            .then(response =&gt; dispatch({type : <span class="hljs-string">&quot;REQUEST_SUCCEEDED&quot;</span>, payload : response})
+            .catch(error =&gt; dispatch({type : <span class="hljs-string">&quot;REQUEST_FAILED&quot;</span>, error : error});
+    };
+}
 
-<span class="token keyword">function</span> <span class="token function">addTodosIfAllowed</span><span class="token punctuation">(</span><span class="token parameter">todoText</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token punctuation">,</span> getState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodosIfAllowed</span>(<span class="hljs-params">todoText</span>) </span>{
+    <span class="hljs-keyword">return</span> (dispatch, getState) =&gt; {
+        <span class="hljs-keyword">const</span> state = getState();
 
-        <span class="token keyword">if</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token constant">MAX_TODOS</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">:</span> <span class="token string">&quot;ADD_TODO&quot;</span><span class="token punctuation">,</span> text <span class="token operator">:</span> todoText<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+        <span class="hljs-keyword">if</span>(state.todos.length &lt; MAX_TODOS) {
+            dispatch({type : <span class="hljs-string">&quot;ADD_TODO&quot;</span>, text : todoText});
+        }
+    }
+}
 </code></pre>
 <p><strong><a href="https://github.com/redux-saga/redux-saga" target="_blank">redux-saga/redux-saga</a></strong><br>&#x4F7F;&#x7528;&#x540C;&#x6B65;&#x67E5;&#x627E;&#x751F;&#x6210;&#x5668;&#x51FD;&#x6570;&#x5904;&#x7406;&#x5F02;&#x6B65;&#x903B;&#x8F91;&#x3002; Sagas &#x8FD4;&#x56DE; effect &#x7684;&#x63CF;&#x8FF0;&#xFF0C; &#x8FD9;&#x4E9B; effect &#x7531; saga &#x4E2D;&#x95F4;&#x4EF6;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x4E14;&#x50CF; JS &#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x201C;&#x540E;&#x53F0;&#x7EBF;&#x7A0B;&#x201D;&#x3002;</p>
 <p><strong>&#x9002;&#x7528;&#x4E8E;</strong>: &#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x903B;&#x8F91;&#xFF0C;&#x89E3;&#x8026;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> someValue <span class="token punctuation">}</span> <span class="token operator">=</span> action
-  <span class="token keyword">try</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token function">call</span><span class="token punctuation">(</span>myAjaxLib<span class="token punctuation">.</span>post<span class="token punctuation">,</span> <span class="token string">&apos;/someEndpoint&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-      data<span class="token operator">:</span> someValue
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">yield</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;REQUEST_SUCCEEDED&apos;</span><span class="token punctuation">,</span> payload<span class="token operator">:</span> response <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">yield</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;REQUEST_FAILED&apos;</span><span class="token punctuation">,</span> error<span class="token operator">:</span> error <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fetchData</span>(<span class="hljs-params">action</span>) </span>{
+  <span class="hljs-keyword">const</span> { someValue } = action
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">yield</span> call(myAjaxLib.post, <span class="hljs-string">&apos;/someEndpoint&apos;</span>, {
+      data: someValue
+    })
+    <span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&apos;REQUEST_SUCCEEDED&apos;</span>, payload: response })
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&apos;REQUEST_FAILED&apos;</span>, error: error })
+  }
+}
 
-<span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">addTodosIfAllowed</span><span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> todoText <span class="token punctuation">}</span> <span class="token operator">=</span> action
-  <span class="token keyword">const</span> todos <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token function">select</span><span class="token punctuation">(</span><span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>todos<span class="token punctuation">)</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">addTodosIfAllowed</span>(<span class="hljs-params">action</span>) </span>{
+  <span class="hljs-keyword">const</span> { todoText } = action
+  <span class="hljs-keyword">const</span> todos = <span class="hljs-keyword">yield</span> select(state =&gt; state.todos)
 
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>todos<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token constant">MAX_TODOS</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">yield</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token punctuation">,</span> text<span class="token operator">:</span> todoText <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  <span class="hljs-keyword">if</span> (todos.length &lt; MAX_TODOS) {
+    <span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&apos;ADD_TODO&apos;</span>, text: todoText })
+  }
+}
 </code></pre>
 <p><strong><a href="https://github.com/redux-observable/redux-observable" target="_blank">redux-observable/redux-observable</a></strong></p>
 <p>&#x4F7F;&#x7528;&#x79F0;&#x4E3A; &#x201C;epics&#x201D; &#x7684; RxJS &#x53EF;&#x89C2;&#x5BDF;&#x94FE;&#x5904;&#x7406;&#x5F02;&#x6B65;&#x903B;&#x8F91;&#x3002;
 &#x64B0;&#x5199;&#x548C;&#x53D6;&#x6D88;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x4EE5;&#x521B;&#x5EFA;&#x526F;&#x4F5C;&#x7528;&#x7B49;&#x3002;</p>
 <p><strong>&#x9002;&#x7528;&#x4E8E;</strong>: &#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x903B;&#x8F91;&#xFF0C;&#x89E3;&#x8026;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">loginRequestEpic</span> <span class="token operator">=</span> <span class="token parameter">action$</span> <span class="token operator">=&gt;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> loginRequestEpic = action$ =&gt;
   action$
-    <span class="token punctuation">.</span><span class="token function">ofType</span><span class="token punctuation">(</span><span class="token constant">LOGIN_REQUEST</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">mergeMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> payload<span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-      Observable<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token function">postLogin</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>loginSuccess<span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>loginFailure<span class="token punctuation">)</span>
-    <span class="token punctuation">)</span>
+    .ofType(LOGIN_REQUEST)
+    .mergeMap(({ payload: { username, password } }) =&gt;
+      Observable.from(postLogin(username, password))
+        .map(loginSuccess)
+        .catch(loginFailure)
+    )
 
-<span class="token keyword">const</span> <span class="token function-variable function">loginSuccessfulEpic</span> <span class="token operator">=</span> <span class="token parameter">action$</span> <span class="token operator">=&gt;</span>
+<span class="hljs-keyword">const</span> loginSuccessfulEpic = action$ =&gt;
   action$
-    <span class="token punctuation">.</span><span class="token function">ofType</span><span class="token punctuation">(</span><span class="token constant">LOGIN_SUCCESS</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">mergeMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> payload<span class="token operator">:</span> <span class="token punctuation">{</span> msg <span class="token punctuation">}</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">showMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    .ofType(LOGIN_SUCCESS)
+    .delay(<span class="hljs-number">2000</span>)
+    .mergeMap(({ payload: { msg } }) =&gt; showMessage(msg))
 
-<span class="token keyword">const</span> rootEpic <span class="token operator">=</span> <span class="token function">combineEpics</span><span class="token punctuation">(</span>loginRequestEpic<span class="token punctuation">,</span> loginSuccessfulEpic<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> rootEpic = combineEpics(loginRequestEpic, loginSuccessfulEpic)
 </code></pre>
 <p><strong><a href="https://github.com/redux-loop/redux-loop" target="_blank">redux-loop/redux-loop</a></strong></p>
 <p>Elm &#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x7684;&#x4E00;&#x4E2A;&#x7AEF;&#x53E3;&#xFF0C;&#x7528;&#x4E8E; Redux&#xFF0C;&#x5141;&#x8BB8;&#x60A8;&#x901A;&#x8FC7;&#x4ECE; Reducer &#x8FD4;&#x56DE;&#x5B83;&#x4EEC;&#x6765;&#x81EA;&#x7136;&#x800C;&#x7EAF;&#x7CB9;&#x5730;&#x5BF9;&#x60A8;&#x7684; effect &#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002; reducer &#x73B0;&#x5728;&#x8FD4;&#x56DE;&#x72B6;&#x6001;&#x503C;&#x548C;&#x526F;&#x4F5C;&#x7528;&#x63CF;&#x8FF0;&#x3002;</p>
 <p><strong>&#x9002;&#x7528;&#x4E8E;</strong>: &#x8BD5;&#x56FE;&#x5C3D;&#x53EF;&#x80FD;&#x5730;&#x50CF; Elm &#x4E00;&#x6837;&#x4F7F;&#x7528; Redux + JS</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> ActionType<span class="token punctuation">.</span><span class="token constant">LOGIN_REQUEST</span><span class="token operator">:</span>
-      <span class="token keyword">const</span> <span class="token punctuation">{</span> username<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> action<span class="token punctuation">.</span>payload
-      <span class="token keyword">return</span> <span class="token function">loop</span><span class="token punctuation">(</span>
-        <span class="token punctuation">{</span> pending<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        Effect<span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span>loginPromise<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
-      <span class="token punctuation">)</span>
-    <span class="token keyword">case</span> ActionType<span class="token punctuation">.</span><span class="token constant">LOGIN_SUCCESS</span><span class="token operator">:</span>
-      <span class="token keyword">const</span> <span class="token punctuation">{</span> user<span class="token punctuation">,</span> msg <span class="token punctuation">}</span> <span class="token operator">=</span> action<span class="token punctuation">.</span>payload
-      <span class="token keyword">return</span> <span class="token function">loop</span><span class="token punctuation">(</span>
-        <span class="token punctuation">{</span> pending<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> user <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        Effect<span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span>delayMessagePromise<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
-      <span class="token punctuation">)</span>
-    <span class="token keyword">case</span> ActionType<span class="token punctuation">.</span><span class="token constant">LOGIN_FAILURE</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span> pending<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> err<span class="token operator">:</span> action<span class="token punctuation">.</span>payload <span class="token punctuation">}</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> reducer = (state = {}, action) =&gt; {
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> ActionType.LOGIN_REQUEST:
+      <span class="hljs-keyword">const</span> { username, password } = action.payload
+      <span class="hljs-keyword">return</span> loop(
+        { pending: <span class="hljs-literal">true</span> },
+        Effect.promise(loginPromise, username, password)
+      )
+    <span class="hljs-keyword">case</span> ActionType.LOGIN_SUCCESS:
+      <span class="hljs-keyword">const</span> { user, msg } = action.payload
+      <span class="hljs-keyword">return</span> loop(
+        { pending: <span class="hljs-literal">false</span>, user },
+        Effect.promise(delayMessagePromise, msg, <span class="hljs-number">2000</span>)
+      )
+    <span class="hljs-keyword">case</span> ActionType.LOGIN_FAILURE:
+      <span class="hljs-keyword">return</span> { pending: <span class="hljs-literal">false</span>, err: action.payload }
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 </code></pre>
 <p><strong><a href="https://github.com/jeffbski/redux-logic" target="_blank">jeffbski/redux-logic</a></strong></p>
 <p>&#x4F7F;&#x7528; observable &#x6784;&#x5EFA;&#x7684;&#x526F;&#x4F5C;&#x7528; lib&#xFF0C;&#x4F46;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x56DE;&#x8C03;&#x3001;promises&#x3001;async/await &#x6216; observables&#x3002; &#x63D0;&#x4F9B; action &#x7684;&#x58F0;&#x660E;&#x6027;&#x5904;&#x7406;&#x3002;</p>
 <p><strong>&#x9002;&#x7528;&#x4E8E;</strong>: &#x975E;&#x5E38;&#x5206;&#x79BB;&#x7684;&#x5F02;&#x6B65;&#x903B;&#x8F91;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> loginLogic <span class="token operator">=</span> <span class="token function">createLogic</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> Actions<span class="token punctuation">.</span><span class="token constant">LOGIN_REQUEST</span><span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> loginLogic = createLogic({
+  type: Actions.LOGIN_REQUEST,
 
-  <span class="token function">process</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> getState<span class="token punctuation">,</span> action <span class="token punctuation">}</span><span class="token punctuation">,</span> dispatch<span class="token punctuation">,</span> done</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> username<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> action<span class="token punctuation">.</span>payload
+  process({ getState, action }, dispatch, done) {
+    <span class="hljs-keyword">const</span> { username, password } = action.payload
 
-    <span class="token function">postLogin</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
-        <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> user<span class="token punctuation">,</span> msg <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-          <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">loginSucceeded</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    postLogin(username, password)
+      .then(
+        ({ user, msg }) =&gt; {
+          dispatch(loginSucceeded(user))
 
-          <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">showMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">loginFailure</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span>
-      <span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>done<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+          setTimeout(() =&gt; dispatch(showMessage(msg)), <span class="hljs-number">2000</span>)
+        },
+        err =&gt; dispatch(loginFailure(err))
+      )
+      .then(done)
+  }
+})
 </code></pre>
 <p><a id="promises"></a></p>
 <h4 id="promises">Promises</h4>
 <p><strong><a href="https://github.com/acdlite/redux-promise" target="_blank">acdlite/redux-promise</a></strong><br>&#x8C03;&#x5EA6;&#xFF08;Dispatch&#xFF09; promise &#x4F5C;&#x4E3A; action &#x7684;&#x6709;&#x6548;&#x8D1F;&#x8F7D;&#xFF0C;&#x5E76;&#x5728; promise resolve &#x6216; reject &#x65F6;&#x8C03;&#x5EA6; FSA &#x517C;&#x5BB9;&#xFF08;FSA-compliant&#xFF09;&#x7684; action &#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;FETCH_DATA&apos;</span><span class="token punctuation">,</span> payload<span class="token operator">:</span> myAjaxLib<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&apos;/data&apos;</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token comment">// will dispatch either {type : &quot;FETCH_DATA&quot;, payload : response} if resolved,</span>
-<span class="token comment">// or dispatch {type : &quot;FETCH_DATA&quot;, payload : error, error : true} if rejected</span>
+<pre><code class="lang-js">dispatch({ type: <span class="hljs-string">&apos;FETCH_DATA&apos;</span>, payload: myAjaxLib.get(<span class="hljs-string">&apos;/data&apos;</span>) })
+<span class="hljs-comment">// will dispatch either {type : &quot;FETCH_DATA&quot;, payload : response} if resolved,</span>
+<span class="hljs-comment">// or dispatch {type : &quot;FETCH_DATA&quot;, payload : error, error : true} if rejected</span>
 </code></pre>
 <p><strong><a href="https://github.com/lelandrichardson/redux-pack" target="_blank">lelandrichardson/redux-pack</a></strong><br>&#x660E;&#x667A;&#x7684;&#x3001;&#x58F0;&#x660E;&#x6027;&#x7684;&#x3001;&#x57FA;&#x4E8E;&#x7EA6;&#x5B9A;&#x7684;&#x5904;&#x7406; promise&#xFF0C;&#x53EF;&#x4EE5;&#x6307;&#x5BFC;&#x7528;&#x6237;&#x671D;&#x7740;&#x826F;&#x597D;&#x7684;&#x65B9;&#x5411;&#x53D1;&#x5C55;&#x800C;&#x4E0D;&#x4F1A;&#x66B4;&#x9732;&#x51FA;&#x5168;&#x90E8;&#x7684;&#x8C03;&#x5EA6;(dispatch)&#x529F;&#x80FD;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">:</span> <span class="token string">&quot;FETCH_DATA&quot;</span><span class="token punctuation">,</span> payload <span class="token operator">:</span> myAjaxLib<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/data&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="lang-js">dispatch({type : <span class="hljs-string">&quot;FETCH_DATA&quot;</span>, payload : myAjaxLib.get(<span class="hljs-string">&quot;/data&quot;</span>) });
 
-<span class="token comment">// in a reducer:</span>
-        <span class="token keyword">case</span> <span class="token string">&quot;FETCH_DATA&quot;</span><span class="token operator">:</span> <span class="token operator">=</span>
-            <span class="token keyword">return</span> <span class="token function">handle</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> action<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-                <span class="token function-variable function">start</span><span class="token operator">:</span> <span class="token parameter">prevState</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-                  <span class="token operator">...</span>prevState<span class="token punctuation">,</span>
-                  isLoading<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-                  fooError<span class="token operator">:</span> <span class="token keyword">null</span>
-                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                <span class="token function-variable function">finish</span><span class="token operator">:</span> <span class="token parameter">prevState</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prevState<span class="token punctuation">,</span> isLoading<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                <span class="token function-variable function">failure</span><span class="token operator">:</span> <span class="token parameter">prevState</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prevState<span class="token punctuation">,</span> fooError<span class="token operator">:</span> payload <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token parameter">prevState</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prevState<span class="token punctuation">,</span> foo<span class="token operator">:</span> payload <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="hljs-comment">// in a reducer:</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;FETCH_DATA&quot;</span>: =
+            <span class="hljs-keyword">return</span> handle(state, action, {
+                start: prevState =&gt; ({
+                  ...prevState,
+                  isLoading: <span class="hljs-literal">true</span>,
+                  fooError: <span class="hljs-literal">null</span>
+                }),
+                finish: prevState =&gt; ({ ...prevState, isLoading: <span class="hljs-literal">false</span> }),
+                failure: prevState =&gt; ({ ...prevState, fooError: payload }),
+                success: prevState =&gt; ({ ...prevState, foo: payload }),
+            });
 </code></pre>
 <p><a id="middleware"></a></p>
 <h2 id="&#x4E2D;&#x95F4;&#x4EF6;">&#x4E2D;&#x95F4;&#x4EF6;</h2>
 <p><a id="networks-and-sockets"></a></p>
 <h4 id="networks-and-sockets">Networks and Sockets</h4>
 <p><strong><a href="https://github.com/svrcekmichal/redux-axios-middleware" target="_blank">svrcekmichal/redux-axios-middleware</a></strong><br>&#x4F7F;&#x7528; Axios &#x83B7;&#x53D6;&#x6570;&#x636E;&#x5E76;&#x8C03;&#x5EA6;&#xFF08;dispatch&#xFF09;&#x542F;&#x52A8; / &#x6210;&#x529F; / &#x5931;&#x8D25; action&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function">loadCategories</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;LOAD&apos;</span><span class="token punctuation">,</span> payload<span class="token operator">:</span> <span class="token punctuation">{</span> request <span class="token operator">:</span> <span class="token punctuation">{</span> url<span class="token operator">:</span> <span class="token string">&apos;/categories&apos;</span><span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> loadCategories() =&gt; ({ type: <span class="hljs-string">&apos;LOAD&apos;</span>, payload: { request : { url: <span class="hljs-string">&apos;/categories&apos;</span>} } });
 </code></pre>
 <p><strong><a href="https://github.com/agraboso/redux-api-middleware" target="_blank">agraboso/redux-api-middleware</a></strong><br>&#x901A;&#x8FC7;&#x8BFB;&#x53D6; API &#x8C03;&#x7528; action&#x3001;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x548C;&#x8C03;&#x5EA6; FSA</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">fetchUsers</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token punctuation">[</span><span class="token constant">CALL_API</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    endpoint<span class="token operator">:</span> <span class="token string">&apos;http://www.example.com/api/users&apos;</span><span class="token punctuation">,</span>
-    method<span class="token operator">:</span> <span class="token string">&apos;GET&apos;</span><span class="token punctuation">,</span>
-    types<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;REQUEST&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;SUCCESS&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;FAILURE&apos;</span><span class="token punctuation">]</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> fetchUsers = () =&gt; ({
+  [CALL_API]: {
+    endpoint: <span class="hljs-string">&apos;http://www.example.com/api/users&apos;</span>,
+    method: <span class="hljs-string">&apos;GET&apos;</span>,
+    types: [<span class="hljs-string">&apos;REQUEST&apos;</span>, <span class="hljs-string">&apos;SUCCESS&apos;</span>, <span class="hljs-string">&apos;FAILURE&apos;</span>]
+  }
+})
 </code></pre>
 <p><strong><a href="https://github.com/itaylor/redux-socket.io" target="_blank">itaylor/redux-socket.io</a></strong><br>socket.io &#x548C; redux &#x4E4B;&#x95F4;&#x7684;&#x56FA;&#x5B9A;&#x8FDE;&#x63A5;&#x5668;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> <span class="token function">applyMiddleware</span><span class="token punctuation">(</span>socketIoMiddleware<span class="token punctuation">)</span><span class="token punctuation">)</span>
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;server/hello&apos;</span><span class="token punctuation">,</span> data<span class="token operator">:</span> <span class="token string">&apos;Hello!&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> store = createStore(reducer, applyMiddleware(socketIoMiddleware))
+store.dispatch({ type: <span class="hljs-string">&apos;server/hello&apos;</span>, data: <span class="hljs-string">&apos;Hello!&apos;</span> })
 </code></pre>
 <p><strong><a href="https://github.com/tiberiuc/redux-react-firebase" target="_blank">tiberiuc/redux-react-firebase</a></strong><br>Firebase&#x3001;React &#x548C; Redux &#x4E4B;&#x95F4;&#x7684;&#x96C6;&#x6210;&#x3002;</p>
 <p><a id="async-behavior"></a></p>
@@ -541,48 +535,48 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 <p><a id="component-state-and-encapsulation"></a></p>
 <h2 id="&#x7EC4;&#x4EF6;-state-&#x548C;&#x5C01;&#x88C5;">&#x7EC4;&#x4EF6; state &#x548C;&#x5C01;&#x88C5;</h2>
 <p><strong><a href="https://github.com/tonyhb/redux-ui" target="_blank">tonyhb/redux-ui</a></strong><br>&#x7528;&#x4E8E; UI state &#x7684;&#x201C;&#x5757;&#x7EA7;&#x8303;&#x56F4;&#x201D;&#x3002; &#x88C5;&#x9970;&#x7EC4;&#x4EF6;&#x4EE5;&#x58F0;&#x660E;&#x6570;&#x636E;&#x5B57;&#x6BB5;&#xFF0C;&#x4F7F;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x5B57;&#x6BB5;&#x6210;&#x4E3A; props &#x5E76;&#x53EF;&#x7531;&#x5D4C;&#x5957;&#x5B50;&#x9879;&#x66F4;&#x65B0;&#x3002;</p>
-<pre class="language-"><code class="lang-js">@<span class="token function">ui</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  key<span class="token operator">:</span> <span class="token string">&apos;some-name&apos;</span><span class="token punctuation">,</span>
-  state<span class="token operator">:</span> <span class="token punctuation">{</span> uiVar1<span class="token operator">:</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">,</span> <span class="token function-variable function">uiVar2</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">props<span class="token punctuation">,</span> state</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>someValue <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token function-variable function">reducer</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">YourComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<pre><code class="lang-js">@ui({
+  key: <span class="hljs-string">&apos;some-name&apos;</span>,
+  state: { uiVar1: <span class="hljs-string">&apos;&apos;</span>, uiVar2: (props, state) =&gt; state.someValue },
+  reducer: (state, action) =&gt; {}
+})
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{}
 </code></pre>
 <p><strong><a href="https://github.com/threepointone/redux-react-local" target="_blank">threepointone/redux-react-local</a></strong><br>Redux &#x4E2D;&#x7684;&#x672C;&#x5730;&#x7EC4;&#x4EF6; state&#xFF0C;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x7EC4;&#x4EF6; action</p>
-<pre class="language-"><code class="lang-js">@<span class="token function">local</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  ident<span class="token operator">:</span> <span class="token string">&apos;counter&apos;</span><span class="token punctuation">,</span> initial<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function-variable function">reducer</span> <span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> action<span class="token punctuation">.</span>me <span class="token operator">?</span> state <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">:</span> state <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">Counter</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+<pre><code class="lang-js">@local({
+  ident: <span class="hljs-string">&apos;counter&apos;</span>, initial: <span class="hljs-number">0</span>, reducer : (state, action) =&gt; action.me ? state + <span class="hljs-number">1</span> : state }
+})
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
 </code></pre>
 <p><strong><a href="https://github.com/epeli/lean-redux" target="_blank">epeli/lean-redux</a></strong><br>&#x4F7F; Redux &#x4E2D;&#x7684;&#x7EC4;&#x4EF6;&#x7684; state &#x4E0E; setState &#x4E00;&#x6837;&#x7B80;&#x5355;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> DynamicCounters <span class="token operator">=</span> <span class="token function">connectLean</span><span class="token punctuation">(</span>
-    scope<span class="token operator">:</span> <span class="token string">&quot;dynamicCounters&quot;</span><span class="token punctuation">,</span>
-    <span class="token function">getInitialState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>counterCount <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    addCounter<span class="token punctuation">,</span> removeCounter
-<span class="token punctuation">)</span><span class="token punctuation">(</span>CounterList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> DynamicCounters = connectLean(
+    scope: <span class="hljs-string">&quot;dynamicCounters&quot;</span>,
+    getInitialState() =&gt; ({counterCount : <span class="hljs-number">1</span>}),
+    addCounter, removeCounter
+)(CounterList);
 </code></pre>
 <p><strong><a href="https://github.com/ioof-holdings/redux-subspace" target="_blank">ioof-holdings/redux-subspace</a></strong><br>&#x4E3A;&#x5206;&#x79BB;&#x7684;&#x5FAE;&#x524D;&#x7AEF;&#x521B;&#x5EFA;&#x72EC;&#x7ACB;&#x7684; &#x201C;sub-store&#x201D;&#xFF0C;&#x96C6;&#x6210;&#x4E86; React&#x3001;sagas &#x548C; observables</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> reducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  subApp1<span class="token operator">:</span> <span class="token function">namespaced</span><span class="token punctuation">(</span><span class="token string">&apos;subApp1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">,</span>
-  subApp2<span class="token operator">:</span> <span class="token function">namespaced</span><span class="token punctuation">(</span><span class="token string">&apos;subApp2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> reducer = combineReducers({
+  subApp1: namespaced(<span class="hljs-string">&apos;subApp1&apos;</span>)(counter),
+  subApp2: namespaced(<span class="hljs-string">&apos;subApp2&apos;</span>)(counter)
+})
 
-<span class="token keyword">const</span> subApp1Store <span class="token operator">=</span> <span class="token function">subspace</span><span class="token punctuation">(</span><span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>subApp1<span class="token punctuation">,</span> <span class="token string">&apos;subApp1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span>
-<span class="token keyword">const</span> subApp2Store <span class="token operator">=</span> <span class="token function">subspace</span><span class="token punctuation">(</span><span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>subApp2<span class="token punctuation">,</span> <span class="token string">&apos;subApp2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> subApp1Store = subspace(state =&gt; state.subApp1, <span class="hljs-string">&apos;subApp1&apos;</span>)(store)
+<span class="hljs-keyword">const</span> subApp2Store = subspace(state =&gt; state.subApp2, <span class="hljs-string">&apos;subApp2&apos;</span>)(store)
 
-subApp1Store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">&apos;INCREMENT&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&apos;store state:&apos;</span><span class="token punctuation">,</span> store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// { &quot;subApp1&quot;: { value: 2 }, &quot;subApp2&quot;: { value: 1 } }</span>
+subApp1Store.dispatch({ type: <span class="hljs-string">&apos;INCREMENT&apos;</span> })
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;store state:&apos;</span>, store.getState()) <span class="hljs-comment">// { &quot;subApp1&quot;: { value: 2 }, &quot;subApp2&quot;: { value: 1 } }</span>
 </code></pre>
 <p><strong><a href="https://github.com/DataDog/redux-doghouse" target="_blank">DataDog/redux-doghouse</a></strong><br>&#x65E8;&#x5728;&#x901A;&#x8FC7;&#x5C06; actIon &#x548C; reducer &#x4F5C;&#x7528;&#x4E8E;&#x7EC4;&#x4EF6;&#x7684;&#x7279;&#x5B9A;&#x5B9E;&#x4F8B;&#xFF0C;&#x4F7F; Redux &#x66F4;&#x6613;&#x4E8E;&#x6784;&#x5EFA;&#x53EF;&#x91CD;&#x7528;&#x7EC4;&#x4EF6;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> scopeableActions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ScopedActionFactory</span><span class="token punctuation">(</span>actionCreators<span class="token punctuation">)</span>
-<span class="token keyword">const</span> actionCreatorsScopedToA <span class="token operator">=</span> scopeableActions<span class="token punctuation">.</span><span class="token function">scope</span><span class="token punctuation">(</span><span class="token string">&apos;a&apos;</span><span class="token punctuation">)</span>
-actionCreatorsScopedToA<span class="token punctuation">.</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token string">&apos;bar&apos;</span><span class="token punctuation">)</span> <span class="token comment">//{ type: SET_FOO, value: &apos;bar&apos;, scopeID: &apos;a&apos; }</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> scopeableActions = <span class="hljs-keyword">new</span> ScopedActionFactory(actionCreators)
+<span class="hljs-keyword">const</span> actionCreatorsScopedToA = scopeableActions.scope(<span class="hljs-string">&apos;a&apos;</span>)
+actionCreatorsScopedToA.foo(<span class="hljs-string">&apos;bar&apos;</span>) <span class="hljs-comment">//{ type: SET_FOO, value: &apos;bar&apos;, scopeID: &apos;a&apos; }</span>
 
-<span class="token keyword">const</span> boundScopeableActions <span class="token operator">=</span> <span class="token function">bindScopedActionFactories</span><span class="token punctuation">(</span>
-  scopeableActions<span class="token punctuation">,</span>
-  store<span class="token punctuation">.</span>dispatch
-<span class="token punctuation">)</span>
-<span class="token keyword">const</span> scopedReducers <span class="token operator">=</span> <span class="token function">scopeReducers</span><span class="token punctuation">(</span>reducers<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> boundScopeableActions = bindScopedActionFactories(
+  scopeableActions,
+  store.dispatch
+)
+<span class="hljs-keyword">const</span> scopedReducers = scopeReducers(reducers)
 </code></pre>
 <p><a id="dev-tools"></a></p>
 <h2 id="&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;">&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;</h2>
@@ -1585,7 +1579,7 @@ actionCreatorsScopedToA<span class="token punctuation">.</span><span class="toke
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"生态系统","level":"1.2.6","depth":2,"next":{"title":"示例","level":"1.2.7","depth":2,"path":"docs/introduction/Examples.md","ref":"./docs/introduction/Examples.md","articles":[]},"previous":{"title":"学习资源","level":"1.2.5","depth":2,"path":"docs/introduction/LearningResources.md","ref":"./docs/introduction/LearningResources.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/introduction/Ecosystem.md","mtime":"2020-10-18T13:47:18.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"生态系统","level":"1.2.6","depth":2,"next":{"title":"示例","level":"1.2.7","depth":2,"path":"docs/introduction/Examples.md","ref":"./docs/introduction/Examples.md","articles":[]},"previous":{"title":"学习资源","level":"1.2.5","depth":2,"path":"docs/introduction/LearningResources.md","ref":"./docs/introduction/LearningResources.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/introduction/Ecosystem.md","mtime":"2020-10-18T13:52:42.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1593,9 +1587,6 @@ actionCreatorsScopedToA<span class="token punctuation">.</span><span class="toke
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

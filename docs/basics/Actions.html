@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -103,15 +97,15 @@
 <p>&#x9996;&#x5148;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x6765;&#x7ED9; action &#x4E0B;&#x4E2A;&#x5B9A;&#x4E49;&#x3002;</p>
 <p><strong>Action</strong> &#x662F;&#x628A;&#x6570;&#x636E;&#x4ECE;&#x5E94;&#x7528;&#xFF08;&#x8BD1;&#x8005;&#x6CE8;&#xFF1A;&#x8FD9;&#x91CC;&#x4E4B;&#x6240;&#x4EE5;&#x4E0D;&#x53EB; view &#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x670D;&#x52A1;&#x5668;&#x54CD;&#x5E94;&#xFF0C;&#x7528;&#x6237;&#x8F93;&#x5165;&#x6216;&#x5176;&#x5B83;&#x975E; view &#x7684;&#x6570;&#x636E; &#xFF09;&#x4F20;&#x5230; store &#x7684;&#x6709;&#x6548;&#x8F7D;&#x8377;&#x3002;&#x5B83;&#x662F; store &#x6570;&#x636E;&#x7684;<strong>&#x552F;&#x4E00;</strong>&#x6765;&#x6E90;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x4F60;&#x4F1A;&#x901A;&#x8FC7; <a href="../api/Store.html#dispatch"><code>store.dispatch()</code></a> &#x5C06; action &#x4F20;&#x5230; store&#x3002;</p>
 <p>&#x6DFB;&#x52A0;&#x65B0; todo &#x4EFB;&#x52A1;&#x7684; action &#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token constant">ADD_TODO</span> <span class="token operator">=</span> <span class="token string">&apos;ADD_TODO&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> ADD_TODO = <span class="hljs-string">&apos;ADD_TODO&apos;</span>
 </code></pre>
-<pre class="language-"><code class="lang-js"><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token constant">ADD_TODO</span><span class="token punctuation">,</span>
-  text<span class="token operator">:</span> <span class="token string">&apos;Build my first Redux app&apos;</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js">{
+  type: ADD_TODO,
+  text: <span class="hljs-string">&apos;Build my first Redux app&apos;</span>
+}
 </code></pre>
 <p>Action &#x672C;&#x8D28;&#x4E0A;&#x662F; JavaScript &#x666E;&#x901A;&#x5BF9;&#x8C61;&#x3002;&#x6211;&#x4EEC;&#x7EA6;&#x5B9A;&#xFF0C;action &#x5185;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x7684; <code>type</code> &#x5B57;&#x6BB5;&#x6765;&#x8868;&#x793A;&#x5C06;&#x8981;&#x6267;&#x884C;&#x7684;&#x52A8;&#x4F5C;&#x3002;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>type</code> &#x4F1A;&#x88AB;&#x5B9A;&#x4E49;&#x6210;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x3002;&#x5F53;&#x5E94;&#x7528;&#x89C4;&#x6A21;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#x65F6;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x5355;&#x72EC;&#x7684;&#x6A21;&#x5757;&#x6216;&#x6587;&#x4EF6;&#x6765;&#x5B58;&#x653E; action&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">ADD_TODO</span><span class="token punctuation">,</span> <span class="token constant">REMOVE_TODO</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actionTypes&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { ADD_TODO, REMOVE_TODO } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actionTypes&apos;</span>
 </code></pre>
 <blockquote>
 <h5 id="&#x6837;&#x677F;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x63D0;&#x9192;">&#x6837;&#x677F;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x63D0;&#x9192;</h5>
@@ -119,86 +113,86 @@
 </blockquote>
 <p>&#x9664;&#x4E86; <code>type</code> &#x5B57;&#x6BB5;&#x5916;&#xFF0C;action &#x5BF9;&#x8C61;&#x7684;&#x7ED3;&#x6784;&#x5B8C;&#x5168;&#x7531;&#x4F60;&#x81EA;&#x5DF1;&#x51B3;&#x5B9A;&#x3002;&#x53C2;&#x7167; <a href="https://github.com/acdlite/flux-standard-action" target="_blank">Flux &#x6807;&#x51C6; Action</a> &#x83B7;&#x53D6;&#x5173;&#x4E8E;&#x5982;&#x4F55;&#x6784;&#x9020; action &#x7684;&#x5EFA;&#x8BAE;&#x3002;</p>
 <p>&#x8FD9;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x518D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A; action index &#x6765;&#x8868;&#x793A;&#x7528;&#x6237;&#x5B8C;&#x6210;&#x4EFB;&#x52A1;&#x7684;&#x52A8;&#x4F5C;&#x5E8F;&#x5217;&#x53F7;&#x3002;&#x56E0;&#x4E3A;&#x6570;&#x636E;&#x662F;&#x5B58;&#x653E;&#x5728;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4E0B;&#x6807; <code>index</code> &#x6765;&#x5F15;&#x7528;&#x7279;&#x5B9A;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x800C;&#x5B9E;&#x9645;&#x9879;&#x76EE;&#x4E2D;&#x4E00;&#x822C;&#x4F1A;&#x5728;&#x65B0;&#x5EFA;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x751F;&#x6210;&#x552F;&#x4E00;&#x7684; ID &#x4F5C;&#x4E3A;&#x6570;&#x636E;&#x7684;&#x5F15;&#x7528;&#x6807;&#x8BC6;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token constant">TOGGLE_TODO</span><span class="token punctuation">,</span>
-  index<span class="token operator">:</span> <span class="token number">5</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js">{
+  type: TOGGLE_TODO,
+  index: <span class="hljs-number">5</span>
+}
 </code></pre>
 <p><strong>&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x5728; action &#x4E2D;&#x4F20;&#x9012;&#x7684;&#x6570;&#x636E;</strong>&#x3002;&#x6BD4;&#x5982;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x4F20;&#x9012; <code>index</code> &#x5C31;&#x6BD4;&#x628A;&#x6574;&#x4E2A;&#x4EFB;&#x52A1;&#x5BF9;&#x8C61;&#x4F20;&#x8FC7;&#x53BB;&#x8981;&#x597D;&#x3002;</p>
 <p>&#x6700;&#x540E;&#xFF0C;&#x518D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A; action type &#x6765;&#x8868;&#x793A;&#x5F53;&#x524D;&#x7684;&#x4EFB;&#x52A1;&#x5C55;&#x793A;&#x9009;&#x9879;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token constant">SET_VISIBILITY_FILTER</span><span class="token punctuation">,</span>
-  filter<span class="token operator">:</span> <span class="token constant">SHOW_COMPLETED</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js">{
+  type: SET_VISIBILITY_FILTER,
+  filter: SHOW_COMPLETED
+}
 </code></pre>
 <h2 id="action-&#x521B;&#x5EFA;&#x51FD;&#x6570;">Action &#x521B;&#x5EFA;&#x51FD;&#x6570;</h2>
 <p><strong>Action &#x521B;&#x5EFA;&#x51FD;&#x6570;</strong> &#x5C31;&#x662F;&#x751F;&#x6210; action &#x7684;&#x65B9;&#x6CD5;&#x3002;&#x201C;action&#x201D; &#x548C; &#x201C;action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x201D; &#x8FD9;&#x4E24;&#x4E2A;&#x6982;&#x5FF5;&#x5F88;&#x5BB9;&#x6613;&#x6DF7;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x4F7F;&#x7528;&#x65F6;&#x6700;&#x597D;&#x6CE8;&#x610F;&#x533A;&#x5206;&#x3002;</p>
 <p>&#x5728; Redux &#x4E2D;&#x7684; action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; action:</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">ADD_TODO</span><span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodo</span>(<span class="hljs-params">text</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: ADD_TODO,
     text
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 </code></pre>
 <p>&#x8FD9;&#x6837;&#x505A;&#x5C06;&#x4F7F; action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x66F4;&#x5BB9;&#x6613;&#x88AB;&#x79FB;&#x690D;&#x548C;&#x6D4B;&#x8BD5;&#x3002;</p>
 <p>&#x5728; <a href="http://facebook.github.io/flux" target="_blank">&#x4F20;&#x7EDF;&#x7684; Flux</a> &#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5F53;&#x8C03;&#x7528; action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A; dispatch&#xFF0C;&#x50CF;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">addTodoWithDispatch</span><span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> action <span class="token operator">=</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">ADD_TODO</span><span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodoWithDispatch</span>(<span class="hljs-params">text</span>) </span>{
+  <span class="hljs-keyword">const</span> action = {
+    type: ADD_TODO,
     text
-  <span class="token punctuation">}</span>
-  <span class="token function">dispatch</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+  }
+  dispatch(action)
+}
 </code></pre>
 <p>&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;Redux &#x4E2D;&#x53EA;&#x9700;&#x628A; action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x4F20;&#x7ED9; <code>dispatch()</code> &#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x53D1;&#x8D77;&#x4E00;&#x6B21; dispatch &#x8FC7;&#x7A0B;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addTodo</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">completeTodo</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js">dispatch(addTodo(text))
+dispatch(completeTodo(index))
 </code></pre>
 <p>&#x6216;&#x8005;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <strong>&#x88AB;&#x7ED1;&#x5B9A;&#x7684; action &#x521B;&#x5EFA;&#x51FD;&#x6570;</strong> &#x6765;&#x81EA;&#x52A8; dispatch&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">boundAddTodo</span> <span class="token operator">=</span> <span class="token parameter">text</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addTodo</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> <span class="token function-variable function">boundCompleteTodo</span> <span class="token operator">=</span> <span class="token parameter">index</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">completeTodo</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> boundAddTodo = text =&gt; dispatch(addTodo(text))
+<span class="hljs-keyword">const</span> boundCompleteTodo = index =&gt; dispatch(completeTodo(index))
 </code></pre>
 <p>&#x7136;&#x540E;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5B83;&#x4EEC;&#xFF1A;</p>
-<pre class="language-"><code>boundAddTodo(text);
+<pre><code>boundAddTodo(text);
 boundCompleteTodo(index);
 </code></pre><p>store &#x91CC;&#x80FD;&#x76F4;&#x63A5;&#x901A;&#x8FC7; <a href="../api/Store.html#dispatch"><code>store.dispatch()</code></a> &#x8C03;&#x7528; <code>dispatch()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x4F60;&#x4F1A;&#x4F7F;&#x7528; <a href="http://github.com/gaearon/react-redux" target="_blank">react-redux</a> &#x63D0;&#x4F9B;&#x7684; <code>connect()</code> &#x5E2E;&#x52A9;&#x5668;&#x6765;&#x8C03;&#x7528;&#x3002;<a href="../api/bindActionCreators.html"><code>bindActionCreators()</code></a> &#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x628A;&#x591A;&#x4E2A; action &#x521B;&#x5EFA;&#x51FD;&#x6570; &#x7ED1;&#x5B9A;&#x5230; <code>dispatch()</code> &#x65B9;&#x6CD5;&#x4E0A;&#x3002;</p>
 <p>Action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x5F02;&#x6B65;&#x975E;&#x7EAF;&#x51FD;&#x6570;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x9605;&#x8BFB; <a href="../advanced/">&#x9AD8;&#x7EA7;&#x6559;&#x7A0B;</a> &#x4E2D;&#x7684; <a href="../advanced/AsyncActions.html">&#x5F02;&#x6B65; action</a>&#x7AE0;&#x8282;&#xFF0C;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x5904;&#x7406; AJAX &#x54CD;&#x5E94;&#x548C;&#x5982;&#x4F55;&#x628A; action &#x521B;&#x5EFA;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x8FDB;&#x5F02;&#x6B65;&#x63A7;&#x5236;&#x6D41;&#x3002;&#x56E0;&#x4E3A;&#x57FA;&#x7840;&#x6559;&#x7A0B;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x9605;&#x8BFB;&#x9AD8;&#x7EA7;&#x6559;&#x7A0B;&#x548C;&#x5F02;&#x6B65; action &#x7AE0;&#x8282;&#x6240;&#x9700;&#x8981;&#x7684;&#x4E00;&#x4E9B;&#x91CD;&#x8981;&#x57FA;&#x7840;&#x6982;&#x5FF5;, &#x6240;&#x4EE5;&#x8BF7;&#x5728;&#x79FB;&#x6B65;&#x5F02;&#x6B65; action &#x4E4B;&#x524D;, &#x52A1;&#x5FC5;&#x5148;&#x5B8C;&#x6210;&#x57FA;&#x7840;&#x6559;&#x7A0B;&#x3002;</p>
 <h2 id="&#x6E90;&#x7801;">&#x6E90;&#x7801;</h2>
 <h3 id="actionsjs"><code>actions.js</code></h3>
-<pre class="language-"><code class="lang-js"><span class="token comment">/*
+<pre><code class="lang-js"><span class="hljs-comment">/*
  * action &#x7C7B;&#x578B;
  */</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">ADD_TODO</span> <span class="token operator">=</span> <span class="token string">&apos;ADD_TODO&apos;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">TOGGLE_TODO</span> <span class="token operator">=</span> <span class="token string">&apos;TOGGLE_TODO&apos;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">SET_VISIBILITY_FILTER</span> <span class="token operator">=</span> <span class="token string">&apos;SET_VISIBILITY_FILTER&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ADD_TODO = <span class="hljs-string">&apos;ADD_TODO&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TOGGLE_TODO = <span class="hljs-string">&apos;TOGGLE_TODO&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SET_VISIBILITY_FILTER = <span class="hljs-string">&apos;SET_VISIBILITY_FILTER&apos;</span>
 
-<span class="token comment">/*
+<span class="hljs-comment">/*
  * &#x5176;&#x5B83;&#x7684;&#x5E38;&#x91CF;
  */</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> VisibilityFilters <span class="token operator">=</span> <span class="token punctuation">{</span>
-  <span class="token constant">SHOW_ALL</span><span class="token operator">:</span> <span class="token string">&apos;SHOW_ALL&apos;</span><span class="token punctuation">,</span>
-  <span class="token constant">SHOW_COMPLETED</span><span class="token operator">:</span> <span class="token string">&apos;SHOW_COMPLETED&apos;</span><span class="token punctuation">,</span>
-  <span class="token constant">SHOW_ACTIVE</span><span class="token operator">:</span> <span class="token string">&apos;SHOW_ACTIVE&apos;</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> VisibilityFilters = {
+  SHOW_ALL: <span class="hljs-string">&apos;SHOW_ALL&apos;</span>,
+  SHOW_COMPLETED: <span class="hljs-string">&apos;SHOW_COMPLETED&apos;</span>,
+  SHOW_ACTIVE: <span class="hljs-string">&apos;SHOW_ACTIVE&apos;</span>
+}
 
-<span class="token comment">/*
+<span class="hljs-comment">/*
  * action &#x521B;&#x5EFA;&#x51FD;&#x6570;
  */</span>
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token constant">ADD_TODO</span><span class="token punctuation">,</span> text <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodo</span>(<span class="hljs-params">text</span>) </span>{
+  <span class="hljs-keyword">return</span> { type: ADD_TODO, text }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">toggleTodo</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token constant">TOGGLE_TODO</span><span class="token punctuation">,</span> index <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggleTodo</span>(<span class="hljs-params">index</span>) </span>{
+  <span class="hljs-keyword">return</span> { type: TOGGLE_TODO, index }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">setVisibilityFilter</span><span class="token punctuation">(</span><span class="token parameter">filter</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token constant">SET_VISIBILITY_FILTER</span><span class="token punctuation">,</span> filter <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVisibilityFilter</span>(<span class="hljs-params">filter</span>) </span>{
+  <span class="hljs-keyword">return</span> { type: SET_VISIBILITY_FILTER, filter }
+}
 </code></pre>
 <h2 id="&#x4E0B;&#x4E00;&#x6B65;">&#x4E0B;&#x4E00;&#x6B65;</h2>
 <p>&#x73B0;&#x5728;&#x8BA9;&#x6211;&#x4EEC; <a href="Reducers.html">&#x5F00;&#x53D1;&#x4E00;&#x4E9B; reducers</a> &#x6765;&#x8BF4;&#x660E;&#x5728;&#x53D1;&#x8D77; action &#x540E; state &#x5E94;&#x8BE5;&#x5982;&#x4F55;&#x66F4;&#x65B0;&#x3002;</p>
@@ -1145,7 +1139,7 @@ boundCompleteTodo(index);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Action","level":"1.3.1","depth":2,"next":{"title":"Reducer","level":"1.3.2","depth":2,"path":"docs/basics/Reducers.md","ref":"./docs/basics/Reducers.md","articles":[]},"previous":{"title":"基础","level":"1.3","depth":1,"path":"docs/basics/README.md","ref":"./docs/basics/README.md","articles":[{"title":"Action","level":"1.3.1","depth":2,"path":"docs/basics/Actions.md","ref":"./docs/basics/Actions.md","articles":[]},{"title":"Reducer","level":"1.3.2","depth":2,"path":"docs/basics/Reducers.md","ref":"./docs/basics/Reducers.md","articles":[]},{"title":"Store","level":"1.3.3","depth":2,"path":"docs/basics/Store.md","ref":"./docs/basics/Store.md","articles":[]},{"title":"数据流","level":"1.3.4","depth":2,"path":"docs/basics/DataFlow.md","ref":"./docs/basics/DataFlow.md","articles":[]},{"title":"搭配 React","level":"1.3.5","depth":2,"path":"docs/basics/UsageWithReact.md","ref":"./docs/basics/UsageWithReact.md","articles":[]},{"title":"示例：Todo List","level":"1.3.6","depth":2,"path":"docs/basics/ExampleTodoList.md","ref":"./docs/basics/ExampleTodoList.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/basics/Actions.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Action","level":"1.3.1","depth":2,"next":{"title":"Reducer","level":"1.3.2","depth":2,"path":"docs/basics/Reducers.md","ref":"./docs/basics/Reducers.md","articles":[]},"previous":{"title":"基础","level":"1.3","depth":1,"path":"docs/basics/README.md","ref":"./docs/basics/README.md","articles":[{"title":"Action","level":"1.3.1","depth":2,"path":"docs/basics/Actions.md","ref":"./docs/basics/Actions.md","articles":[]},{"title":"Reducer","level":"1.3.2","depth":2,"path":"docs/basics/Reducers.md","ref":"./docs/basics/Reducers.md","articles":[]},{"title":"Store","level":"1.3.3","depth":2,"path":"docs/basics/Store.md","ref":"./docs/basics/Store.md","articles":[]},{"title":"数据流","level":"1.3.4","depth":2,"path":"docs/basics/DataFlow.md","ref":"./docs/basics/DataFlow.md","articles":[]},{"title":"搭配 React","level":"1.3.5","depth":2,"path":"docs/basics/UsageWithReact.md","ref":"./docs/basics/UsageWithReact.md","articles":[]},{"title":"示例：Todo List","level":"1.3.6","depth":2,"path":"docs/basics/ExampleTodoList.md","ref":"./docs/basics/ExampleTodoList.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/basics/Actions.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1153,9 +1147,6 @@ boundCompleteTodo(index);
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

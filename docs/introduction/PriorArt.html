@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -122,15 +116,15 @@
 <h3 id="rxjs">RxJS</h3>
 <p><a href="https://github.com/ReactiveX/RxJS" target="_blank">RxJS</a> &#x662F;&#x7BA1;&#x7406;&#x590D;&#x6742;&#x5F02;&#x6B65;&#x5E94;&#x7528;&#x975E;&#x5E38;&#x4F18;&#x79C0;&#x7684;&#x65B9;&#x6848;&#x3002;<a href="http://cycle.js.org" target="_blank">&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x81F4;&#x529B;&#x4E8E;&#x6784;&#x5EFA;&#x5C06;&#x4EBA;&#x673A;&#x4EA4;&#x4E92;&#x4F5C;&#x6A21;&#x62DF;&#x4E3A;&#x76F8;&#x4E92;&#x4F9D;&#x8D56;&#x7684;&#x53EF;&#x89C2;&#x6D4B;&#x53D8;&#x91CF;&#x7684;&#x5E93;</a>&#x3002;</p>
 <p>&#x540C;&#x65F6;&#x4F7F;&#x7528;&#x5B83;&#x548C; Redux &#x6709;&#x610F;&#x4E49;&#x4E48;&#xFF1F;&#x5F53;&#x7136;&#xFF01;&#x5B83;&#x4EEC;&#x914D;&#x5408;&#x5F97;&#x5F88;&#x597D;&#x3002;&#x5C06; Redux store &#x89C6;&#x4F5C;&#x53EF;&#x89C2;&#x5BDF;&#x53D8;&#x91CF;&#x975E;&#x5E38;&#x7B80;&#x4FBF;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">toObservable</span><span class="token punctuation">(</span><span class="token parameter">store</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> next <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">const</span> unsubscribe <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">next</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-      <span class="token function">next</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span> unsubscribe <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toObservable</span>(<span class="hljs-params">store</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    subscribe({ next }) {
+      <span class="hljs-keyword">const</span> unsubscribe = store.subscribe(() =&gt; next(store.getState()))
+      next(store.getState())
+      <span class="hljs-keyword">return</span> { unsubscribe }
+    }
+  }
+}
 </code></pre>
 <p>&#x4F7F;&#x7528;&#x7C7B;&#x4F3C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x7EC4;&#x5408;&#x4E0D;&#x540C;&#x7684;&#x5F02;&#x6B65;&#x6D41;&#xFF0C;&#x5C06;&#x5176;&#x8F6C;&#x5316;&#x4E3A; action &#xFF0C;&#x518D;&#x63D0;&#x4EA4;&#x5230; <code>store.dispatch()</code> &#x3002;</p>
 <p>&#x95EE;&#x9898;&#x5728;&#x4E8E;: &#x5728;&#x5DF2;&#x7ECF;&#x4F7F;&#x7528;&#x4E86; Rx &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F60;&#x771F;&#x7684;&#x9700;&#x8981; Redux &#x5417;&#xFF1F; &#x4E0D;&#x4E00;&#x5B9A;&#x3002;<a href="https://github.com/jas-chen/rx-redux" target="_blank">&#x901A;&#x8FC7; Rx &#x91CD;&#x65B0;&#x5B9E;&#x73B0; Redux</a> &#x5E76;&#x4E0D;&#x96BE;&#x3002;&#x6709;&#x4EBA;&#x8BF4;&#x4EC5;&#x9700;&#x4F7F;&#x7528;&#x4E00;&#x4E24;&#x53E5;&#x7684; <code>.scan()</code> &#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x3002;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x8BF4;&#x4E0D;&#x5B9A;&#x4E0D;&#x9519;&#xFF01;</p>
@@ -1078,7 +1072,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"先前技术","level":"1.2.4","depth":2,"next":{"title":"学习资源","level":"1.2.5","depth":2,"path":"docs/introduction/LearningResources.md","ref":"./docs/introduction/LearningResources.md","articles":[]},"previous":{"title":"三大原则","level":"1.2.3","depth":2,"path":"docs/introduction/ThreePrinciples.md","ref":"./docs/introduction/ThreePrinciples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/introduction/PriorArt.md","mtime":"2020-10-18T13:47:18.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"先前技术","level":"1.2.4","depth":2,"next":{"title":"学习资源","level":"1.2.5","depth":2,"path":"docs/introduction/LearningResources.md","ref":"./docs/introduction/LearningResources.md","articles":[]},"previous":{"title":"三大原则","level":"1.2.3","depth":2,"path":"docs/introduction/ThreePrinciples.md","ref":"./docs/introduction/ThreePrinciples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/introduction/PriorArt.md","mtime":"2020-10-18T13:52:42.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1086,9 +1080,6 @@
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

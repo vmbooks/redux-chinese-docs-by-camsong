@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -105,126 +99,126 @@
 <h2 id="&#x57FA;&#x672C;&#x539F;&#x5219;">&#x57FA;&#x672C;&#x539F;&#x5219;</h2>
 <h3 id="&#x4F7F;&#x7528;-replacereducer">&#x4F7F;&#x7528; <code>replaceReducer</code></h3>
 <p>Redux store &#x66B4;&#x9732;&#x51FA;&#x4E00;&#x4E2A; <code>replaceReducer</code> &#x51FD;&#x6570;&#xFF0C;&#x8BE5;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x65B0;&#x7684; root reducer &#x66FF;&#x4EE3;&#x5F53;&#x524D;&#x6D3B;&#x52A8;&#x7684; root reducer&#x3002;&#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#x5C06;&#x66FF;&#x6362;&#x5185;&#x90E8; reducer &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5E76; dispatch &#x4E00;&#x4E2A; action &#x4EE5;&#x521D;&#x59CB;&#x5316;&#x65B0;&#x52A0;&#x5165;&#x7684; reducer&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> newRootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  existingSlice<span class="token operator">:</span> existingSliceReducer<span class="token punctuation">,</span>
-  newSlice<span class="token operator">:</span> newSliceReducer
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> newRootReducer = combineReducers({
+  existingSlice: existingSliceReducer,
+  newSlice: newSliceReducer
+})
 
-store<span class="token punctuation">.</span><span class="token function">replaceReducer</span><span class="token punctuation">(</span>newRootReducer<span class="token punctuation">)</span>
+store.replaceReducer(newRootReducer)
 </code></pre>
 <h2 id="reducer-&#x6CE8;&#x5165;">Reducer &#x6CE8;&#x5165;</h2>
 <h3 id="&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;-injectreducer-&#x51FD;&#x6570;">&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; <code>injectReducer</code> &#x51FD;&#x6570;</h3>
 <p>&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x60F3;&#x4ECE;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x8C03;&#x7528; <code>store.replaceReducer&#xFF08;&#xFF09;</code>&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5B83;&#x4F7F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F88;&#x8F7B;&#x6613;&#x7684;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x53EF;&#x91CD;&#x7528;&#x7684; <code>injectReducer()</code> &#x51FD;&#x6570;&#x3002;&#x8BE5;&#x51FD;&#x6570;&#x80FD;&#x591F;&#x4FDD;&#x6301;&#x5BF9;&#x6240;&#x6709;&#x73B0;&#x6709; slice reducer &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5E76;&#x53EF;&#x5C06;&#x65B0; reducer &#x9644;&#x52A0;&#x5230; store &#x5B9E;&#x4F8B;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
 
-<span class="token comment">// &#x5B9A;&#x4E49;&#x5C06;&#x59CB;&#x7EC8;&#x5B58;&#x5728;&#x4E8E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684; Reducer</span>
-<span class="token keyword">const</span> staticReducers <span class="token operator">=</span> <span class="token punctuation">{</span>
-  users<span class="token operator">:</span> usersReducer<span class="token punctuation">,</span>
-  posts<span class="token operator">:</span> postsReducer
-<span class="token punctuation">}</span>
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x5C06;&#x59CB;&#x7EC8;&#x5B58;&#x5728;&#x4E8E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684; Reducer</span>
+<span class="hljs-keyword">const</span> staticReducers = {
+  users: usersReducer,
+  posts: postsReducer
+}
 
-<span class="token comment">// Configure the store</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token parameter">initialState</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token function">createReducer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> initialState<span class="token punctuation">)</span>
+<span class="hljs-comment">// Configure the store</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">configureStore</span>(<span class="hljs-params">initialState</span>) </span>{
+  <span class="hljs-keyword">const</span> store = createStore(createReducer(), initialState)
 
-  <span class="token comment">// &#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4EE5;&#x8DDF;&#x8E2A;&#x5DF2;&#x6CE8;&#x518C;&#x7684;&#x5F02;&#x6B65; Reducer</span>
-  store<span class="token punctuation">.</span>asyncReducers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4EE5;&#x8DDF;&#x8E2A;&#x5DF2;&#x6CE8;&#x518C;&#x7684;&#x5F02;&#x6B65; Reducer</span>
+  store.asyncReducers = {}
 
-  <span class="token comment">//&#x521B;&#x5EFA;&#x6CE8;&#x5165; reducer &#x51FD;&#x6570;</span>
-  <span class="token comment">// &#x6B64;&#x51FD;&#x6570;&#x6DFB;&#x52A0; async reducer&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC4;&#x5408; reducer</span>
-  store<span class="token punctuation">.</span><span class="token function-variable function">injectReducer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> asyncReducer</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    store<span class="token punctuation">.</span>asyncReducers<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> asyncReducer
-    store<span class="token punctuation">.</span><span class="token function">replaceReducer</span><span class="token punctuation">(</span><span class="token function">createReducer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>asyncReducers<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+  <span class="hljs-comment">//&#x521B;&#x5EFA;&#x6CE8;&#x5165; reducer &#x51FD;&#x6570;</span>
+  <span class="hljs-comment">// &#x6B64;&#x51FD;&#x6570;&#x6DFB;&#x52A0; async reducer&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC4;&#x5408; reducer</span>
+  store.injectReducer = (key, asyncReducer) =&gt; {
+    store.asyncReducers[key] = asyncReducer
+    store.replaceReducer(createReducer(<span class="hljs-keyword">this</span>.asyncReducers))
+  }
 
-  <span class="token comment">// &#x8FD4;&#x56DE;&#x4FEE;&#x6539;&#x540E;&#x7684; store</span>
-  <span class="token keyword">return</span> store
-<span class="token punctuation">}</span>
+  <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x4FEE;&#x6539;&#x540E;&#x7684; store</span>
+  <span class="hljs-keyword">return</span> store
+}
 
-<span class="token keyword">function</span> <span class="token function">createReducer</span><span class="token punctuation">(</span><span class="token parameter">asyncReducers</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    <span class="token operator">...</span>staticReducers<span class="token punctuation">,</span>
-    <span class="token operator">...</span>asyncReducers
-  <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createReducer</span>(<span class="hljs-params">asyncReducers</span>) </span>{
+  <span class="hljs-keyword">return</span> combineReducers({
+    ...staticReducers,
+    ...asyncReducers
+  })
+}
 </code></pre>
 <p>&#x73B0;&#x5728;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8C03;&#x7528; <code>store.injectReducer</code> &#x51FD;&#x6570;&#x5373;&#x53EF;&#x5411; store &#x6DFB;&#x52A0;&#x65B0;&#x7684; reducer&#x3002;</p>
 <h3 id="&#x4F7F;&#x7528;-reducer-manager">&#x4F7F;&#x7528; &apos;Reducer Manager&apos;</h3>
 <p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; &apos;Reducer Manager&apos; &#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x8DDF;&#x8E2A;&#x6240;&#x6709;&#x5DF2;&#x6CE8;&#x518C;&#x7684; Reducer &#x5E76;&#x66B4;&#x9732;&#x51FA; <code>reduce&#xFF08;&#xFF09;</code> &#x51FD;&#x6570;&#x3002; &#x8BF7;&#x53C2;&#x8003;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">createReducerManager</span><span class="token punctuation">(</span><span class="token parameter">initialReducers</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5C06; key &#x6620;&#x5C04;&#x5230; reducer &#x7684;&#x5BF9;&#x8C61;</span>
-  <span class="token keyword">const</span> reducers <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token operator">...</span>initialReducers <span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createReducerManager</span>(<span class="hljs-params">initialReducers</span>) </span>{
+  <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5C06; key &#x6620;&#x5C04;&#x5230; reducer &#x7684;&#x5BF9;&#x8C61;</span>
+  <span class="hljs-keyword">const</span> reducers = { ...initialReducers }
 
-  <span class="token comment">// &#x521B;&#x5EFA;&#x521D;&#x59CB; CombinedReducer</span>
-  <span class="token keyword">let</span> combinedReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span>reducers<span class="token punctuation">)</span>
+  <span class="hljs-comment">// &#x521B;&#x5EFA;&#x521D;&#x59CB; CombinedReducer</span>
+  <span class="hljs-keyword">let</span> combinedReducer = combineReducers(reducers)
 
-  <span class="token comment">// &#x5B58;&#x50A8; key &#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x7528;&#x4E8E;&#x5220;&#x9664; reducer &#x65F6;&#x5220;&#x9664; state &#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;</span>
-  <span class="token keyword">const</span> keysToRemove <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="hljs-comment">// &#x5B58;&#x50A8; key &#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x7528;&#x4E8E;&#x5220;&#x9664; reducer &#x65F6;&#x5220;&#x9664; state &#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;</span>
+  <span class="hljs-keyword">const</span> keysToRemove = []
 
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function-variable function">getReducerMap</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> reducers<span class="token punctuation">,</span>
+  <span class="hljs-keyword">return</span> {
+    getReducerMap: () =&gt; reducers,
 
-    <span class="token comment">// &#x8FD9;&#x4E2A; root reducer &#x51FD;&#x6570;&#x5728;&#x8BE5;&#x5BF9;&#x8C61;&#x4E2D;&#x66B4;&#x9732;&#x51FA;</span>
-    <span class="token comment">// &#x5E76;&#x5C06;&#x4F20;&#x9012;&#x7ED9; store</span>
-    <span class="token function-variable function">reduce</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token comment">// &#x5982;&#x679C;&#x5DF2;&#x5220;&#x9664;&#x4EFB;&#x4F55; reducer&#xFF0C;&#x8BF7;&#x5148;&#x6E05;&#x7406; state &#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x503C;</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>keysToRemove<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        state <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token operator">...</span>state <span class="token punctuation">}</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">of</span> keysToRemove<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">delete</span> state<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
-        <span class="token punctuation">}</span>
-        keysToRemove <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-      <span class="token punctuation">}</span>
+    <span class="hljs-comment">// &#x8FD9;&#x4E2A; root reducer &#x51FD;&#x6570;&#x5728;&#x8BE5;&#x5BF9;&#x8C61;&#x4E2D;&#x66B4;&#x9732;&#x51FA;</span>
+    <span class="hljs-comment">// &#x5E76;&#x5C06;&#x4F20;&#x9012;&#x7ED9; store</span>
+    reduce: (state, action) =&gt; {
+      <span class="hljs-comment">// &#x5982;&#x679C;&#x5DF2;&#x5220;&#x9664;&#x4EFB;&#x4F55; reducer&#xFF0C;&#x8BF7;&#x5148;&#x6E05;&#x7406; state &#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x503C;</span>
+      <span class="hljs-keyword">if</span> (keysToRemove.length &gt; <span class="hljs-number">0</span>) {
+        state = { ...state }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> keysToRemove) {
+          <span class="hljs-keyword">delete</span> state[key]
+        }
+        keysToRemove = []
+      }
 
-      <span class="token comment">// Delegate to the combined reducer</span>
-      <span class="token keyword">return</span> <span class="token function">combinedReducer</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="hljs-comment">// Delegate to the combined reducer</span>
+      <span class="hljs-keyword">return</span> combinedReducer(state, action)
+    },
 
-    <span class="token comment">// &#x6DFB;&#x52A0;&#x5177;&#x6709;&#x6307;&#x5B9A; key &#x7684;&#x65B0; reducer</span>
-    <span class="token function-variable function">add</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> reducer</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>key <span class="token operator">||</span> reducers<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span>
-      <span class="token punctuation">}</span>
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5177;&#x6709;&#x6307;&#x5B9A; key &#x7684;&#x65B0; reducer</span>
+    add: (key, reducer) =&gt; {
+      <span class="hljs-keyword">if</span> (!key || reducers[key]) {
+        <span class="hljs-keyword">return</span>
+      }
 
-      <span class="token comment">// &#x5C06; reducer &#x6DFB;&#x52A0;&#x5230; reducer &#x6620;&#x5C04;&#x4E2D;</span>
-      reducers<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> reducer
+      <span class="hljs-comment">// &#x5C06; reducer &#x6DFB;&#x52A0;&#x5230; reducer &#x6620;&#x5C04;&#x4E2D;</span>
+      reducers[key] = reducer
 
-      <span class="token comment">// &#x751F;&#x6210;&#x65B0;&#x7684; combined reducer</span>
-      combinedReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span>reducers<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="hljs-comment">// &#x751F;&#x6210;&#x65B0;&#x7684; combined reducer</span>
+      combinedReducer = combineReducers(reducers)
+    },
 
-    <span class="token comment">// &#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; key &#x5220;&#x9664; reducer</span>
-    <span class="token function-variable function">remove</span><span class="token operator">:</span> <span class="token parameter">key</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>key <span class="token operator">||</span> <span class="token operator">!</span>reducers<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span>
-      <span class="token punctuation">}</span>
+    <span class="hljs-comment">// &#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; key &#x5220;&#x9664; reducer</span>
+    remove: key =&gt; {
+      <span class="hljs-keyword">if</span> (!key || !reducers[key]) {
+        <span class="hljs-keyword">return</span>
+      }
 
-      <span class="token comment">// &#x4ECE; reducer &#x6620;&#x5C04;&#x4E2D;&#x5220;&#x9664;&#x5B83;</span>
-      <span class="token keyword">delete</span> reducers<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+      <span class="hljs-comment">// &#x4ECE; reducer &#x6620;&#x5C04;&#x4E2D;&#x5220;&#x9664;&#x5B83;</span>
+      <span class="hljs-keyword">delete</span> reducers[key]
 
-      <span class="token comment">// &#x5C06; key &#x6DFB;&#x52A0;&#x5230;&#x8981;&#x6E05;&#x7406;&#x7684; key &#x5217;&#x8868;&#x4E2D;</span>
-      keysToRemove<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+      <span class="hljs-comment">// &#x5C06; key &#x6DFB;&#x52A0;&#x5230;&#x8981;&#x6E05;&#x7406;&#x7684; key &#x5217;&#x8868;&#x4E2D;</span>
+      keysToRemove.push(key)
 
-      <span class="token comment">// &#x751F;&#x6210;&#x65B0;&#x7684; combined reducer</span>
-      combinedReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span>reducers<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+      <span class="hljs-comment">// &#x751F;&#x6210;&#x65B0;&#x7684; combined reducer</span>
+      combinedReducer = combineReducers(reducers)
+    }
+  }
+}
 
-<span class="token keyword">const</span> staticReducers <span class="token operator">=</span> <span class="token punctuation">{</span>
-  users<span class="token operator">:</span> usersReducer<span class="token punctuation">,</span>
-  posts<span class="token operator">:</span> postsReducer
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> staticReducers = {
+  users: usersReducer,
+  posts: postsReducer
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token parameter">initialState</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> reducerManager <span class="token operator">=</span> <span class="token function">createReducerManager</span><span class="token punctuation">(</span>staticReducers<span class="token punctuation">)</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">configureStore</span>(<span class="hljs-params">initialState</span>) </span>{
+  <span class="hljs-keyword">const</span> reducerManager = createReducerManager(staticReducers)
 
-  <span class="token comment">// &#x4F7F;&#x7528; root reducer &#x51FD;&#x6570;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; store&#xFF0C;&#x8BE5; root reducer &#x51FD;&#x6570;&#x662F; manager &#x66B4;&#x9732;&#x51FA;&#x7684;&#x51FD;&#x6570;&#x3002;</span>
-  <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducerManager<span class="token punctuation">.</span>reduce<span class="token punctuation">,</span> initialState<span class="token punctuation">)</span>
+  <span class="hljs-comment">// &#x4F7F;&#x7528; root reducer &#x51FD;&#x6570;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; store&#xFF0C;&#x8BE5; root reducer &#x51FD;&#x6570;&#x662F; manager &#x66B4;&#x9732;&#x51FA;&#x7684;&#x51FD;&#x6570;&#x3002;</span>
+  <span class="hljs-keyword">const</span> store = createStore(reducerManager.reduce, initialState)
 
-  <span class="token comment">// &#x53EF;&#x9009;&#xFF1A;&#x5C06; reducer manager &#x6DFB;&#x52A0;&#x5230; store &#x4E0A;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x8BBF;&#x95EE;</span>
-  store<span class="token punctuation">.</span>reducerManager <span class="token operator">=</span> reducerManager
-<span class="token punctuation">}</span>
+  <span class="hljs-comment">// &#x53EF;&#x9009;&#xFF1A;&#x5C06; reducer manager &#x6DFB;&#x52A0;&#x5230; store &#x4E0A;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x8BBF;&#x95EE;</span>
+  store.reducerManager = reducerManager
+}
 </code></pre>
 <p>&#x8981;&#x6DFB;&#x52A0;&#x65B0;&#x7684; reducer&#xFF0C;&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x8C03;&#x7528; <code>store.reducerManager.add(&quot;asyncState&quot;, asyncReducer)</code>&#x3002;</p>
 <p>&#x8981;&#x5220;&#x9664; reducer &#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x8C03;&#x7528; <code>store.reducerManager.remove(&quot;asyncState&quot;)</code>&#x3002;</p>
@@ -1180,7 +1174,7 @@ store<span class="token punctuation">.</span><span class="token function">replac
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"代码分割","level":"1.5.12","depth":2,"next":{"title":"常见问题","level":"1.6","depth":1,"path":"docs/FAQ.md","ref":"./docs/FAQ.md","articles":[{"title":"综合","level":"1.6.1","depth":2,"path":"docs/faq/General.md","ref":"./docs/faq/General.md","articles":[]},{"title":"Reducer","level":"1.6.2","depth":2,"path":"docs/faq/Reducers.md","ref":"./docs/faq/Reducers.md","articles":[]},{"title":"组织 State","level":"1.6.3","depth":2,"path":"docs/faq/OrganizingState.md","ref":"./docs/faq/OrganizingState.md","articles":[]},{"title":"创建 Store","level":"1.6.4","depth":2,"path":"docs/faq/StoreSetup.md","ref":"./docs/faq/StoreSetup.md","articles":[]},{"title":"Action","level":"1.6.5","depth":2,"path":"docs/faq/Actions.md","ref":"./docs/faq/Actions.md","articles":[]},{"title":"不可变数据","level":"1.6.6","depth":2,"path":"docs/faq/ImmutableData.md","ref":"./docs/faq/ImmutableData.md","articles":[]},{"title":"代码结构","level":"1.6.7","depth":2,"path":"docs/faq/CodeStructure.md","ref":"./docs/faq/CodeStructure.md","articles":[]},{"title":"性能","level":"1.6.8","depth":2,"path":"docs/faq/Performance.md","ref":"./docs/faq/Performance.md","articles":[]},{"title":"设计哲学","level":"1.6.9","depth":2,"path":"docs/faq/DesignDecisions.md","ref":"./docs/faq/DesignDecisions.md","articles":[]},{"title":"React Redux","level":"1.6.10","depth":2,"path":"docs/faq/ReactRedux.md","ref":"./docs/faq/ReactRedux.md","articles":[]},{"title":"其它","level":"1.6.11","depth":2,"path":"docs/faq/Miscellaneous.md","ref":"./docs/faq/Miscellaneous.md","articles":[]}]},"previous":{"title":"结合 Immutable.JS 使用 Redux","level":"1.5.11","depth":2,"path":"docs/recipes/UsingImmutableJS.md","ref":"./docs/recipes/UsingImmutableJS.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/CodeSplitting.md","mtime":"2020-10-18T13:47:18.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"代码分割","level":"1.5.12","depth":2,"next":{"title":"常见问题","level":"1.6","depth":1,"path":"docs/FAQ.md","ref":"./docs/FAQ.md","articles":[{"title":"综合","level":"1.6.1","depth":2,"path":"docs/faq/General.md","ref":"./docs/faq/General.md","articles":[]},{"title":"Reducer","level":"1.6.2","depth":2,"path":"docs/faq/Reducers.md","ref":"./docs/faq/Reducers.md","articles":[]},{"title":"组织 State","level":"1.6.3","depth":2,"path":"docs/faq/OrganizingState.md","ref":"./docs/faq/OrganizingState.md","articles":[]},{"title":"创建 Store","level":"1.6.4","depth":2,"path":"docs/faq/StoreSetup.md","ref":"./docs/faq/StoreSetup.md","articles":[]},{"title":"Action","level":"1.6.5","depth":2,"path":"docs/faq/Actions.md","ref":"./docs/faq/Actions.md","articles":[]},{"title":"不可变数据","level":"1.6.6","depth":2,"path":"docs/faq/ImmutableData.md","ref":"./docs/faq/ImmutableData.md","articles":[]},{"title":"代码结构","level":"1.6.7","depth":2,"path":"docs/faq/CodeStructure.md","ref":"./docs/faq/CodeStructure.md","articles":[]},{"title":"性能","level":"1.6.8","depth":2,"path":"docs/faq/Performance.md","ref":"./docs/faq/Performance.md","articles":[]},{"title":"设计哲学","level":"1.6.9","depth":2,"path":"docs/faq/DesignDecisions.md","ref":"./docs/faq/DesignDecisions.md","articles":[]},{"title":"React Redux","level":"1.6.10","depth":2,"path":"docs/faq/ReactRedux.md","ref":"./docs/faq/ReactRedux.md","articles":[]},{"title":"其它","level":"1.6.11","depth":2,"path":"docs/faq/Miscellaneous.md","ref":"./docs/faq/Miscellaneous.md","articles":[]}]},"previous":{"title":"结合 Immutable.JS 使用 Redux","level":"1.5.11","depth":2,"path":"docs/recipes/UsingImmutableJS.md","ref":"./docs/recipes/UsingImmutableJS.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/CodeSplitting.md","mtime":"2020-10-18T13:52:42.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1188,9 +1182,6 @@ store<span class="token punctuation">.</span><span class="token function">replac
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

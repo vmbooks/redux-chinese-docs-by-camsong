@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -110,18 +104,18 @@
 <p>(<em>Function</em>): &#x4ECE;&#x53F3;&#x5230;&#x5DE6;&#x628A;&#x63A5;&#x6536;&#x5230;&#x7684;&#x51FD;&#x6570;&#x5408;&#x6210;&#x540E;&#x7684;&#x6700;&#x7EC8;&#x51FD;&#x6570;&#x3002;</p>
 <h4 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;</h4>
 <p>&#x4E0B;&#x9762;&#x793A;&#x4F8B;&#x6F14;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528; <code>compose</code> &#x589E;&#x5F3A; <a href="Store.html">store</a>&#xFF0C;&#x8FD9;&#x4E2A; store &#x4E0E; <a href="applyMiddleware.html"><code>applyMiddleware</code></a> &#x548C; <a href="https://github.com/gaearon/redux-devtools" target="_blank">redux-devtools</a> &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore<span class="token punctuation">,</span> applyMiddleware<span class="token punctuation">,</span> compose <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> thunk <span class="token keyword">from</span> <span class="token string">&apos;redux-thunk&apos;</span>
-<span class="token keyword">import</span> DevTools <span class="token keyword">from</span> <span class="token string">&apos;./containers/DevTools&apos;</span>
-<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">&apos;../reducers&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore, applyMiddleware, compose } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-thunk&apos;</span>
+<span class="hljs-keyword">import</span> DevTools <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./containers/DevTools&apos;</span>
+<span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../reducers&apos;</span>
 
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>
-  reducer<span class="token punctuation">,</span>
-  <span class="token function">compose</span><span class="token punctuation">(</span>
-    <span class="token function">applyMiddleware</span><span class="token punctuation">(</span>thunk<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    DevTools<span class="token punctuation">.</span><span class="token function">instrument</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk),
+    DevTools.instrument()
+  )
+)
 </code></pre>
 <h4 id="&#x5C0F;&#x8D34;&#x58EB;">&#x5C0F;&#x8D34;&#x58EB;</h4>
 <ul>
@@ -1070,7 +1064,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"compose","level":"1.9.6","depth":2,"next":{"title":"react-redux 文档","level":"1.10","depth":1,"path":"docs/react-redux/README.md","ref":"./docs/react-redux/README.md","articles":[{"title":"API","level":"1.10.1","depth":2,"path":"docs/react-redux/api.md","ref":"./docs/react-redux/api.md","articles":[]},{"title":"排错","level":"1.10.2","depth":2,"path":"docs/react-redux/troubleshooting.md","ref":"./docs/react-redux/troubleshooting.md","articles":[]}]},"previous":{"title":"bindActionCreators","level":"1.9.5","depth":2,"path":"docs/api/bindActionCreators.md","ref":"./docs/api/bindActionCreators.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/compose.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"compose","level":"1.9.6","depth":2,"next":{"title":"react-redux 文档","level":"1.10","depth":1,"path":"docs/react-redux/README.md","ref":"./docs/react-redux/README.md","articles":[{"title":"API","level":"1.10.1","depth":2,"path":"docs/react-redux/api.md","ref":"./docs/react-redux/api.md","articles":[]},{"title":"排错","level":"1.10.2","depth":2,"path":"docs/react-redux/troubleshooting.md","ref":"./docs/react-redux/troubleshooting.md","articles":[]}]},"previous":{"title":"bindActionCreators","level":"1.9.5","depth":2,"path":"docs/api/bindActionCreators.md","ref":"./docs/api/bindActionCreators.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/compose.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1078,9 +1072,6 @@
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -105,7 +99,7 @@
 <p>&#x5408;&#x5E76;&#x540E;&#x7684; reducer &#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5404;&#x4E2A;&#x5B50; reducer&#xFF0C;&#x5E76;&#x628A;&#x5B83;&#x4EEC;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A; state &#x5BF9;&#x8C61;&#x3002;
 <strong>&#x7531; <code>combineReducers()</code> &#x8FD4;&#x56DE;&#x7684; state &#x5BF9;&#x8C61;&#xFF0C;&#x4F1A;&#x5C06;&#x4F20;&#x5165;&#x7684;&#x6BCF;&#x4E2A; reducer &#x8FD4;&#x56DE;&#x7684; state &#x6309;&#x5176;&#x4F20;&#x9012;&#x7ED9; <code>combineReducers()</code> &#x65F6;&#x5BF9;&#x5E94;&#x7684; key &#x8FDB;&#x884C;&#x547D;&#x540D;</strong>&#x3002;</p>
 <p>&#x793A;&#x4F8B;&#xFF1A;</p>
-<pre class="language-"><code>rootReducer = combineReducers({potato: potatoReducer, tomato: tomatoReducer})
+<pre><code>rootReducer = combineReducers({potato: potatoReducer, tomato: tomatoReducer})
 // rootReducer &#x5C06;&#x8FD4;&#x56DE;&#x5982;&#x4E0B;&#x7684; state &#x5BF9;&#x8C61;
 {
   potato: {
@@ -144,57 +138,57 @@
 <p>&#x867D;&#x7136; <code>combineReducers</code> &#x81EA;&#x52A8;&#x5E2E;&#x4F60;&#x68C0;&#x67E5; reducer &#x662F;&#x5426;&#x7B26;&#x5408;&#x4EE5;&#x4E0A;&#x89C4;&#x5219;&#xFF0C;&#x4F46;&#x4F60;&#x4E5F;&#x5E94;&#x8BE5;&#x7262;&#x8BB0;&#xFF0C;&#x5E76;&#x5C3D;&#x91CF;&#x9075;&#x5B88;&#x3002;&#x5373;&#x4F7F;&#x4F60;&#x901A;&#x8FC7; <code>Redux.createStore(combineReducers(...), initialState)</code> &#x6307;&#x5B9A;&#x521D;&#x59CB; state&#xFF0C;<code>combineReducers</code> &#x4E5F;&#x4F1A;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7;&#x4F20;&#x9012; <code>undefined</code> &#x7684; <code>state</code> &#x6765;&#x68C0;&#x6D4B;&#x4F60;&#x7684; reducer &#x662F;&#x5426;&#x7B26;&#x5408;&#x89C4;&#x5219;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5373;&#x4F7F;&#x4F60;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x4E0D;&#x6253;&#x7B97;&#x5B9E;&#x9645;&#x63A5;&#x6536;&#x503C;&#x4E3A; <code>undefined</code> &#x7684; <code>state</code>&#xFF0C;&#x4E5F;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x4F60;&#x7684; reducer &#x5728;&#x63A5;&#x6536;&#x5230; <code>undefined</code> &#x65F6;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x3002;</p>
 <h4 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;</h4>
 <h4 id="reducerstodosjs"><code>reducers/todos.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">todos</span><span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token punctuation">[</span>action<span class="token punctuation">.</span>text<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todos</span>(<span class="hljs-params">state = [], action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;ADD_TODO&apos;</span>:
+      <span class="hljs-keyword">return</span> state.concat([action.text])
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 </code></pre>
 <h4 id="reducerscounterjs"><code>reducers/counter.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">counter</span><span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;INCREMENT&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;DECREMENT&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state <span class="token operator">-</span> <span class="token number">1</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">counter</span>(<span class="hljs-params">state = 0, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;INCREMENT&apos;</span>:
+      <span class="hljs-keyword">return</span> state + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;DECREMENT&apos;</span>:
+      <span class="hljs-keyword">return</span> state - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 </code></pre>
 <h4 id="reducersindexjs"><code>reducers/index.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">&apos;./todos&apos;</span>
-<span class="token keyword">import</span> counter <span class="token keyword">from</span> <span class="token string">&apos;./counter&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> todos <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./todos&apos;</span>
+<span class="hljs-keyword">import</span> counter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./counter&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  todos<span class="token punctuation">,</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> combineReducers({
+  todos,
   counter
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+})
 </code></pre>
 <h4 id="appjs"><code>App.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">&apos;./reducers/index&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./reducers/index&apos;</span>
 
-<span class="token keyword">let</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment">// {</span>
-<span class="token comment">//   counter: 0,</span>
-<span class="token comment">//   todos: []</span>
-<span class="token comment">// }</span>
+<span class="hljs-keyword">let</span> store = createStore(reducer)
+<span class="hljs-built_in">console</span>.log(store.getState())
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   counter: 0,</span>
+<span class="hljs-comment">//   todos: []</span>
+<span class="hljs-comment">// }</span>
 
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token punctuation">,</span>
-  text<span class="token operator">:</span> <span class="token string">&apos;Use Redux&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment">// {</span>
-<span class="token comment">//   counter: 0,</span>
-<span class="token comment">//   todos: [ &apos;Use Redux&apos; ]</span>
-<span class="token comment">// }</span>
+store.dispatch({
+  type: <span class="hljs-string">&apos;ADD_TODO&apos;</span>,
+  text: <span class="hljs-string">&apos;Use Redux&apos;</span>
+})
+<span class="hljs-built_in">console</span>.log(store.getState())
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   counter: 0,</span>
+<span class="hljs-comment">//   todos: [ &apos;Use Redux&apos; ]</span>
+<span class="hljs-comment">// }</span>
 </code></pre>
 <h4 id="&#x5C0F;&#x8D34;&#x58EB;">&#x5C0F;&#x8D34;&#x58EB;</h4>
 <ul>
@@ -1146,7 +1140,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"combineReducers","level":"1.9.3","depth":2,"next":{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},"previous":{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/combineReducers.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"combineReducers","level":"1.9.3","depth":2,"next":{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},"previous":{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/combineReducers.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1154,9 +1148,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

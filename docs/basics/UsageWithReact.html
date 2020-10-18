@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -105,8 +99,8 @@
 <p>&#x4E0B;&#x9762;&#x4F7F;&#x7528; React &#x6765;&#x5F00;&#x53D1;&#x4E00;&#x4E2A; todo &#x4EFB;&#x52A1;&#x7BA1;&#x7406;&#x5E94;&#x7528;&#x3002;</p>
 <h2 id="&#x5B89;&#x88C5;-react-redux">&#x5B89;&#x88C5; React Redux</h2>
 <p>Redux &#x9ED8;&#x8BA4;&#x5E76;&#x4E0D;&#x5305;&#x542B; <a href="https://github.com/reactjs/react-redux" target="_blank">React &#x7ED1;&#x5B9A;&#x5E93;</a>&#xFF0C;&#x9700;&#x8981;&#x5355;&#x72EC;&#x5B89;&#x88C5;&#x3002;</p>
-<pre class="language-"><code>npm install --save react-redux
-</code></pre><p>&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x4F7F;&#x7528; npm&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE; unpkg &#x83B7;&#x53D6;&#x6700;&#x65B0;&#x7684; UMD &#x5305;&#xFF08;&#x5305;&#x62EC;<a href="https://unpkg.com/react-redux@latest/dist/react-redux.js" target="_blank">&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x5305;</a>&#x548C;<a href="https://unpkg.com/react-redux@latest/dist/react-redux.min.js" target="_blank">&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5305;</a>&#xFF09;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7528; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span></code> &#x6807;&#x7B7E;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x5165; UMD &#x5305;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4F1A;&#x5728;&#x5168;&#x5C40;&#x629B;&#x51FA;<code>window.ReactRedux</code>&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code>npm install --save react-redux
+</code></pre><p>&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x4F7F;&#x7528; npm&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE; unpkg &#x83B7;&#x53D6;&#x6700;&#x65B0;&#x7684; UMD &#x5305;&#xFF08;&#x5305;&#x62EC;<a href="https://unpkg.com/react-redux@latest/dist/react-redux.js" target="_blank">&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x5305;</a>&#x548C;<a href="https://unpkg.com/react-redux@latest/dist/react-redux.min.js" target="_blank">&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5305;</a>&#xFF09;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7528; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x5165; UMD &#x5305;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4F1A;&#x5728;&#x5168;&#x5C40;&#x629B;&#x51FA;<code>window.ReactRedux</code>&#x5BF9;&#x8C61;&#x3002;</p>
 <h2 id="&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#xFF08;smartcontainer-components&#xFF09;&#x548C;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#xFF08;dumbpresentational-components&#xFF09;">&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#xFF08;Smart/Container Components&#xFF09;&#x548C;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#xFF08;Dumb/Presentational Components&#xFF09;</h2>
 <p>Redux &#x7684; React &#x7ED1;&#x5B9A;&#x5E93;&#x662F;&#x57FA;&#x4E8E; <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank">&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x548C;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x76F8;&#x5206;&#x79BB;</a> &#x7684;&#x5F00;&#x53D1;&#x601D;&#x60F3;&#x3002;&#x6240;&#x4EE5;&#x5EFA;&#x8BAE;&#x5148;&#x8BFB;&#x5B8C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x518D;&#x56DE;&#x6765;&#x7EE7;&#x7EED;&#x5B66;&#x4E60;&#x3002;&#x8FD9;&#x4E2A;&#x601D;&#x60F3;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</p>
 <p>&#x5DF2;&#x7ECF;&#x8BFB;&#x5B8C;&#x4E86;&#xFF1F;&#x90A3;&#x8BA9;&#x6211;&#x4EEC;&#x518D;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x4E0D;&#x540C;&#x70B9;&#xFF1A;</p>
@@ -194,279 +188,279 @@
 <h3 id="&#x5B9E;&#x73B0;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;">&#x5B9E;&#x73B0;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;</h3>
 <p>&#x5B83;&#x4EEC;&#x53EA;&#x662F;&#x666E;&#x901A;&#x7684; React &#x7EC4;&#x4EF6;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;&#x3002;&#x6211;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;&#x51FD;&#x6570;&#x5F0F;&#x65E0;&#x72B6;&#x6001;&#x7EC4;&#x4EF6;&#x9664;&#x975E;&#x9700;&#x8981;&#x672C;&#x5730; state &#x6216;&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;&#x7684;&#x573A;&#x666F;&#x3002;&#x8FD9;&#x5E76;&#x4E0D;&#x662F;&#x8BF4;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x5FC5;&#x987B;&#x662F;&#x51FD;&#x6570; -- &#x53EA;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x505A;&#x5BB9;&#x6613;&#x4E9B;&#x3002;&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x672C;&#x5730; state&#xFF0C;&#x751F;&#x547D;&#x5468;&#x671F;&#x65B9;&#x6CD5;&#xFF0C;&#x6216;&#x8005;&#x6027;&#x80FD;&#x4F18;&#x5316;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x5B83;&#x4EEC;&#x8F6C;&#x6210; class&#x3002;</p>
 <h4 id="componentstodojs"><code>components/Todo.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">Todo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> onClick<span class="token punctuation">,</span> completed<span class="token punctuation">,</span> text <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>li
-    onClick<span class="token operator">=</span><span class="token punctuation">{</span>onClick<span class="token punctuation">}</span>
-    style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
-      textDecoration<span class="token operator">:</span> completed <span class="token operator">?</span> <span class="token string">&apos;line-through&apos;</span> <span class="token operator">:</span> <span class="token string">&apos;none&apos;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">}</span>
-  <span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>text<span class="token punctuation">}</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> Todo = ({ onClick, completed, text }) =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>
+    <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>
+    <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+      <span class="hljs-attr">textDecoration:</span> <span class="hljs-attr">completed</span> ? &apos;<span class="hljs-attr">line-through</span>&apos; <span class="hljs-attr">:</span> &apos;<span class="hljs-attr">none</span>&apos;
+    }}
+  &gt;</span>
+    {text}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+)
 
-Todo<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  onClick<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  completed<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>bool<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  text<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+Todo.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  completed: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
+}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> Todo
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Todo
 </code></pre>
 <h4 id="componentstodolistjs"><code>components/TodoList.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
-<span class="token keyword">import</span> Todo <span class="token keyword">from</span> <span class="token string">&apos;./Todo&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
+<span class="hljs-keyword">import</span> Todo <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./Todo&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">TodoList</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> todos<span class="token punctuation">,</span> onTodoClick <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">todo<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-      <span class="token operator">&lt;</span>Todo key<span class="token operator">=</span><span class="token punctuation">{</span>index<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span>todo<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">onTodoClick</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> TodoList = ({ todos, onTodoClick }) =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    {todos.map((todo, index) =&gt; (
+      <span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span> {<span class="hljs-attr">...todo</span>} <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> onTodoClick(index)} /&gt;
+    ))}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+)
 
-TodoList<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  todos<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>
-    PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-      id<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-      completed<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>bool<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-      text<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">.</span>isRequired
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>isRequired
-  <span class="token punctuation">)</span><span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  onTodoClick<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      completed: PropTypes.bool.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  onTodoClick: PropTypes.func.isRequired
+}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> TodoList
-</code></pre>
+export default TodoList
+</span></code></pre>
 <h4 id="componentslinkjs"><code>components/Link.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">Link</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> active<span class="token punctuation">,</span> children<span class="token punctuation">,</span> onClick <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>active<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
-  <span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> Link = ({ active, children, onClick }) =&gt; {
+  <span class="hljs-keyword">if</span> (active) {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{children}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+  }
 
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token operator">&lt;</span>a
-      href<span class="token operator">=</span><span class="token string">&quot;&quot;</span>
-      onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-        e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token operator">&gt;</span>
-      <span class="token punctuation">{</span>children<span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+      <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&quot;</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{e</span> =&gt;</span> {
+        e.preventDefault()
+        onClick()
+      }}
+    &gt;
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+  )
+}
 
-Link<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  active<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>bool<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  children<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>node<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  onClick<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+Link.propTypes = {
+  active: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired
+}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> Link
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Link
 </code></pre>
 <h4 id="componentsfooterjs"><code>components/Footer.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> FilterLink <span class="token keyword">from</span> <span class="token string">&apos;../containers/FilterLink&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> FilterLink <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../containers/FilterLink&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">Footer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>
-    Show<span class="token operator">:</span> <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token string">&quot;SHOW_ALL&quot;</span><span class="token operator">&gt;</span>All<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span><span class="token string">&apos;, &apos;</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token string">&quot;SHOW_ACTIVE&quot;</span><span class="token operator">&gt;</span>Active<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span><span class="token string">&apos;, &apos;</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token string">&quot;SHOW_COMPLETED&quot;</span><span class="token operator">&gt;</span>Completed<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> Footer = () =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    Show: <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">&quot;SHOW_ALL&quot;</span>&gt;</span>All<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {&apos;, &apos;}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">&quot;SHOW_ACTIVE&quot;</span>&gt;</span>Active<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {&apos;, &apos;}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">&quot;SHOW_COMPLETED&quot;</span>&gt;</span>Completed<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> Footer
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Footer
 </code></pre>
 <h3 id="&#x5B9E;&#x73B0;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;">&#x5B9E;&#x73B0;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;</h3>
 <p>&#x73B0;&#x5728;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E9B;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x628A;&#x8FD9;&#x4E9B;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x548C; Redux &#x5173;&#x8054;&#x8D77;&#x6765;&#x3002;&#x6280;&#x672F;&#x4E0A;&#x8BB2;&#xFF0C;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x5C31;&#x662F;&#x4F7F;&#x7528; <a href="../api/Store.html#subscribe"><code>store.subscribe()</code></a> &#x4ECE; Redux state &#x6811;&#x4E2D;&#x8BFB;&#x53D6;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; props &#x6765;&#x628A;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x63D0;&#x4F9B;&#x7ED9;&#x8981;&#x6E32;&#x67D3;&#x7684;&#x7EC4;&#x4EF6;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x624B;&#x5DE5;&#x6765;&#x5F00;&#x53D1;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F46;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528; React Redux &#x5E93;&#x7684; <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options" target="_blank"><code>connect()</code></a> &#x65B9;&#x6CD5;&#x6765;&#x751F;&#x6210;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x505A;&#x4E86;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x6765;&#x907F;&#x514D;&#x5F88;&#x591A;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x91CD;&#x590D;&#x6E32;&#x67D3;&#x3002;&#xFF08;&#x8FD9;&#x6837;&#x4F60;&#x5C31;&#x4E0D;&#x5FC5;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x800C;&#x624B;&#x52A8;&#x5B9E;&#x73B0; <a href="https://doc.react-china.org/docs/optimizing-performance.html" target="_blank">React &#x6027;&#x80FD;&#x4F18;&#x5316;&#x5EFA;&#x8BAE;</a> &#x4E2D;&#x7684; <code>shouldComponentUpdate</code> &#x65B9;&#x6CD5;&#x3002;&#xFF09;</p>
 <p>&#x4F7F;&#x7528; <code>connect()</code> &#x524D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5B9A;&#x4E49; <code>mapStateToProps</code> &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x6307;&#x5B9A;&#x5982;&#x4F55;&#x628A;&#x5F53;&#x524D; Redux store state &#x6620;&#x5C04;&#x5230;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x7684; props &#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;<code>VisibleTodoList</code> &#x9700;&#x8981;&#x8BA1;&#x7B97;&#x4F20;&#x5230; <code>TodoList</code> &#x4E2D;&#x7684; <code>todos</code>&#xFF0C;&#x6240;&#x4EE5;&#x5B9A;&#x4E49;&#x4E86;&#x6839;&#x636E; <code>state.visibilityFilter</code> &#x6765;&#x8FC7;&#x6EE4; <code>state.todos</code> &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x5728; <code>mapStateToProps</code> &#x4E2D;&#x4F7F;&#x7528;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">getVisibleTodos</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">todos<span class="token punctuation">,</span> filter</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>filter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_COMPLETED&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>completed<span class="token punctuation">)</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_ACTIVE&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span>t<span class="token punctuation">.</span>completed<span class="token punctuation">)</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_ALL&apos;</span><span class="token operator">:</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> getVisibleTodos = (todos, filter) =&gt; {
+  <span class="hljs-keyword">switch</span> (filter) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_COMPLETED&apos;</span>:
+      <span class="hljs-keyword">return</span> todos.filter(t =&gt; t.completed)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_ACTIVE&apos;</span>:
+      <span class="hljs-keyword">return</span> todos.filter(t =&gt; !t.completed)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_ALL&apos;</span>:
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> todos
+  }
+}
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    todos<span class="token operator">:</span> <span class="token function">getVisibleTodos</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">,</span> state<span class="token punctuation">.</span>visibilityFilter<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> mapStateToProps = state =&gt; {
+  <span class="hljs-keyword">return</span> {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
 </code></pre>
 <p>&#x9664;&#x4E86;&#x8BFB;&#x53D6; state&#xFF0C;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x8FD8;&#x80FD;&#x5206;&#x53D1; action&#x3002;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49; <code>mapDispatchToProps()</code> &#x65B9;&#x6CD5;&#x63A5;&#x6536; <a href="../api/Store.html#dispatch"><code>dispatch()</code></a> &#x65B9;&#x6CD5;&#x5E76;&#x8FD4;&#x56DE;&#x671F;&#x671B;&#x6CE8;&#x5165;&#x5230;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x7684; props &#x4E2D;&#x7684;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x5E0C;&#x671B; <code>VisibleTodoList</code> &#x5411; <code>TodoList</code> &#x7EC4;&#x4EF6;&#x4E2D;&#x6CE8;&#x5165;&#x4E00;&#x4E2A;&#x53EB; <code>onTodoClick</code> &#x7684; props &#xFF0C;&#x8FD8;&#x5E0C;&#x671B; <code>onTodoClick</code> &#x80FD;&#x5206;&#x53D1; <code>TOGGLE_TODO</code> &#x8FD9;&#x4E2A; action&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function-variable function">onTodoClick</span><span class="token operator">:</span> <span class="token parameter">id</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">toggleTodo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> mapDispatchToProps = dispatch =&gt; {
+  <span class="hljs-keyword">return</span> {
+    onTodoClick: id =&gt; {
+      dispatch(toggleTodo(id))
+    }
+  }
+}
 </code></pre>
 <p>&#x6700;&#x540E;&#xFF0C;&#x4F7F;&#x7528; <code>connect()</code> &#x521B;&#x5EFA; <code>VisibleTodoList</code>&#xFF0C;&#x5E76;&#x4F20;&#x5165;&#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
 
-<span class="token keyword">const</span> VisibleTodoList <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
-  mapStateToProps<span class="token punctuation">,</span>
+<span class="hljs-keyword">const</span> VisibleTodoList = connect(
+  mapStateToProps,
   mapDispatchToProps
-<span class="token punctuation">)</span><span class="token punctuation">(</span>TodoList<span class="token punctuation">)</span>
+)(TodoList)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> VisibleTodoList
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> VisibleTodoList
 </code></pre>
 <p>&#x8FD9;&#x5C31;&#x662F; React Redux API &#x7684;&#x57FA;&#x7840;&#xFF0C;&#x4F46;&#x8FD8;&#x6F0F;&#x4E86;&#x4E00;&#x4E9B;&#x5FEB;&#x6377;&#x6280;&#x5DE7;&#x548C;&#x5F3A;&#x5927;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x5EFA;&#x8BAE;&#x4F60;&#x4ED4;&#x7EC6;&#x5B66;&#x4E60; <a href="https://github.com/reactjs/react-redux" target="_blank">&#x5B83;&#x7684;&#x6587;&#x6863;</a>&#x3002;&#x5982;&#x679C;&#x4F60;&#x62C5;&#x5FC3; <code>mapStateToProps</code> &#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x592A;&#x8FC7;&#x9891;&#x7E41;&#xFF0C;&#x53EF;&#x4EE5;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x4F7F;&#x7528; <a href="https://github.com/reactjs/reselect" target="_blank">reselect</a> &#x6765; <a href="../recipes/ComputingDerivedData.html">&#x8BA1;&#x7B97;&#x884D;&#x751F;&#x6570;&#x636E;</a>&#x3002;</p>
 <p>&#x5176;&#x5B83;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
 <h4 id="containersfilterlinkjs"><code>containers/FilterLink.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> setVisibilityFilter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actions&apos;</span>
-<span class="token keyword">import</span> Link <span class="token keyword">from</span> <span class="token string">&apos;../components/Link&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> { setVisibilityFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actions&apos;</span>
+<span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../components/Link&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> ownProps</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    active<span class="token operator">:</span> ownProps<span class="token punctuation">.</span>filter <span class="token operator">===</span> state<span class="token punctuation">.</span>visibilityFilter
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> mapStateToProps = (state, ownProps) =&gt; {
+  <span class="hljs-keyword">return</span> {
+    active: ownProps.filter === state.visibilityFilter
+  }
+}
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token punctuation">,</span> ownProps</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function-variable function">onClick</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setVisibilityFilter</span><span class="token punctuation">(</span>ownProps<span class="token punctuation">.</span>filter<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> mapDispatchToProps = (dispatch, ownProps) =&gt; {
+  <span class="hljs-keyword">return</span> {
+    onClick: () =&gt; {
+      dispatch(setVisibilityFilter(ownProps.filter))
+    }
+  }
+}
 
-<span class="token keyword">const</span> FilterLink <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
-  mapStateToProps<span class="token punctuation">,</span>
+<span class="hljs-keyword">const</span> FilterLink = connect(
+  mapStateToProps,
   mapDispatchToProps
-<span class="token punctuation">)</span><span class="token punctuation">(</span>Link<span class="token punctuation">)</span>
+)(Link)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> FilterLink
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> FilterLink
 </code></pre>
 <h4 id="containersvisibletodolistjs"><code>containers/VisibleTodoList.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> toggleTodo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actions&apos;</span>
-<span class="token keyword">import</span> TodoList <span class="token keyword">from</span> <span class="token string">&apos;../components/TodoList&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> { toggleTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actions&apos;</span>
+<span class="hljs-keyword">import</span> TodoList <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../components/TodoList&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">getVisibleTodos</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">todos<span class="token punctuation">,</span> filter</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>filter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_ALL&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_COMPLETED&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>completed<span class="token punctuation">)</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SHOW_ACTIVE&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span>t<span class="token punctuation">.</span>completed<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> getVisibleTodos = (todos, filter) =&gt; {
+  <span class="hljs-keyword">switch</span> (filter) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_ALL&apos;</span>:
+      <span class="hljs-keyword">return</span> todos
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_COMPLETED&apos;</span>:
+      <span class="hljs-keyword">return</span> todos.filter(t =&gt; t.completed)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SHOW_ACTIVE&apos;</span>:
+      <span class="hljs-keyword">return</span> todos.filter(t =&gt; !t.completed)
+  }
+}
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    todos<span class="token operator">:</span> <span class="token function">getVisibleTodos</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">,</span> state<span class="token punctuation">.</span>visibilityFilter<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> mapStateToProps = state =&gt; {
+  <span class="hljs-keyword">return</span> {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function-variable function">onTodoClick</span><span class="token operator">:</span> <span class="token parameter">id</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">toggleTodo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">const</span> mapDispatchToProps = dispatch =&gt; {
+  <span class="hljs-keyword">return</span> {
+    onTodoClick: id =&gt; {
+      dispatch(toggleTodo(id))
+    }
+  }
+}
 
-<span class="token keyword">const</span> VisibleTodoList <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
-  mapStateToProps<span class="token punctuation">,</span>
+<span class="hljs-keyword">const</span> VisibleTodoList = connect(
+  mapStateToProps,
   mapDispatchToProps
-<span class="token punctuation">)</span><span class="token punctuation">(</span>TodoList<span class="token punctuation">)</span>
+)(TodoList)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> VisibleTodoList
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> VisibleTodoList
 </code></pre>
 <h3 id="&#x5176;&#x5B83;&#x7EC4;&#x4EF6;">&#x5176;&#x5B83;&#x7EC4;&#x4EF6;</h3>
 <h4 id="containersaddtodojs"><code>containers/AddTodo.js</code></h4>
 <p>&#x56DE;&#x60F3;&#x4E00;&#x4E0B;<a href="#&#x5176;&#x5B83;&#x7EC4;&#x4EF6;">&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;</a>&#xFF0C; <code>AddTodo</code> &#x7EC4;&#x4EF6;&#x7684;&#x89C6;&#x56FE;&#x548C;&#x903B;&#x8F91;&#x6DF7;&#x5408;&#x5728;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x5B9A;&#x4E49;&#x4E4B;&#x4E2D;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> addTodo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actions&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> { addTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actions&apos;</span>
 
-<span class="token keyword">let</span> <span class="token function-variable function">AddTodo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> dispatch <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">let</span> input
+<span class="hljs-keyword">let</span> AddTodo = ({ dispatch }) =&gt; {
+  <span class="hljs-keyword">let</span> input
 
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>form
-        onSubmit<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-          e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>input<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span>
-          <span class="token punctuation">}</span>
-          <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addTodo</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
-          input<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;&apos;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">}</span>
-      <span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>input
-          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">node</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-            input <span class="token operator">=</span> node
-          <span class="token punctuation">}</span><span class="token punctuation">}</span>
-        <span class="token operator">/</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>button type<span class="token operator">=</span><span class="token string">&quot;submit&quot;</span><span class="token operator">&gt;</span>Add Todo<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-AddTodo <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>AddTodo<span class="token punctuation">)</span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">form</span>
+        <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{e</span> =&gt;</span> {
+          e.preventDefault()
+          if (!input.value.trim()) {
+            return
+          }
+          dispatch(addTodo(input.value))
+          input.value = &apos;&apos;
+        }}
+      &gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">ref</span>=<span class="hljs-string">{node</span> =&gt;</span> {
+            input = node
+          }}
+        /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Add Todo<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}
+AddTodo = connect()(AddTodo)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> AddTodo
-</code></pre>
+export default AddTodo
+</span></code></pre>
 <p>&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x719F;&#x6089; ref &#x5C5E;&#x6027;, &#x8BF7;&#x9605;&#x8BFB;&#x8FD9;&#x7BC7;<a href="https://facebook.github.io/react/docs/refs-and-the-dom.html" target="_blank">&#x6587;&#x6863;</a>&#x4EE5;&#x719F;&#x6089;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x7684;&#x63A8;&#x8350;&#x7528;&#x6CD5;&#x3002;</p>
 <h3 id="&#x5C06;&#x5BB9;&#x5668;&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;">&#x5C06;&#x5BB9;&#x5668;&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;</h3>
 <h4 id="componentsappjs"><code>components/App.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> Footer <span class="token keyword">from</span> <span class="token string">&apos;./Footer&apos;</span>
-<span class="token keyword">import</span> AddTodo <span class="token keyword">from</span> <span class="token string">&apos;../containers/AddTodo&apos;</span>
-<span class="token keyword">import</span> VisibleTodoList <span class="token keyword">from</span> <span class="token string">&apos;../containers/VisibleTodoList&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> Footer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./Footer&apos;</span>
+<span class="hljs-keyword">import</span> AddTodo <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../containers/AddTodo&apos;</span>
+<span class="hljs-keyword">import</span> VisibleTodoList <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../containers/VisibleTodoList&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>AddTodo <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>VisibleTodoList <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>Footer <span class="token operator">/</span><span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> App = () =&gt; (
+  &lt;div&gt;
+    &lt;AddTodo /&gt;
+    &lt;VisibleTodoList /&gt;
+    &lt;Footer /&gt;
+  &lt;/div&gt;
+)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> App
+export default App
 </code></pre>
 <h2 id="&#x4F20;&#x5165;-store">&#x4F20;&#x5165; Store</h2>
 <p>&#x6240;&#x6709;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; Redux store&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x76D1;&#x542C;&#x5B83;&#x3002;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x628A;&#x5B83;&#x4EE5; props &#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x5165;&#x5230;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x4E2D;&#x3002;&#x4F46;&#x8FD9;&#x592A;&#x9EBB;&#x70E6;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x5FC5;&#x987B;&#x8981;&#x7528; <code>store</code> &#x628A;&#x5C55;&#x793A;&#x7EC4;&#x4EF6;&#x5305;&#x88F9;&#x4E00;&#x5C42;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x56E0;&#x4E3A;&#x6070;&#x597D;&#x5728;&#x7EC4;&#x4EF6;&#x6811;&#x4E2D;&#x6E32;&#x67D3;&#x4E86;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x3002;</p>
-<p>&#x5EFA;&#x8BAE;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; React Redux &#x7EC4;&#x4EF6; <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store" target="_blank"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span><span class="token punctuation">&gt;</span></span></code></a> &#x6765; <a href="https://doc.react-china.org/docs/context.html" target="_blank">&#x9B54;&#x6CD5;&#x822C;&#x7684;</a> &#x8BA9;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; store&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x663E;&#x5F0F;&#x5730;&#x4F20;&#x9012;&#x5B83;&#x3002;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6E32;&#x67D3;&#x6839;&#x7EC4;&#x4EF6;&#x65F6;&#x4F7F;&#x7528;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5EFA;&#x8BAE;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; React Redux &#x7EC4;&#x4EF6; <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store" target="_blank"><code>&lt;Provider&gt;</code></a> &#x6765; <a href="https://doc.react-china.org/docs/context.html" target="_blank">&#x9B54;&#x6CD5;&#x822C;&#x7684;</a> &#x8BA9;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; store&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x663E;&#x5F0F;&#x5730;&#x4F20;&#x9012;&#x5B83;&#x3002;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6E32;&#x67D3;&#x6839;&#x7EC4;&#x4EF6;&#x65F6;&#x4F7F;&#x7528;&#x5373;&#x53EF;&#x3002;</p>
 <h4 id="indexjs"><code>index.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-dom&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> todoApp <span class="token keyword">from</span> <span class="token string">&apos;./reducers&apos;</span>
-<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">&apos;./components/App&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> todoApp <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./reducers&apos;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./components/App&apos;</span>
 
-<span class="token keyword">let</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>todoApp<span class="token punctuation">)</span>
+<span class="hljs-keyword">let</span> store = createStore(todoApp)
 
-<span class="token function">render</span><span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">,</span>
-  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&apos;root&apos;</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
-</code></pre>
+render(
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>,
+  document.getElementById(&apos;root&apos;)
+)
+</span></code></pre>
 <h2 id="&#x4E0B;&#x4E00;&#x6B65;">&#x4E0B;&#x4E00;&#x6B65;</h2>
 <p>&#x53C2;&#x7167; <a href="ExampleTodoList.html">&#x672C;&#x5B8C;&#x6574;&#x793A;&#x4F8B;</a> &#x6765;&#x6DF1;&#x5316;&#x7406;&#x89E3;&#x3002;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x8DF3;&#x5230; <a href="../advanced/">&#x9AD8;&#x7EA7;&#x6559;&#x7A0B;</a> &#x5B66;&#x4E60;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5904;&#x7406;&#x548C;&#x8DEF;&#x7531;&#x3002;</p>
 
@@ -1412,7 +1406,7 @@ AddTodo <span class="token operator">=</span> <span class="token function">conne
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"搭配 React","level":"1.3.5","depth":2,"next":{"title":"示例：Todo List","level":"1.3.6","depth":2,"path":"docs/basics/ExampleTodoList.md","ref":"./docs/basics/ExampleTodoList.md","articles":[]},"previous":{"title":"数据流","level":"1.3.4","depth":2,"path":"docs/basics/DataFlow.md","ref":"./docs/basics/DataFlow.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/basics/UsageWithReact.md","mtime":"2020-10-18T13:47:18.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"搭配 React","level":"1.3.5","depth":2,"next":{"title":"示例：Todo List","level":"1.3.6","depth":2,"path":"docs/basics/ExampleTodoList.md","ref":"./docs/basics/ExampleTodoList.md","articles":[]},"previous":{"title":"数据流","level":"1.3.4","depth":2,"path":"docs/basics/DataFlow.md","ref":"./docs/basics/DataFlow.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/basics/UsageWithReact.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1420,9 +1414,6 @@ AddTodo <span class="token operator">=</span> <span class="token function">conne
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

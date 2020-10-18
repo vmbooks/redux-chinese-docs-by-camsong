@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -103,338 +97,338 @@
 <p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;<a href="./">&#x9AD8;&#x7EA7;&#x6559;&#x7A0B;</a>&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5305;&#x542B;&#x4F7F;&#x7528; Reddit API &#x8BF7;&#x6C42;&#x6587;&#x7AE0;&#x6807;&#x9898;&#x7684;&#x5168;&#x90E8;&#x6E90;&#x7801;&#x3002;</p>
 <h2 id="&#x5165;&#x53E3;">&#x5165;&#x53E3;</h2>
 <h4 id="indexjs"><code>index.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token string">&apos;babel-polyfill&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;babel-polyfill&apos;</span>
 
-<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-dom&apos;</span>
-<span class="token keyword">import</span> Root <span class="token keyword">from</span> <span class="token string">&apos;./containers/Root&apos;</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>
+<span class="hljs-keyword">import</span> Root <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./containers/Root&apos;</span>
 
-<span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Root <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&apos;root&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Root</span> /&gt;</span>, document.getElementById(&apos;root&apos;))
+</span></code></pre>
 <h2 id="action-creators-&#x548C;-constants">Action Creators &#x548C; Constants</h2>
 <h4 id="actionsjs"><code>actions.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> fetch <span class="token keyword">from</span> <span class="token string">&apos;cross-fetch&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;cross-fetch&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">REQUEST_POSTS</span> <span class="token operator">=</span> <span class="token string">&apos;REQUEST_POSTS&apos;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">RECEIVE_POSTS</span> <span class="token operator">=</span> <span class="token string">&apos;RECEIVE_POSTS&apos;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">SELECT_SUBREDDIT</span> <span class="token operator">=</span> <span class="token string">&apos;SELECT_SUBREDDIT&apos;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">INVALIDATE_SUBREDDIT</span> <span class="token operator">=</span> <span class="token string">&apos;INVALIDATE_SUBREDDIT&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> REQUEST_POSTS = <span class="hljs-string">&apos;REQUEST_POSTS&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> RECEIVE_POSTS = <span class="hljs-string">&apos;RECEIVE_POSTS&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SELECT_SUBREDDIT = <span class="hljs-string">&apos;SELECT_SUBREDDIT&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> INVALIDATE_SUBREDDIT = <span class="hljs-string">&apos;INVALIDATE_SUBREDDIT&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">selectSubreddit</span><span class="token punctuation">(</span><span class="token parameter">subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">SELECT_SUBREDDIT</span><span class="token punctuation">,</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectSubreddit</span>(<span class="hljs-params">subreddit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: SELECT_SUBREDDIT,
     subreddit
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">invalidateSubreddit</span><span class="token punctuation">(</span><span class="token parameter">subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">INVALIDATE_SUBREDDIT</span><span class="token punctuation">,</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">invalidateSubreddit</span>(<span class="hljs-params">subreddit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: INVALIDATE_SUBREDDIT,
     subreddit
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">requestPosts</span><span class="token punctuation">(</span><span class="token parameter">subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">REQUEST_POSTS</span><span class="token punctuation">,</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestPosts</span>(<span class="hljs-params">subreddit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: REQUEST_POSTS,
     subreddit
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">receivePosts</span><span class="token punctuation">(</span><span class="token parameter">subreddit<span class="token punctuation">,</span> json</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token operator">:</span> <span class="token constant">RECEIVE_POSTS</span><span class="token punctuation">,</span>
-    subreddit<span class="token punctuation">,</span>
-    posts<span class="token operator">:</span> json<span class="token punctuation">.</span>data<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">child</span> <span class="token operator">=&gt;</span> child<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    receivedAt<span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">receivePosts</span>(<span class="hljs-params">subreddit, json</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    type: RECEIVE_POSTS,
+    subreddit,
+    posts: json.data.children.map(child =&gt; child.data),
+    receivedAt: <span class="hljs-built_in">Date</span>.now()
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">fetchPosts</span><span class="token punctuation">(</span><span class="token parameter">subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">requestPosts</span><span class="token punctuation">(</span>subreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://www.reddit.com/r/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>subreddit<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.json</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">json</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">receivePosts</span><span class="token punctuation">(</span>subreddit<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchPosts</span>(<span class="hljs-params">subreddit</span>) </span>{
+  <span class="hljs-keyword">return</span> dispatch =&gt; {
+    dispatch(requestPosts(subreddit))
+    <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`https://www.reddit.com/r/<span class="hljs-subst">${subreddit}</span>.json`</span>)
+      .then(response =&gt; response.json())
+      .then(json =&gt; dispatch(receivePosts(subreddit, json)))
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">shouldFetchPosts</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> posts <span class="token operator">=</span> state<span class="token punctuation">.</span>postsBySubreddit<span class="token punctuation">[</span>subreddit<span class="token punctuation">]</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>posts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token boolean">true</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>posts<span class="token punctuation">.</span>isFetching<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> posts<span class="token punctuation">.</span>didInvalidate
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shouldFetchPosts</span>(<span class="hljs-params">state, subreddit</span>) </span>{
+  <span class="hljs-keyword">const</span> posts = state.postsBySubreddit[subreddit]
+  <span class="hljs-keyword">if</span> (!posts) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (posts.isFetching) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> posts.didInvalidate
+  }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">fetchPostsIfNeeded</span><span class="token punctuation">(</span><span class="token parameter">subreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token punctuation">,</span> getState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">shouldFetchPosts</span><span class="token punctuation">(</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> subreddit<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchPosts</span><span class="token punctuation">(</span>subreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchPostsIfNeeded</span>(<span class="hljs-params">subreddit</span>) </span>{
+  <span class="hljs-keyword">return</span> (dispatch, getState) =&gt; {
+    <span class="hljs-keyword">if</span> (shouldFetchPosts(getState(), subreddit)) {
+      <span class="hljs-keyword">return</span> dispatch(fetchPosts(subreddit))
+    }
+  }
+}
 </code></pre>
 <h2 id="reducers">Reducers</h2>
 <h4 id="reducersjs"><code>reducers.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span>
-  <span class="token constant">SELECT_SUBREDDIT</span><span class="token punctuation">,</span>
-  <span class="token constant">INVALIDATE_SUBREDDIT</span><span class="token punctuation">,</span>
-  <span class="token constant">REQUEST_POSTS</span><span class="token punctuation">,</span>
-  <span class="token constant">RECEIVE_POSTS</span>
-<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./actions&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> {
+  SELECT_SUBREDDIT,
+  INVALIDATE_SUBREDDIT,
+  REQUEST_POSTS,
+  RECEIVE_POSTS
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./actions&apos;</span>
 
-<span class="token keyword">function</span> <span class="token function">selectedSubreddit</span><span class="token punctuation">(</span>state <span class="token operator">=</span> <span class="token string">&apos;reactjs&apos;</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token constant">SELECT_SUBREDDIT</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> action<span class="token punctuation">.</span>subreddit
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectedSubreddit</span>(<span class="hljs-params">state = &apos;reactjs&apos;, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> SELECT_SUBREDDIT:
+      <span class="hljs-keyword">return</span> action.subreddit
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">posts</span><span class="token punctuation">(</span>
-  <span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    isFetching<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    didInvalidate<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  action</span>
-<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token constant">INVALIDATE_SUBREDDIT</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        didInvalidate<span class="token operator">:</span> <span class="token boolean">true</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">case</span> <span class="token constant">REQUEST_POSTS</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        isFetching<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        didInvalidate<span class="token operator">:</span> <span class="token boolean">false</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">case</span> <span class="token constant">RECEIVE_POSTS</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        isFetching<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-        didInvalidate<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-        items<span class="token operator">:</span> action<span class="token punctuation">.</span>posts<span class="token punctuation">,</span>
-        lastUpdated<span class="token operator">:</span> action<span class="token punctuation">.</span>receivedAt
-      <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">posts</span>(<span class="hljs-params">
+  state = {
+    isFetching: false,
+    didInvalidate: false,
+    items: []
+  },
+  action
+</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> INVALIDATE_SUBREDDIT:
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, state, {
+        didInvalidate: <span class="hljs-literal">true</span>
+      })
+    <span class="hljs-keyword">case</span> REQUEST_POSTS:
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, state, {
+        isFetching: <span class="hljs-literal">true</span>,
+        didInvalidate: <span class="hljs-literal">false</span>
+      })
+    <span class="hljs-keyword">case</span> RECEIVE_POSTS:
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, state, {
+        isFetching: <span class="hljs-literal">false</span>,
+        didInvalidate: <span class="hljs-literal">false</span>,
+        items: action.posts,
+        lastUpdated: action.receivedAt
+      })
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">postsBySubreddit</span><span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token constant">INVALIDATE_SUBREDDIT</span><span class="token operator">:</span>
-    <span class="token keyword">case</span> <span class="token constant">RECEIVE_POSTS</span><span class="token operator">:</span>
-    <span class="token keyword">case</span> <span class="token constant">REQUEST_POSTS</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        <span class="token punctuation">[</span>action<span class="token punctuation">.</span>subreddit<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token function">posts</span><span class="token punctuation">(</span>state<span class="token punctuation">[</span>action<span class="token punctuation">.</span>subreddit<span class="token punctuation">]</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postsBySubreddit</span>(<span class="hljs-params">state = {}, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> INVALIDATE_SUBREDDIT:
+    <span class="hljs-keyword">case</span> RECEIVE_POSTS:
+    <span class="hljs-keyword">case</span> REQUEST_POSTS:
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, state, {
+        [action.subreddit]: posts(state[action.subreddit], action)
+      })
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  postsBySubreddit<span class="token punctuation">,</span>
+<span class="hljs-keyword">const</span> rootReducer = combineReducers({
+  postsBySubreddit,
   selectedSubreddit
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+})
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> rootReducer
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> rootReducer
 </code></pre>
 <h2 id="store">Store</h2>
 <h4 id="configurestorejs"><code>configureStore.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore<span class="token punctuation">,</span> applyMiddleware <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> thunkMiddleware <span class="token keyword">from</span> <span class="token string">&apos;redux-thunk&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> createLogger <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux-logger&apos;</span>
-<span class="token keyword">import</span> rootReducer <span class="token keyword">from</span> <span class="token string">&apos;./reducers&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore, applyMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> thunkMiddleware <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-thunk&apos;</span>
+<span class="hljs-keyword">import</span> { createLogger } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-logger&apos;</span>
+<span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./reducers&apos;</span>
 
-<span class="token keyword">const</span> loggerMiddleware <span class="token operator">=</span> <span class="token function">createLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> loggerMiddleware = createLogger()
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token parameter">preloadedState</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token function">createStore</span><span class="token punctuation">(</span>
-    rootReducer<span class="token punctuation">,</span>
-    preloadedState<span class="token punctuation">,</span>
-    <span class="token function">applyMiddleware</span><span class="token punctuation">(</span>thunkMiddleware<span class="token punctuation">,</span> loggerMiddleware<span class="token punctuation">)</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">configureStore</span>(<span class="hljs-params">preloadedState</span>) </span>{
+  <span class="hljs-keyword">return</span> createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(thunkMiddleware, loggerMiddleware)
+  )
+}
 </code></pre>
 <h2 id="&#x5BB9;&#x5668;&#x578B;&#x7EC4;&#x4EF6;">&#x5BB9;&#x5668;&#x578B;&#x7EC4;&#x4EF6;</h2>
 <h4 id="containersrootjs"><code>containers/Root.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> configureStore <span class="token keyword">from</span> <span class="token string">&apos;../configureStore&apos;</span>
-<span class="token keyword">import</span> AsyncApp <span class="token keyword">from</span> <span class="token string">&apos;./AsyncApp&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> configureStore <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../configureStore&apos;</span>
+<span class="hljs-keyword">import</span> AsyncApp <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./AsyncApp&apos;</span>
 
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> store = configureStore()
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Root</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>AsyncApp <span class="token operator">/</span><span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">&gt;</span>
-    <span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Root</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AsyncApp</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
+    )
+  }
+}
+</span></code></pre>
 <h4 id="containersasyncappjs"><code>containers/AsyncApp.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span>
-  selectSubreddit<span class="token punctuation">,</span>
-  fetchPostsIfNeeded<span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> {
+  selectSubreddit,
+  fetchPostsIfNeeded,
   invalidateSubreddit
-<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actions&apos;</span>
-<span class="token keyword">import</span> Picker <span class="token keyword">from</span> <span class="token string">&apos;../components/Picker&apos;</span>
-<span class="token keyword">import</span> Posts <span class="token keyword">from</span> <span class="token string">&apos;../components/Posts&apos;</span>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actions&apos;</span>
+<span class="hljs-keyword">import</span> Picker <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../components/Picker&apos;</span>
+<span class="hljs-keyword">import</span> Posts <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../components/Posts&apos;</span>
 
-<span class="token keyword">class</span> <span class="token class-name">AsyncApp</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>handleChange <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleChange</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>handleRefreshClick <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleRefreshClick</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props)
+    <span class="hljs-keyword">this</span>.handleChange = <span class="hljs-keyword">this</span>.handleChange.bind(<span class="hljs-keyword">this</span>)
+    <span class="hljs-keyword">this</span>.handleRefreshClick = <span class="hljs-keyword">this</span>.handleRefreshClick.bind(<span class="hljs-keyword">this</span>)
+  }
 
-  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> selectedSubreddit <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchPostsIfNeeded</span><span class="token punctuation">(</span>selectedSubreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+  componentDidMount() {
+    <span class="hljs-keyword">const</span> { dispatch, selectedSubreddit } = <span class="hljs-keyword">this</span>.props
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  }
 
-  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span><span class="token parameter">nextProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>nextProps<span class="token punctuation">.</span>selectedSubreddit <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>selectedSubreddit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">const</span> <span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> selectedSubreddit <span class="token punctuation">}</span> <span class="token operator">=</span> nextProps
-      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchPostsIfNeeded</span><span class="token punctuation">(</span>selectedSubreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
+  componentWillReceiveProps(nextProps) {
+    <span class="hljs-keyword">if</span> (nextProps.selectedSubreddit !== <span class="hljs-keyword">this</span>.props.selectedSubreddit) {
+      <span class="hljs-keyword">const</span> { dispatch, selectedSubreddit } = nextProps
+      dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    }
+  }
 
-  <span class="token function">handleChange</span><span class="token punctuation">(</span><span class="token parameter">nextSubreddit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">selectSubreddit</span><span class="token punctuation">(</span>nextSubreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+  handleChange(nextSubreddit) {
+    <span class="hljs-keyword">this</span>.props.dispatch(selectSubreddit(nextSubreddit))
+  }
 
-  <span class="token function">handleRefreshClick</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  handleRefreshClick(e) {
+    e.preventDefault()
 
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> selectedSubreddit <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">invalidateSubreddit</span><span class="token punctuation">(</span>selectedSubreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchPostsIfNeeded</span><span class="token punctuation">(</span>selectedSubreddit<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+    <span class="hljs-keyword">const</span> { dispatch, selectedSubreddit } = <span class="hljs-keyword">this</span>.props
+    dispatch(invalidateSubreddit(selectedSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  }
 
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> selectedSubreddit<span class="token punctuation">,</span> posts<span class="token punctuation">,</span> isFetching<span class="token punctuation">,</span> lastUpdated <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>Picker
-          value<span class="token operator">=</span><span class="token punctuation">{</span>selectedSubreddit<span class="token punctuation">}</span>
-          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">}</span>
-          options<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">[</span><span class="token string">&apos;reactjs&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;frontend&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
-        <span class="token operator">/</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>
-          <span class="token punctuation">{</span>lastUpdated <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>
-            <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span>
-              Last updated at <span class="token punctuation">{</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>lastUpdated<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token punctuation">{</span><span class="token string">&apos; &apos;</span><span class="token punctuation">}</span>
-            <span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
-          <span class="token punctuation">)</span><span class="token punctuation">}</span>
-          <span class="token punctuation">{</span><span class="token operator">!</span>isFetching <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>
-            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">&quot;#&quot;</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleRefreshClick<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+  render() {
+    <span class="hljs-keyword">const</span> { selectedSubreddit, posts, isFetching, lastUpdated } = <span class="hljs-keyword">this</span>.props
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        &lt;Picker
+          value={selectedSubreddit}
+          onChange={this.handleChange}
+          options={[&apos;reactjs&apos;, &apos;frontend&apos;]}
+        /&gt;
+        &lt;p&gt;
+          {lastUpdated &amp;&amp; (
+            &lt;span&gt;
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{&apos; &apos;}
+            &lt;/span&gt;
+          )}
+          {!isFetching &amp;&amp; (
+            &lt;a href=&quot;#&quot; onClick={this.handleRefreshClick}&gt;
               Refresh
-            <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
-          <span class="token punctuation">)</span><span class="token punctuation">}</span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-        <span class="token punctuation">{</span>isFetching <span class="token operator">&amp;&amp;</span> posts<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Loading<span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token punctuation">}</span>
-        <span class="token punctuation">{</span><span class="token operator">!</span>isFetching <span class="token operator">&amp;&amp;</span> posts<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Empty<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token punctuation">}</span>
-        <span class="token punctuation">{</span>posts<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>
-          <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> opacity<span class="token operator">:</span> isFetching <span class="token operator">?</span> <span class="token number">0.5</span> <span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
-            <span class="token operator">&lt;</span>Posts posts<span class="token operator">=</span><span class="token punctuation">{</span>posts<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-        <span class="token punctuation">)</span><span class="token punctuation">}</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-    <span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+            &lt;/a&gt;
+          )}
+        &lt;/p&gt;
+        {isFetching &amp;&amp; posts.length === 0 &amp;&amp; &lt;h2&gt;Loading...&lt;/h2&gt;}
+        {!isFetching &amp;&amp; posts.length === 0 &amp;&amp; &lt;h2&gt;Empty.&lt;/h2&gt;}
+        {posts.length &gt; 0 &amp;&amp; (
+          &lt;div style={{ opacity: isFetching ? 0.5 : 1 }}&gt;
+            &lt;Posts posts={posts} /&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    )
+  }
+}
 
-AsyncApp<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  selectedSubreddit<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  posts<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  isFetching<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>bool<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  lastUpdated<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">,</span>
-  dispatch<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+AsyncApp.propTypes = {
+  selectedSubreddit: PropTypes.string.isRequired,
+  posts: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
+}
 
-<span class="token keyword">function</span> <span class="token function">mapStateToProps</span><span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> selectedSubreddit<span class="token punctuation">,</span> postsBySubreddit <span class="token punctuation">}</span> <span class="token operator">=</span> state
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> isFetching<span class="token punctuation">,</span> lastUpdated<span class="token punctuation">,</span> items<span class="token operator">:</span> posts <span class="token punctuation">}</span> <span class="token operator">=</span> postsBySubreddit<span class="token punctuation">[</span>
+function mapStateToProps(state) {
+  const { selectedSubreddit, postsBySubreddit } = state
+  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
     selectedSubreddit
-  <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span>
-    isFetching<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-  <span class="token punctuation">}</span>
+  ] || {
+    isFetching: true,
+    items: []
+  }
 
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    selectedSubreddit<span class="token punctuation">,</span>
-    posts<span class="token punctuation">,</span>
-    isFetching<span class="token punctuation">,</span>
+  return {
+    selectedSubreddit,
+    posts,
+    isFetching,
     lastUpdated
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  }
+}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>AsyncApp<span class="token punctuation">)</span>
+export default connect(mapStateToProps)(AsyncApp)
 </code></pre>
 <h2 id="&#x5C55;&#x793A;&#x578B;&#x7EC4;&#x4EF6;">&#x5C55;&#x793A;&#x578B;&#x7EC4;&#x4EF6;</h2>
 <h4 id="componentspickerjs"><code>components/Picker.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Picker</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">{</span> value<span class="token punctuation">,</span> onChange<span class="token punctuation">,</span> options <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Picker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">const</span> { value, onChange, options } = <span class="hljs-keyword">this</span>.props
 
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>select onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> value<span class="token operator">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-          <span class="token punctuation">{</span>options<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">option</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-            <span class="token operator">&lt;</span>option value<span class="token operator">=</span><span class="token punctuation">{</span>option<span class="token punctuation">}</span> key<span class="token operator">=</span><span class="token punctuation">{</span>option<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-              <span class="token punctuation">{</span>option<span class="token punctuation">}</span>
-            <span class="token operator">&lt;</span><span class="token operator">/</span>option<span class="token operator">&gt;</span>
-          <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
-    <span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> onChange(e.target.value)} value={value}&gt;
+          {options.map(option =&gt; (
+            <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{option}</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{option}</span>&gt;</span>
+              {option}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+          ))}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+    )
+  }
+}
 
-Picker<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  options<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">.</span>isRequired<span class="token punctuation">)</span><span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  value<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
-  onChange<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+Picker.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
 </code></pre>
 <h4 id="componentspostsjs"><code>components/Posts.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Posts</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
-        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">post<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-          <span class="token operator">&lt;</span>li key<span class="token operator">=</span><span class="token punctuation">{</span>i<span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token punctuation">{</span>post<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
-        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
-    <span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Posts</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        {this.props.posts.map((post, i) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{post.title}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+    )
+  }
+}
 
-Posts<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  posts<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
+Posts.propTypes = {
+  posts: PropTypes.array.isRequired
+}
 </code></pre>
 
                                 
@@ -1379,7 +1373,7 @@ Posts<span class="token punctuation">.</span>propTypes <span class="token operat
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"示例：Reddit API","level":"1.4.6","depth":2,"next":{"title":"下一步","level":"1.4.7","depth":2,"path":"docs/advanced/NextSteps.md","ref":"./docs/advanced/NextSteps.md","articles":[]},"previous":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"path":"docs/advanced/UsageWithTypeScript.md","ref":"./docs/advanced/UsageWithTypeScript.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/ExampleRedditAPI.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"示例：Reddit API","level":"1.4.6","depth":2,"next":{"title":"下一步","level":"1.4.7","depth":2,"path":"docs/advanced/NextSteps.md","ref":"./docs/advanced/NextSteps.md","articles":[]},"previous":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"path":"docs/advanced/UsageWithTypeScript.md","ref":"./docs/advanced/UsageWithTypeScript.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/ExampleRedditAPI.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1387,9 +1381,6 @@ Posts<span class="token punctuation">.</span>propTypes <span class="token operat
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

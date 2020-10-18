@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -114,26 +108,26 @@
 <h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
 <p>(<a href="Store.html"><em><code>Store</code></em></a>): &#x4FDD;&#x5B58;&#x4E86;&#x5E94;&#x7528;&#x6240;&#x6709; state &#x7684;&#x5BF9;&#x8C61;&#x3002;&#x6539;&#x53D8; state &#x7684;&#x60DF;&#x4E00;&#x65B9;&#x6CD5;&#x662F; <a href="Store.html#dispatch">dispatch</a> action&#x3002;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5; <a href="Store.html#subscribe">subscribe &#x76D1;&#x542C;</a> state &#x7684;&#x53D8;&#x5316;&#xFF0C;&#x7136;&#x540E;&#x66F4;&#x65B0; UI&#x3002;</p>
 <h4 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;</h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
 
-<span class="token keyword">function</span> <span class="token function">todos</span><span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token punctuation">[</span>action<span class="token punctuation">.</span>text<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todos</span>(<span class="hljs-params">state = [], action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;ADD_TODO&apos;</span>:
+      <span class="hljs-keyword">return</span> state.concat([action.text])
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 
-<span class="token keyword">let</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>todos<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Use Redux&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="hljs-keyword">let</span> store = createStore(todos, [<span class="hljs-string">&apos;Use Redux&apos;</span>])
 
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  type<span class="token operator">:</span> <span class="token string">&apos;ADD_TODO&apos;</span><span class="token punctuation">,</span>
-  text<span class="token operator">:</span> <span class="token string">&apos;Read the docs&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+store.dispatch({
+  type: <span class="hljs-string">&apos;ADD_TODO&apos;</span>,
+  text: <span class="hljs-string">&apos;Read the docs&apos;</span>
+})
 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment">// [ &apos;Use Redux&apos;, &apos;Read the docs&apos; ]</span>
+<span class="hljs-built_in">console</span>.log(store.getState())
+<span class="hljs-comment">// [ &apos;Use Redux&apos;, &apos;Read the docs&apos; ]</span>
 </code></pre>
 <h4 id="&#x5C0F;&#x8D34;&#x58EB;">&#x5C0F;&#x8D34;&#x58EB;</h4>
 <ul>
@@ -1093,7 +1087,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"createStore","level":"1.9.1","depth":2,"next":{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},"previous":{"title":"API 文档","level":"1.9","depth":1,"path":"docs/api/README.md","ref":"./docs/api/README.md","articles":[{"title":"createStore","level":"1.9.1","depth":2,"path":"docs/api/createStore.md","ref":"./docs/api/createStore.md","articles":[]},{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},{"title":"combineReducers","level":"1.9.3","depth":2,"path":"docs/api/combineReducers.md","ref":"./docs/api/combineReducers.md","articles":[]},{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},{"title":"bindActionCreators","level":"1.9.5","depth":2,"path":"docs/api/bindActionCreators.md","ref":"./docs/api/bindActionCreators.md","articles":[]},{"title":"compose","level":"1.9.6","depth":2,"path":"docs/api/compose.md","ref":"./docs/api/compose.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/createStore.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"createStore","level":"1.9.1","depth":2,"next":{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},"previous":{"title":"API 文档","level":"1.9","depth":1,"path":"docs/api/README.md","ref":"./docs/api/README.md","articles":[{"title":"createStore","level":"1.9.1","depth":2,"path":"docs/api/createStore.md","ref":"./docs/api/createStore.md","articles":[]},{"title":"Store","level":"1.9.2","depth":2,"path":"docs/api/Store.md","ref":"./docs/api/Store.md","articles":[]},{"title":"combineReducers","level":"1.9.3","depth":2,"path":"docs/api/combineReducers.md","ref":"./docs/api/combineReducers.md","articles":[]},{"title":"applyMiddleware","level":"1.9.4","depth":2,"path":"docs/api/applyMiddleware.md","ref":"./docs/api/applyMiddleware.md","articles":[]},{"title":"bindActionCreators","level":"1.9.5","depth":2,"path":"docs/api/bindActionCreators.md","ref":"./docs/api/bindActionCreators.md","articles":[]},{"title":"compose","level":"1.9.6","depth":2,"path":"docs/api/compose.md","ref":"./docs/api/compose.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/api/createStore.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1101,9 +1095,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

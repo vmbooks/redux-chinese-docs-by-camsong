@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -117,149 +111,149 @@ Redux &#x548C; React Router &#x5C06;&#x5206;&#x522B;&#x6210;&#x4E3A;&#x4F60;&#x6
 </blockquote>
 <h3 id="&#x914D;&#x7F6E;-express">&#x914D;&#x7F6E; Express</h3>
 <p>&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528;&#x7684;&#x662F; Express &#x6765;&#x8FD4;&#x56DE;&#x4F60;&#x7684; <code>index.html</code> &#x9875;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5230;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js">app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&apos;/*&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  res<span class="token punctuation">.</span><span class="token function">sendfile</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&apos;index.html&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js">app.get(<span class="hljs-string">&apos;/*&apos;</span>, (req, res) =&gt; {
+  res.sendfile(path.join(__dirname, <span class="hljs-string">&apos;index.html&apos;</span>))
+})
 </code></pre>
 <h3 id="&#x914D;&#x7F6E;-webpackdevserver">&#x914D;&#x7F6E; WebpackDevServer</h3>
 <p>&#x5982;&#x679C;&#x4F60;&#x6B63;&#x5728;&#x4F7F;&#x7528; WebpackDevServer &#x6765;&#x8FD4;&#x56DE;&#x4F60;&#x7684; <code>index.html</code> &#x9875;&#x9762;&#xFF0C;
 &#x4F60;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#x5230; webpack.config.dev.js&#xFF1A;</p>
-<pre class="language-"><code class="lang-js">devServer<span class="token operator">:</span> <span class="token punctuation">{</span>
-  historyApiFallback<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js">devServer: {
+  historyApiFallback: <span class="hljs-literal">true</span>,
+}
 </code></pre>
 <h2 id="&#x8FDE;&#x63A5;-react-router-&#x548C;-redux-&#x5E94;&#x7528;">&#x8FDE;&#x63A5; React Router &#x548C; Redux &#x5E94;&#x7528;</h2>
 <p>&#x5728;&#x8FD9;&#x4E00;&#x7AE0;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528; <a href="https://github.com/reactjs/redux/tree/master/examples/todos" target="_blank">Todos</a> &#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;&#x3002;&#x6211;&#x4EEC;&#x5EFA;&#x8BAE;&#x4F60;&#x5728;&#x9605;&#x8BFB;&#x672C;&#x7AE0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5C06;&#x4ED3;&#x5E93;&#x514B;&#x9686;&#x4E0B;&#x6765;&#x3002;</p>
-<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4ECE; React Router &#x4E2D;&#x5BFC;&#x5165; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Router</span> <span class="token punctuation">/&gt;</span></span></code> &#x548C; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Route</span> <span class="token punctuation">/&gt;</span></span></code>&#x3002;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> BrowserRouter <span class="token keyword">as</span> Router<span class="token punctuation">,</span> Route <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-router-dom&apos;</span>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4ECE; React Router &#x4E2D;&#x5BFC;&#x5165; <code>&lt;Router /&gt;</code> &#x548C; <code>&lt;Route /&gt;</code>&#x3002;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { BrowserRouter <span class="hljs-keyword">as</span> Router, Route } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-router-dom&apos;</span>
 </code></pre>
-<p>&#x5728; React &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x4F60;&#x4F1A;&#x7528; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Router</span> <span class="token punctuation">/&gt;</span></span></code> &#x5305;&#x88F9; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Route</span> <span class="token punctuation">/&gt;</span></span></code>&#x3002;
-&#x5982;&#x6B64;&#xFF0C;&#x5F53; URL &#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Router</span> <span class="token punctuation">/&gt;</span></span></code> &#x5C06;&#x4F1A;&#x5339;&#x914D;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x8DEF;&#x7531;&#xFF0C;&#x7136;&#x540E;&#x6E32;&#x67D3;&#x8DEF;&#x7531;&#x7ED1;&#x5B9A;&#x7684;&#x7EC4;&#x4EF6;&#x3002;
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Route</span> <span class="token punctuation">/&gt;</span></span></code> &#x7528;&#x6765;&#x663E;&#x5F0F;&#x5730;&#x628A;&#x8DEF;&#x7531;&#x6620;&#x5C04;&#x5230;&#x5E94;&#x7528;&#x7684;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;&#x4E0A;&#x3002;
+<p>&#x5728; React &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x4F60;&#x4F1A;&#x7528; <code>&lt;Router /&gt;</code> &#x5305;&#x88F9; <code>&lt;Route /&gt;</code>&#x3002;
+&#x5982;&#x6B64;&#xFF0C;&#x5F53; URL &#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>&lt;Router /&gt;</code> &#x5C06;&#x4F1A;&#x5339;&#x914D;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x8DEF;&#x7531;&#xFF0C;&#x7136;&#x540E;&#x6E32;&#x67D3;&#x8DEF;&#x7531;&#x7ED1;&#x5B9A;&#x7684;&#x7EC4;&#x4EF6;&#x3002;
+<code>&lt;Route /&gt;</code> &#x7528;&#x6765;&#x663E;&#x5F0F;&#x5730;&#x628A;&#x8DEF;&#x7531;&#x6620;&#x5C04;&#x5230;&#x5E94;&#x7528;&#x7684;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;&#x4E0A;&#x3002;
 &#x7528; <code>path</code> &#x6307;&#x5B9A; URL&#xFF0C;&#x7528; <code>component</code> &#x6307;&#x5B9A;&#x8DEF;&#x7531;&#x547D;&#x4E2D; URL &#x540E;&#x9700;&#x8981;&#x6E32;&#x67D3;&#x7684;&#x90A3;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">Root</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>Router<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>Route path<span class="token operator">=</span><span class="token string">&quot;/&quot;</span> component<span class="token operator">=</span><span class="token punctuation">{</span>App<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>Router<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> Root = () =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{App}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span>
+)
+</span></code></pre>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x7684; Redux &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4ECD;&#x5C06;&#x4F7F;&#x7528; <code>&lt;Provider /&gt;</code>&#x3002;
+<code>&lt;Provider /&gt;</code> &#x662F;&#x7531; React Redux &#x63D0;&#x4F9B;&#x7684;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#xFF0C;&#x7528;&#x6765;&#x8BA9;&#x4F60;&#x5C06; Redux &#x7ED1;&#x5B9A;&#x5230; React &#xFF08;&#x8BE6;&#x89C1; <a href="../basics/UsageWithReact.html">&#x642D;&#x914D; React</a>&#xFF09;&#x3002;</p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4ECE; React Redux &#x5BFC;&#x5165; <code>&lt;Provider /&gt;</code>&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
 </code></pre>
-<p>&#x53E6;&#x5916;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x7684; Redux &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4ECD;&#x5C06;&#x4F7F;&#x7528; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span> <span class="token punctuation">/&gt;</span></span></code>&#x3002;
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span> <span class="token punctuation">/&gt;</span></span></code> &#x662F;&#x7531; React Redux &#x63D0;&#x4F9B;&#x7684;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#xFF0C;&#x7528;&#x6765;&#x8BA9;&#x4F60;&#x5C06; Redux &#x7ED1;&#x5B9A;&#x5230; React &#xFF08;&#x8BE6;&#x89C1; <a href="../basics/UsageWithReact.html">&#x642D;&#x914D; React</a>&#xFF09;&#x3002;</p>
-<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4ECE; React Redux &#x5BFC;&#x5165; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span> <span class="token punctuation">/&gt;</span></span></code>&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-</code></pre>
-<p>&#x6211;&#x4EEC;&#x5C06;&#x7528; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span> <span class="token punctuation">/&gt;</span></span></code> &#x5305;&#x88F9; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Router</span> <span class="token punctuation">/&gt;</span></span></code>&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x8DEF;&#x7531;&#x5904;&#x7406;&#x5668;&#x53EF;&#x4EE5;<a href="../basics/UsageWithReact.html#passing-the-store">&#x8BBF;&#x95EE; <code>store</code></a>&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">Root</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> store <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>Router<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>Route path<span class="token operator">=</span><span class="token string">&quot;/&quot;</span> component<span class="token operator">=</span><span class="token punctuation">{</span>App<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>Router<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
-</code></pre>
-<p>&#x73B0;&#x5728;&#xFF0C;&#x5982;&#x679C; URL &#x5339;&#x914D;&#x5230; &apos;/&apos;&#xFF0C;&#x5C06;&#x4F1A;&#x6E32;&#x67D3; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span> <span class="token punctuation">/&gt;</span></span></code> &#x7EC4;&#x4EF6;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5728; &apos;/&apos; &#x540E;&#x9762;&#x589E;&#x52A0;&#x53C2;&#x6570; <code>:filter?</code>,
+<p>&#x6211;&#x4EEC;&#x5C06;&#x7528; <code>&lt;Provider /&gt;</code> &#x5305;&#x88F9; <code>&lt;Router /&gt;</code>&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x8DEF;&#x7531;&#x5904;&#x7406;&#x5668;&#x53EF;&#x4EE5;<a href="../basics/UsageWithReact.html#passing-the-store">&#x8BBF;&#x95EE; <code>store</code></a>&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> Root = ({ store }) =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{App}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
+)
+</span></code></pre>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5982;&#x679C; URL &#x5339;&#x914D;&#x5230; &apos;/&apos;&#xFF0C;&#x5C06;&#x4F1A;&#x6E32;&#x67D3; <code>&lt;App /&gt;</code> &#x7EC4;&#x4EF6;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5728; &apos;/&apos; &#x540E;&#x9762;&#x589E;&#x52A0;&#x53C2;&#x6570; <code>:filter?</code>,
 &#x4EE5;&#x4FBF;&#x4EE5;&#x540E;&#x6211;&#x4EEC;&#x4ECE; URL &#x4E2D;&#x8BFB;&#x53D6;&#x53C2;&#x6570; <code>:filter</code>&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Route path<span class="token operator">=</span><span class="token string">&quot;/:filter?&quot;</span> component<span class="token operator">=</span><span class="token punctuation">{</span>App<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+<pre><code class="lang-js">&lt;Route path=<span class="hljs-string">&quot;/:filter?&quot;</span> component={App} /&gt;
 </code></pre>
 <p>&#x4E5F;&#x8BB8;&#x4F60;&#x60F3;&#x5C06; &apos;#&apos; &#x4ECE; URL &#x4E2D;&#x79FB;&#x9664;&#xFF08;&#x4F8B;&#x5982;&#xFF1A;<code>http://localhost:3000/#/?_k=4sbb0i</code>&#xFF09;&#x3002;
 &#x4F60;&#x9700;&#x8981;&#x4ECE; React Router &#x5BFC;&#x5165; <code>browserHistory</code> &#x6765;&#x5B9E;&#x73B0;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> Router<span class="token punctuation">,</span> Route<span class="token punctuation">,</span> browserHistory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-router&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Router, Route, browserHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-router&apos;</span>
 </code></pre>
 <h4 id="componentsrootjs"><code>components/Root.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">&apos;prop-types&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> BrowserRouter <span class="token keyword">as</span> Router<span class="token punctuation">,</span> Route <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-router-dom&apos;</span>
-<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">&apos;./App&apos;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">Root</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> store <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>Router<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>Route path<span class="token operator">=</span><span class="token string">&quot;/:filter?&quot;</span> component<span class="token operator">=</span><span class="token punctuation">{</span>App<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>Router<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
-Root<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
-  store<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>object<span class="token punctuation">.</span>isRequired
-<span class="token punctuation">}</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> Root
-</code></pre>
-<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x91CD;&#x6784; <code>index.js</code> &#x6765;&#x628A; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Root</span> <span class="token punctuation">/&gt;</span></span></code> &#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#x5230; DOM &#x4E0A;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
+<span class="hljs-keyword">import</span> { BrowserRouter <span class="hljs-keyword">as</span> Router, Route } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-router-dom&apos;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./App&apos;</span>
+<span class="hljs-keyword">const</span> Root = ({ store }) =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/:filter?&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{App}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
+)
+Root.propTypes = {
+  store: PropTypes.object.isRequired
+}
+export default Root
+</span></code></pre>
+<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x91CD;&#x6784; <code>index.js</code> &#x6765;&#x628A; <code>&lt;Root /&gt;</code> &#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#x5230; DOM &#x4E0A;&#x3002;</p>
 <h4 id="indexjs"><code>index.js</code></h4>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-dom&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span>
-<span class="token keyword">import</span> todoApp <span class="token keyword">from</span> <span class="token string">&apos;./reducers&apos;</span>
-<span class="token keyword">import</span> Root <span class="token keyword">from</span> <span class="token string">&apos;./components/Root&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> todoApp <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./reducers&apos;</span>
+<span class="hljs-keyword">import</span> Root <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./components/Root&apos;</span>
 
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>todoApp<span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> store = createStore(todoApp)
 
-<span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Root store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&apos;root&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Root</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span> /&gt;</span>, document.getElementById(&apos;root&apos;))
+</span></code></pre>
 <h2 id="&#x901A;&#x8FC7;-react-router-&#x5BFC;&#x822A;">&#x901A;&#x8FC7; React Router &#x5BFC;&#x822A;</h2>
-<p>React Router &#x63D0;&#x4F9B;&#x4E86; <a href="https://github.com/reactjs/react-router/blob/master/docs/API.md#link" target="_blank"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Link</span> <span class="token punctuation">/&gt;</span></span></code></a> &#x6765;&#x5B9E;&#x73B0;&#x5BFC;&#x822A;&#x529F;&#x80FD;&#x3002; &#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x6837;&#x5F0F;&#xFF0C;<code>react-router-dom</code> &#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6837;&#x5F0F;&#x7684;&#x7279;&#x6B8A; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Link</span> <span class="token punctuation">/&gt;</span></span></code> &#x53EB;&#x505A; <a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/NavLink.md" target="_blank"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavLink</span> <span class="token punctuation">/&gt;</span></span></code></a>&#x3002; &#x4F8B;&#x5982;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>activeStyle</code> &#x5C5E;&#x6027;&#x6765;&#x6307;&#x5B9A;&#x6FC0;&#x6D3B;&#x72B6;&#x6001;&#x7684;&#x6837;&#x5F0F;&#x3002;</p>
-<p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FilterLink</span><span class="token punctuation">/&gt;</span></span></code> &#x4E2D; &#x4F7F;&#x7528; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavLink</span><span class="token punctuation">/&gt;</span></span></code> &#xFF0C;&#x4EE5;&#x4FBF;&#x52A8;&#x6001;&#x5730;&#x66F4;&#x6539; URL&#x3002;</p>
+<p>React Router &#x63D0;&#x4F9B;&#x4E86; <a href="https://github.com/reactjs/react-router/blob/master/docs/API.md#link" target="_blank"><code>&lt;Link /&gt;</code></a> &#x6765;&#x5B9E;&#x73B0;&#x5BFC;&#x822A;&#x529F;&#x80FD;&#x3002; &#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x6837;&#x5F0F;&#xFF0C;<code>react-router-dom</code> &#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6837;&#x5F0F;&#x7684;&#x7279;&#x6B8A; <code>&lt;Link /&gt;</code> &#x53EB;&#x505A; <a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/NavLink.md" target="_blank"><code>&lt;NavLink /&gt;</code></a>&#x3002; &#x4F8B;&#x5982;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>activeStyle</code> &#x5C5E;&#x6027;&#x6765;&#x6307;&#x5B9A;&#x6FC0;&#x6D3B;&#x72B6;&#x6001;&#x7684;&#x6837;&#x5F0F;&#x3002;</p>
+<p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BB9;&#x5668;&#x7EC4;&#x4EF6; <code>&lt;FilterLink/&gt;</code> &#x4E2D; &#x4F7F;&#x7528; <code>&lt;NavLink/&gt;</code> &#xFF0C;&#x4EE5;&#x4FBF;&#x52A8;&#x6001;&#x5730;&#x66F4;&#x6539; URL&#x3002;</p>
 <h3 id="containersfilterlinkjs"><code>containers/FilterLink.js</code></h3>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> NavLink <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-router-dom&apos;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">FilterLink</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> filter<span class="token punctuation">,</span> children <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>NavLink
-    to<span class="token operator">=</span><span class="token punctuation">{</span>filter <span class="token operator">===</span> <span class="token string">&apos;SHOW_ALL&apos;</span> <span class="token operator">?</span> <span class="token string">&apos;/&apos;</span> <span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>filter<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span>
-    activeStyle<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
-      textDecoration<span class="token operator">:</span> <span class="token string">&apos;none&apos;</span><span class="token punctuation">,</span>
-      color<span class="token operator">:</span> <span class="token string">&apos;black&apos;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">}</span>
-  <span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>children<span class="token punctuation">}</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>NavLink<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> FilterLink
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { NavLink } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-router-dom&apos;</span>
+<span class="hljs-keyword">const</span> FilterLink = ({ filter, children }) =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span>
+    <span class="hljs-attr">to</span>=<span class="hljs-string">{filter</span> =<span class="hljs-string">==</span> &apos;<span class="hljs-attr">SHOW_ALL</span>&apos; ? &apos;/&apos; <span class="hljs-attr">:</span> `/${<span class="hljs-attr">filter</span>}`}
+    <span class="hljs-attr">activeStyle</span>=<span class="hljs-string">{{</span>
+      <span class="hljs-attr">textDecoration:</span> &apos;<span class="hljs-attr">none</span>&apos;,
+      <span class="hljs-attr">color:</span> &apos;<span class="hljs-attr">black</span>&apos;
+    }}
+  &gt;</span>
+    {children}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span>
+)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> FilterLink
 </code></pre>
 <h3 id="componentsfooterjs"><code>components/Footer.js</code></h3>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> FilterLink <span class="token keyword">from</span> <span class="token string">&apos;../containers/FilterLink&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> VisibilityFilters <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;../actions&apos;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">Footer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>
-    Show<span class="token operator">:</span> <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token punctuation">{</span>VisibilityFilters<span class="token punctuation">.</span><span class="token constant">SHOW_ALL</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>All<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span><span class="token string">&apos;, &apos;</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token punctuation">{</span>VisibilityFilters<span class="token punctuation">.</span><span class="token constant">SHOW_ACTIVE</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Active<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span><span class="token string">&apos;, &apos;</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span>FilterLink filter<span class="token operator">=</span><span class="token punctuation">{</span>VisibilityFilters<span class="token punctuation">.</span><span class="token constant">SHOW_COMPLETED</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Completed<span class="token operator">&lt;</span><span class="token operator">/</span>FilterLink<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> Footer
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> FilterLink <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../containers/FilterLink&apos;</span>
+<span class="hljs-keyword">import</span> { VisibilityFilters } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../actions&apos;</span>
+<span class="hljs-keyword">const</span> Footer = () =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    Show: <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">{VisibilityFilters.SHOW_ALL}</span>&gt;</span>All<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {&apos;, &apos;}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">{VisibilityFilters.SHOW_ACTIVE}</span>&gt;</span>Active<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {&apos;, &apos;}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">{VisibilityFilters.SHOW_COMPLETED}</span>&gt;</span>Completed<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Footer
 </code></pre>
-<p>&#x8FD9;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x70B9;&#x51FB; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FilterLink</span> <span class="token punctuation">/&gt;</span></span></code>&#xFF0C;&#x4F60;&#x5C06;&#x770B;&#x5230;&#x4F60;&#x7684; URL &#x5728; <code>&apos;/SHOW_COMPLETED&apos;</code>&#xFF0C;<code>&apos;/SHOW_ACTIVE&apos;</code>&#xFF0C;<code>&apos;/&apos;</code> &#x95F4;&#x5207;&#x6362;&#x3002;
+<p>&#x8FD9;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x70B9;&#x51FB; <code>&lt;FilterLink /&gt;</code>&#xFF0C;&#x4F60;&#x5C06;&#x770B;&#x5230;&#x4F60;&#x7684; URL &#x5728; <code>&apos;/SHOW_COMPLETED&apos;</code>&#xFF0C;<code>&apos;/SHOW_ACTIVE&apos;</code>&#xFF0C;<code>&apos;/&apos;</code> &#x95F4;&#x5207;&#x6362;&#x3002;
 &#x751A;&#x81F3;&#x8FD8;&#x652F;&#x6301;&#x6D4F;&#x89C8;&#x7684;&#x56DE;&#x9000;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x4E2D;&#x627E;&#x5230;&#x4E4B;&#x524D;&#x7684; URL &#x5E76;&#x56DE;&#x9000;&#x3002;</p>
 <h2 id="&#x4ECE;-url-&#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;">&#x4ECE; URL &#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;</h2>
 <p>&#x73B0;&#x5728;&#xFF0C;&#x5373;&#x4F7F; URL &#x6539;&#x53D8;&#xFF0C;todo &#x5217;&#x8868;&#x4E5F;&#x4E0D;&#x4F1A;&#x88AB;&#x8FC7;&#x6EE4;&#x3002;
-&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x662F;&#x5728; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VisibleTodoList</span> <span class="token punctuation">/&gt;</span></span></code> &#x7684; <code>mapStateToProps()</code> &#x51FD;&#x6570;&#x4E2D;&#x8FC7;&#x6EE4;&#x7684;&#x3002;
+&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x662F;&#x5728; <code>&lt;VisibleTodoList /&gt;</code> &#x7684; <code>mapStateToProps()</code> &#x51FD;&#x6570;&#x4E2D;&#x8FC7;&#x6EE4;&#x7684;&#x3002;
 &#x8FD9;&#x4E2A;&#x76EE;&#x524D;&#x4ECD;&#x7136;&#x662F;&#x548C; <code>state</code> &#x7ED1;&#x5B9A;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x548C; URL &#x7ED1;&#x5B9A;&#x3002;
-<code>mapStateToProps</code> &#x7684;&#x7B2C;&#x4E8C;&#x53EF;&#x9009;&#x53C2;&#x6570; <code>ownProps</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x4E00;&#x4E2A;&#x4F20;&#x9012;&#x7ED9; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VisibleTodoList</span> <span class="token punctuation">/&gt;</span></span></code> &#x6240;&#x6709;&#x5C5E;&#x6027;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<code>mapStateToProps</code> &#x7684;&#x7B2C;&#x4E8C;&#x53EF;&#x9009;&#x53C2;&#x6570; <code>ownProps</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x4E00;&#x4E2A;&#x4F20;&#x9012;&#x7ED9; <code>&lt;VisibleTodoList /&gt;</code> &#x6240;&#x6709;&#x5C5E;&#x6027;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
 <h3 id="containersvisibletodolistjs"><code>containers/VisibleTodoList.js</code></h3>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> ownProps</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    todos<span class="token operator">:</span> <span class="token function">getVisibleTodos</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">,</span> ownProps<span class="token punctuation">.</span>filter<span class="token punctuation">)</span> <span class="token comment">// &#x4EE5;&#x524D;&#x662F; getVisibleTodos(state.todos, state.visibilityFilter)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> mapStateToProps = (state, ownProps) =&gt; {
+  <span class="hljs-keyword">return</span> {
+    todos: getVisibleTodos(state.todos, ownProps.filter) <span class="hljs-comment">// &#x4EE5;&#x524D;&#x662F; getVisibleTodos(state.todos, state.visibilityFilter)</span>
+  }
+}
 </code></pre>
-<p>&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x8FD8;&#x6CA1;&#x6709;&#x4F20;&#x9012;&#x4EFB;&#x4F55;&#x53C2;&#x6570;&#x7ED9; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span> <span class="token punctuation">/&gt;</span></span></code>&#xFF0C;&#x6240;&#x4EE5; <code>ownProps</code> &#x4F9D;&#x7136;&#x662F;&#x4E00;&#x4E2A;&#x7A7A;&#x5BF9;&#x8C61;&#x3002;
-&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x6839;&#x636E; URL &#x6765;&#x8FC7;&#x6EE4;&#x6211;&#x4EEC;&#x7684; todo &#x5217;&#x8868;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5411; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VisibleTodoList</span> <span class="token punctuation">/&gt;</span></span></code> &#x4F20;&#x9012; URL &#x53C2;&#x6570;&#x3002;</p>
-<p>&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5199;&#x8FC7;&#xFF1A;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Route</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/:filter?<span class="token punctuation">&quot;</span></span> <span class="token attr-name">component</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>{App}</span> <span class="token punctuation">/&gt;</span></span></code>&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;&#x53EF;&#x4EE5;&#x5728; <code>App</code> &#x4E2D;&#x83B7;&#x53D6; <code>params</code> &#x7684;&#x5C5E;&#x6027;&#x3002;</p>
+<p>&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x8FD8;&#x6CA1;&#x6709;&#x4F20;&#x9012;&#x4EFB;&#x4F55;&#x53C2;&#x6570;&#x7ED9; <code>&lt;App /&gt;</code>&#xFF0C;&#x6240;&#x4EE5; <code>ownProps</code> &#x4F9D;&#x7136;&#x662F;&#x4E00;&#x4E2A;&#x7A7A;&#x5BF9;&#x8C61;&#x3002;
+&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x6839;&#x636E; URL &#x6765;&#x8FC7;&#x6EE4;&#x6211;&#x4EEC;&#x7684; todo &#x5217;&#x8868;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5411; <code>&lt;VisibleTodoList /&gt;</code> &#x4F20;&#x9012; URL &#x53C2;&#x6570;&#x3002;</p>
+<p>&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5199;&#x8FC7;&#xFF1A;<code>&lt;Route path=&quot;/:filter?&quot; component={App} /&gt;</code>&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;&#x53EF;&#x4EE5;&#x5728; <code>App</code> &#x4E2D;&#x83B7;&#x53D6; <code>params</code> &#x7684;&#x5C5E;&#x6027;&#x3002;</p>
 <p><code>params</code> &#x662F;&#x4E00;&#x4E2A;&#x5305;&#x542B; url &#x4E2D;&#x6240;&#x6709;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x5BF9;&#x8C61;&#x3002;
 <em>&#x4F8B;&#x5982;&#xFF1A;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8BBF;&#x95EE; <code>localhost:3000/SHOW_COMPLETED</code>&#xFF0C;&#x90A3;&#x4E48; <code>match.params</code> &#x5C06;&#x7B49;&#x4EF7;&#x4E8E; <code>{ filter: &apos;SHOW_COMPLETED&apos; }</code>&#x3002;
-&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span> <span class="token punctuation">/&gt;</span></span></code> &#x4E2D;&#x8BFB;&#x53D6; URL &#x53C2;&#x6570;&#x4E86;&#x3002;</em></p>
-<p>&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528; <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">ES6 &#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;</a>&#x6765;&#x5BF9; <code>params</code> &#x8FDB;&#x884C;&#x8D4B;&#x503C;&#xFF0C;&#x4EE5;&#x6B64;&#x4F20;&#x9012;&#x7ED9; <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VisibleTodoList</span> <span class="token punctuation">/&gt;</span></span></code>&#x3002;</p>
+&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; <code>&lt;App /&gt;</code> &#x4E2D;&#x8BFB;&#x53D6; URL &#x53C2;&#x6570;&#x4E86;&#x3002;</em></p>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528; <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">ES6 &#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;</a>&#x6765;&#x5BF9; <code>params</code> &#x8FDB;&#x884C;&#x8D4B;&#x503C;&#xFF0C;&#x4EE5;&#x6B64;&#x4F20;&#x9012;&#x7ED9; <code>&lt;VisibleTodoList /&gt;</code>&#x3002;</p>
 <h3 id="componentsappjs"><code>components/App.js</code></h3>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> match<span class="token operator">:</span> <span class="token punctuation">{</span> params <span class="token punctuation">}</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>AddTodo <span class="token operator">/</span><span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>VisibleTodoList filter<span class="token operator">=</span><span class="token punctuation">{</span>params<span class="token punctuation">.</span>filter <span class="token operator">||</span> <span class="token string">&apos;SHOW_ALL&apos;</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>Footer <span class="token operator">/</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> App = ({ match: { params } }) =&gt; {
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;AddTodo /&gt;
+      &lt;VisibleTodoList filter={params.filter || &apos;SHOW_ALL&apos;} /&gt;
+      &lt;Footer /&gt;
+    &lt;/div&gt;
+  )
+}
 </code></pre>
 <h2 id="&#x4E0B;&#x4E00;&#x6B65;">&#x4E0B;&#x4E00;&#x6B65;</h2>
 <p>&#x73B0;&#x5728;&#x4F60;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x57FA;&#x7840;&#x7684;&#x8DEF;&#x7531;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x4F60;&#x53EF;&#x4EE5;&#x9605;&#x8BFB; <a href="http://reacttraining.cn/" target="_blank">React Router API</a> &#x6765;&#x5B66;&#x4E60;&#x66F4;&#x591A;&#x77E5;&#x8BC6;&#x3002;</p>
@@ -1211,7 +1205,7 @@ Root<span class="token punctuation">.</span>propTypes <span class="token operato
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"搭配 React Router","level":"1.4.4","depth":2,"next":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"path":"docs/advanced/UsageWithTypeScript.md","ref":"./docs/advanced/UsageWithTypeScript.md","articles":[]},"previous":{"title":"Middleware","level":"1.4.3","depth":2,"path":"docs/advanced/Middleware.md","ref":"./docs/advanced/Middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/UsageWithReactRouter.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"搭配 React Router","level":"1.4.4","depth":2,"next":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"path":"docs/advanced/UsageWithTypeScript.md","ref":"./docs/advanced/UsageWithTypeScript.md","articles":[]},"previous":{"title":"Middleware","level":"1.4.3","depth":2,"path":"docs/advanced/Middleware.md","ref":"./docs/advanced/Middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/UsageWithReactRouter.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1219,9 +1213,6 @@ Root<span class="token punctuation">.</span>propTypes <span class="token operato
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

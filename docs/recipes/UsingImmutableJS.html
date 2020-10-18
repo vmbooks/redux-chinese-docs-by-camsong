@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -171,12 +165,12 @@
 <p>&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C;&#x5C01;&#x88C5;&#x5728; Immutable.JS &#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x6E10;&#x5C42;&#x68C0;&#x67E5;&#x8D77;&#x4E0D;&#x5230;&#x4EFB;&#x4F55;&#x4F5C;&#x7528;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; Immutable.JS &#x7684; <code>toJS()</code> &#x65B9;&#x6CD5;&#x4F1A;&#x5C06; Immutable.JS &#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4F5C;&#x4E3A; JavaScript &#x503C;&#x5E76;&#x8FD4;&#x56DE;&#xFF0C;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x5B83;&#x65F6;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x7528;&#x5C01;&#x88C5;&#x6570;&#x636E;&#x6765;&#x5206;&#x89E3;&#x5F15;&#x7528;&#x3002;</p>
 <p>&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x8C03;&#x7528; <code>toJS()</code> &#x4E24;&#x6B21;&#xFF0C;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x8D4B;&#x503C;&#x7ED9;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x53D8;&#x91CF;&#x5C06;&#x5BFC;&#x81F4;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x7B49;&#x5F0F;&#x68C0;&#x67E5;&#x5931;&#x8D25;&#xFF0C;&#x5373;&#x65F6;&#x5BF9;&#x8C61;&#x503C;&#x672C;&#x8EAB;&#x6CA1;&#x6709;&#x6539;&#x53D8;&#x3002;</p>
 <p>&#x5982;&#x679C;&#x5728;&#x5305;&#x88C5;&#x7EC4;&#x4EF6;&#x7684; <code>mapStateToProps</code> &#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528; <code>toJS()</code>&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A; React-Redux &#x5BF9;&#x8FD4;&#x56DE;&#x7684; props &#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x503C;&#x90FD;&#x8FDB;&#x884C;&#x4E86;&#x7B80;&#x5355;&#x7684;&#x6BD4;&#x8F83;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x7684; <code>mapStateToProps</code> &#x8FD4;&#x56DE;&#x7684; <code>todos</code> prop &#x6240;&#x5F15;&#x7528;&#x7684;&#x503C;&#x5C06;&#x59CB;&#x7EC8;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x6E10;&#x5C42;&#x7B49;&#x5F0F;&#x68C0;&#x67E5;&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token comment">// &#x907F;&#x514D;&#x5728; mapStateToProps &#x4E2D;&#x4F7F;&#x7528; .toJS()</span>
-<span class="token keyword">function</span> <span class="token function">mapStateToProps</span><span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    todos<span class="token operator">:</span> state<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&apos;todos&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toJS</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#x603B;&#x4E3A;&#x65B0;&#x5BF9;&#x8C61;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x907F;&#x514D;&#x5728; mapStateToProps &#x4E2D;&#x4F7F;&#x7528; .toJS()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">state</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    todos: state.get(<span class="hljs-string">&apos;todos&apos;</span>).toJS() <span class="hljs-comment">// &#x603B;&#x4E3A;&#x65B0;&#x5BF9;&#x8C61;</span>
+  }
+}
 </code></pre>
 <p>&#x5F53;&#x6D45;&#x5C42;&#x68C0;&#x67E5;&#x5931;&#x8D25;&#x65F6;&#xFF0C;React-Redux &#x5C06;&#x5BFC;&#x81F4;&#x7EC4;&#x4EF6;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728; <code>mapStateToProps</code> &#x4E2D;&#x4F7F;&#x7528; <code>toJS()</code> &#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5C06;&#x5BFC;&#x81F4;&#x7EC4;&#x4EF6;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF0C;&#x5373;&#x65F6;&#x503C;&#x672A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x4E5F;&#x4F1A;&#x4E25;&#x91CD;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002;</p>
 <p>&#x8BE5;&#x95EE;&#x9898;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; <code>toJS()</code> &#x6765;&#x907F;&#x514D;&#xFF0C;&#x5982;&#x4E0B;&#x9762;<a href="#immutable-js-best-practices">&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x90E8;&#x5206;</a>&#x6240;&#x8FF0;&#x3002;</p>
@@ -224,15 +218,15 @@
 </li>
 </ul>
 <p><strong>&#x793A;&#x4F8B;</strong></p>
-<pre class="language-"><code class="lang-js"><span class="token comment">// &#x907F;&#x514D;</span>
-<span class="token keyword">const</span> newObj <span class="token operator">=</span> <span class="token punctuation">{</span> key<span class="token operator">:</span> value <span class="token punctuation">}</span>
-<span class="token keyword">const</span> newState <span class="token operator">=</span> state<span class="token punctuation">.</span><span class="token function">setIn</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;prop1&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> newObj<span class="token punctuation">)</span>
-<span class="token comment">// newObj &#x4F5C;&#x4E3A;&#x666E;&#x901A;&#x7684; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x4E0D;&#x662F; Immutable.JS &#x7684; Map &#x7C7B;&#x578B;&#x3002;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x907F;&#x514D;</span>
+<span class="hljs-keyword">const</span> newObj = { key: value }
+<span class="hljs-keyword">const</span> newState = state.setIn([<span class="hljs-string">&apos;prop1&apos;</span>], newObj)
+<span class="hljs-comment">// newObj &#x4F5C;&#x4E3A;&#x666E;&#x901A;&#x7684; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x4E0D;&#x662F; Immutable.JS &#x7684; Map &#x7C7B;&#x578B;&#x3002;</span>
 
-<span class="token comment">// &#x63A8;&#x8350;</span>
-<span class="token keyword">const</span> newObj <span class="token operator">=</span> <span class="token punctuation">{</span> key<span class="token operator">:</span> value <span class="token punctuation">}</span>
-<span class="token keyword">const</span> newState <span class="token operator">=</span> state<span class="token punctuation">.</span><span class="token function">setIn</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;prop1&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">fromJS</span><span class="token punctuation">(</span>newObj<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment">// newObj &#x73B0;&#x5728;&#x662F; Immutable.JS &#x7684; Map &#x7C7B;&#x578B;&#x3002;</span>
+<span class="hljs-comment">// &#x63A8;&#x8350;</span>
+<span class="hljs-keyword">const</span> newObj = { key: value }
+<span class="hljs-keyword">const</span> newState = state.setIn([<span class="hljs-string">&apos;prop1&apos;</span>], fromJS(newObj))
+<span class="hljs-comment">// newObj &#x73B0;&#x5728;&#x662F; Immutable.JS &#x7684; Map &#x7C7B;&#x578B;&#x3002;</span>
 </code></pre>
 <h4 id="&#x66F4;&#x591A;&#x4FE1;&#x606F;">&#x66F4;&#x591A;&#x4FE1;&#x606F;</h4>
 <p><strong>&#x6587;&#x7AE0;</strong></p>
@@ -305,44 +299,44 @@
 <h3 id="&#x4F7F;&#x7528;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x6765;&#x8F6C;&#x6362;&#x4ECE;-smart-&#x7EC4;&#x4EF6;&#x7684;-immutablejs-props-&#x5230;-dumb-&#x7EC4;&#x4EF6;&#x7684;-javascript-props">&#x4F7F;&#x7528;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x6765;&#x8F6C;&#x6362;&#x4ECE; Smart &#x7EC4;&#x4EF6;&#x7684; Immutable.JS props &#x5230; Dumb &#x7EC4;&#x4EF6;&#x7684; JavaScript props</h3>
 <p>&#x6709;&#x4E9B;&#x4E1C;&#x897F;&#x9700;&#x8981;&#x5C06; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x7684; Immutable.JS props &#x6620;&#x5C04;&#x5230; Dumb &#x7EC4;&#x4EF6;&#x4E2D;&#x7684;&#x7EAF; JavaScript props&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x6709;&#x4E9B;&#x4E1C;&#x897F;&#x662F;&#x6307;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#xFF08;HOC&#xFF09;&#xFF0C;&#x5B83;&#x53EA;&#x9700;&#x4ECE; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x83B7;&#x53D6; Immutable.JS props&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528; <code>toJS()</code> &#x5C06;&#x5B83;&#x4EEC;&#x8F6C;&#x6362;&#x4E3A;&#x666E;&#x901A; JavaScript props&#xFF0C;&#x7136;&#x540E;&#x4F20;&#x9012;&#x7ED9;&#x4F60;&#x7684; Dumb &#x7EC4;&#x4EF6;&#x3002;</p>
 <p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5173;&#x4E8E; HOC &#x7684;&#x4F8B;&#x5B50;&#x3002;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x60A8;&#xFF0C;&#x8FD8;&#x4EE5; NPM &#x5305;&#x7684;&#x5F62;&#x5F0F;&#x63D0;&#x4F9B;&#x4E86;&#x7C7B;&#x4F3C;&#x7684; HOC:<a href="https://www.npmjs.com/package/with-immutable-props-to-js" target="_blank">with-immutable-props-to-js</a>&#x3002;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Iterable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;immutable&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { Iterable } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;immutable&apos;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">toJS</span> <span class="token operator">=</span> <span class="token parameter">WrappedComponent</span> <span class="token operator">=&gt;</span> <span class="token parameter">wrappedComponentProps</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token constant">KEY</span> <span class="token operator">=</span> <span class="token number">0</span>
-  <span class="token keyword">const</span> <span class="token constant">VALUE</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> toJS = WrappedComponent =&gt; wrappedComponentProps =&gt; {
+  <span class="hljs-keyword">const</span> KEY = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">const</span> VALUE = <span class="hljs-number">1</span>
 
-  <span class="token keyword">const</span> propsJS <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>wrappedComponentProps<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
-    <span class="token punctuation">(</span><span class="token parameter">newProps<span class="token punctuation">,</span> wrappedComponentProp</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      newProps<span class="token punctuation">[</span>wrappedComponentProp<span class="token punctuation">[</span><span class="token constant">KEY</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> Iterable<span class="token punctuation">.</span><span class="token function">isIterable</span><span class="token punctuation">(</span>
-        wrappedComponentProp<span class="token punctuation">[</span><span class="token constant">VALUE</span><span class="token punctuation">]</span>
-      <span class="token punctuation">)</span>
-        <span class="token operator">?</span> wrappedComponentProp<span class="token punctuation">[</span><span class="token constant">VALUE</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toJS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token operator">:</span> wrappedComponentProp<span class="token punctuation">[</span><span class="token constant">VALUE</span><span class="token punctuation">]</span>
-      <span class="token keyword">return</span> newProps
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token punctuation">}</span>
-  <span class="token punctuation">)</span>
+  <span class="hljs-keyword">const</span> propsJS = <span class="hljs-built_in">Object</span>.entries(wrappedComponentProps).reduce(
+    (newProps, wrappedComponentProp) =&gt; {
+      newProps[wrappedComponentProp[KEY]] = Iterable.isIterable(
+        wrappedComponentProp[VALUE]
+      )
+        ? wrappedComponentProp[VALUE].toJS()
+        : wrappedComponentProp[VALUE]
+      <span class="hljs-keyword">return</span> newProps
+    },
+    {}
+  )
 
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>WrappedComponent <span class="token punctuation">{</span><span class="token operator">...</span>propsJS<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">WrappedComponent</span> {<span class="hljs-attr">...propsJS</span>} /&gt;</span>
+}
+</span></code></pre>
 <p>&#x4EE5;&#x4E0B;&#x4E3A;&#x5982;&#x4F55;&#x5728; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;&#x5B83;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-redux&apos;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-redux&apos;</span>
 
-<span class="token keyword">import</span> <span class="token punctuation">{</span> toJS <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./to-js&apos;</span>
-<span class="token keyword">import</span> DumbComponent <span class="token keyword">from</span> <span class="token string">&apos;./dumb.component&apos;</span>
+<span class="hljs-keyword">import</span> { toJS } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./to-js&apos;</span>
+<span class="hljs-keyword">import</span> DumbComponent <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./dumb.component&apos;</span>
 
-<span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token comment">// obj &#x662F;&#x4E00;&#x4E2A; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x5BF9;&#x8C61;&#xFF0C;</span>
-    <span class="token comment">// &#x4F46;&#x5B83;&#x901A;&#x8FC7; toJS &#x88AB;&#x8F6C;&#x6362;&#x4E3A;&#x666E;&#x901A; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4EE5;&#x7EAF; JavaScript &#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x9012;&#x7ED9; Dumb &#x7EC4;&#x4EF6;&#x5BF9;&#x8C61;&#x3002;</span>
-    <span class="token comment">// &#x56E0;&#x4E3A;&#x5B83;&#x5728; mapStateToProps &#x4E2D;&#x4ECD;&#x7136;&#x662F; Immutable.JS &#x5BF9;&#x8C61;&#xFF0C;</span>
-    <span class="token comment">// &#x867D;&#x7136;&#xFF0C;&#x8FD9;&#x662F;&#x65E0;&#x7591;&#x662F;&#x9519;&#x8BEF;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x3002;</span>
-    obj<span class="token operator">:</span> <span class="token function">getImmutableObjectFromStateTree</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">toJS</span><span class="token punctuation">(</span>DumbComponent<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> mapStateToProps = state =&gt; {
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-comment">// obj &#x662F;&#x4E00;&#x4E2A; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x5BF9;&#x8C61;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x4F46;&#x5B83;&#x901A;&#x8FC7; toJS &#x88AB;&#x8F6C;&#x6362;&#x4E3A;&#x666E;&#x901A; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4EE5;&#x7EAF; JavaScript &#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x9012;&#x7ED9; Dumb &#x7EC4;&#x4EF6;&#x5BF9;&#x8C61;&#x3002;</span>
+    <span class="hljs-comment">// &#x56E0;&#x4E3A;&#x5B83;&#x5728; mapStateToProps &#x4E2D;&#x4ECD;&#x7136;&#x662F; Immutable.JS &#x5BF9;&#x8C61;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x867D;&#x7136;&#xFF0C;&#x8FD9;&#x662F;&#x65E0;&#x7591;&#x662F;&#x9519;&#x8BEF;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x3002;</span>
+    obj: getImmutableObjectFromStateTree(state)
+  }
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(toJS(DumbComponent))
 </code></pre>
 <p>&#x901A;&#x8FC7;&#x5728; HOC &#x4E2D;&#x5C06; Immutable.JS &#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x7EAF; JavaScript &#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x4E86; Dumb &#x7684;&#x53EF;&#x79FB;&#x690D;&#x6027;&#xFF0C;&#x4E5F;&#x6CA1;&#x5728; Smart &#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; <code>toJS()</code> &#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002;</p>
 <p><em>&#x6CE8;&#x610F;: &#x5982;&#x679C;&#x4F60;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x9AD8;&#x6027;&#x80FD;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5B8C;&#x5168;&#x907F;&#x514D;&#x4F7F;&#x7528; <code>toJS()</code>&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x5728;&#x4F60;&#x7684; Dumb &#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; Immutable.JS&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6765;&#x8BF4;&#x5E76;&#x975E;&#x5982;&#x6B64;&#xFF0C;&#x5C06; Immutable &#x4FDD;&#x7559;&#x5728; Dumb &#x7EC4;&#x4EF6;&#xFF08;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;&#x53EF;&#x79FB;&#x690D;&#x6027;&#x548C;&#x66F4;&#x7B80;&#x5355;&#x7684;&#x6D4B;&#x8BD5;&#xFF09;&#x7B49;&#x65B9;&#x9762;&#x7684;&#x597D;&#x5904;&#x8FDC;&#x8FDC;&#x8D85;&#x8FC7;&#x4E86;&#x4FDD;&#x6301;&#x5B83;&#x4EFB;&#x4F55;&#x65B9;&#x9762;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x3002;</em></p>
@@ -1314,7 +1308,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"结合 Immutable.JS 使用 Redux","level":"1.5.11","depth":2,"next":{"title":"代码分割","level":"1.5.12","depth":2,"path":"docs/recipes/CodeSplitting.md","ref":"./docs/recipes/CodeSplitting.md","articles":[]},"previous":{"title":"初始化 State","level":"1.5.10.11","depth":3,"path":"docs/recipes/reducers/InitializingState.md","ref":"./docs/recipes/reducers/InitializingState.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/UsingImmutableJS.md","mtime":"2020-10-18T13:47:18.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"结合 Immutable.JS 使用 Redux","level":"1.5.11","depth":2,"next":{"title":"代码分割","level":"1.5.12","depth":2,"path":"docs/recipes/CodeSplitting.md","ref":"./docs/recipes/CodeSplitting.md","articles":[]},"previous":{"title":"初始化 State","level":"1.5.10.11","depth":3,"path":"docs/recipes/reducers/InitializingState.md","ref":"./docs/recipes/reducers/InitializingState.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/UsingImmutableJS.md","mtime":"2020-10-18T13:52:42.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1322,9 +1316,6 @@
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

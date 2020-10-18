@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -112,67 +106,67 @@
 <p>&#x5B8C;&#x6574;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x53EF;&#x5728; <a href="https://codesandbox.io/s/w02m7jm3q7" target="_blank">codesandbox</a> &#x67E5;&#x770B;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x901A;&#x8FC7;&#x4EB2;&#x81EA;&#x9605;&#x8BFB;&#x8FD9;&#x4E2A;&#x793A;&#x4F8B;&#xFF0C;&#x60A8;&#x5C06;&#x4F53;&#x9A8C;&#x5230;&#x4F7F;&#x7528; TypeScript &#x7684;&#x4E00;&#x4E9B;&#x597D;&#x5904;&#x3002;</p>
 <h2 id="&#x4E3A;-state-&#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;">&#x4E3A; State &#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;</h2>
 <p>&#x5411;&#x6BCF;&#x4E2A; state &#x5207;&#x7247;&#x6DFB;&#x52A0;&#x7C7B;&#x578B;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x5F00;&#x59CB;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x63CF;&#x8FF0; <strong>chat reducer</strong> &#x76F8;&#x5173;&#x7684; state &#x5207;&#x7247;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/chat/types.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/chat/types.ts</span>
 
-export interface Message {
-  user: string
-  message: string
-  timestamp: number
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Message {
+  user: <span class="hljs-built_in">string</span>
+  message: <span class="hljs-built_in">string</span>
+  timestamp: <span class="hljs-built_in">number</span>
 }
 
-export interface ChatState {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ChatState {
   messages: Message[]
 }
 </code></pre>
 <p>&#x7136;&#x540E;&#x5BF9; <strong>system reducer</strong> &#x76F8;&#x5173;&#x7684; state &#x5207;&#x7247;&#x505A;&#x540C;&#x6837;&#x7684;&#x5904;&#x7406;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/system/types.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/system/types.ts</span>
 
-export interface SystemState {
-  loggedIn: boolean
-  session: string
-  userName: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SystemState {
+  loggedIn: <span class="hljs-built_in">boolean</span>
+  session: <span class="hljs-built_in">string</span>
+  userName: <span class="hljs-built_in">string</span>
 }
 </code></pre>
 <p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x6B63;&#x5728;&#x5BFC;&#x51FA;&#x8FD9;&#x4E9B; interface&#xFF0C;&#x4EE5;&#x4FBF;&#x7A0D;&#x540E;&#x5728; reducer &#x548C; action creators &#x4E2D;&#x91CD;&#x7528;&#x5B83;&#x4EEC;&#x3002;</p>
 <h2 id="&#x4E3A;-action--action-creator-&#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;">&#x4E3A; Action &amp; Action Creator &#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;</h2>
 <p>&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x5E76;&#x4F7F;&#x7528; <code>typeof</code> &#x6765;&#x58F0;&#x660E;&#x6211;&#x4EEC;&#x7684; action &#x5E38;&#x91CF;&#x548C;&#x63A8;&#x65AD;&#x7C7B;&#x578B;&#x3002; &#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6743;&#x8861;&#x662F;&#x5426;&#x9700;&#x8981;&#x5728;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x6211;&#x4EEC;&#x7684;&#x7C7B;&#x578B;&#x3002; &#x5C06;&#x6211;&#x4EEC;&#x7684;&#x7C7B;&#x578B;&#x5206;&#x6210;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x7684;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x66F4;&#x4E13;&#x6CE8;&#x4E8E;&#x5B83;&#x4EEC;&#x7684;&#x76EE;&#x7684;&#x3002; &#x867D;&#x7136;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x5E93;&#x7684;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x60A8;&#x4F9D;&#x65E7;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x81EA;&#x5DF1;&#x7684;&#x559C;&#x597D;&#x7EC4;&#x7EC7;&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#x3002;</p>
 <p>chat Action &#x5E38;&#x91CF;&#x548C;&#x5F62;&#x72B6;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/chat/types.ts
-export const SEND_MESSAGE = &apos;SEND_MESSAGE&apos;
-export const DELETE_MESSAGE = &apos;DELETE_MESSAGE&apos;
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/chat/types.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SEND_MESSAGE = <span class="hljs-string">&apos;SEND_MESSAGE&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DELETE_MESSAGE = <span class="hljs-string">&apos;DELETE_MESSAGE&apos;</span>
 
-interface SendMessageAction {
-  type: typeof SEND_MESSAGE
+<span class="hljs-keyword">interface</span> SendMessageAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-keyword">typeof</span> SEND_MESSAGE
   payload: Message
 }
 
-interface DeleteMessageAction {
-  type: typeof DELETE_MESSAGE
+<span class="hljs-keyword">interface</span> DeleteMessageAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-keyword">typeof</span> DELETE_MESSAGE
   meta: {
-    timestamp: number
+    timestamp: <span class="hljs-built_in">number</span>
   }
 }
 
-export type ChatActionTypes = SendMessageAction | DeleteMessageAction
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> ChatActionTypes = SendMessageAction | DeleteMessageAction
 </code></pre>
 <p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x6B64;&#x5904;&#x4F7F;&#x7528; TypeScript &#x7684;&#x8054;&#x5408;&#x7C7B;&#x578B;&#x6765;&#x8868;&#x8FBE;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
 <p>&#x58F0;&#x660E;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9; chat &#x7684; action creator &#x505A;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x5229;&#x7528; TypeScript &#x7684; inference&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/chat/actions.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/chat/actions.ts</span>
 
-import { Message, SEND_MESSAGE, DELETE_MESSAGE } from &apos;./types&apos;
+<span class="hljs-keyword">import</span> { Message, SEND_MESSAGE, DELETE_MESSAGE } from <span class="hljs-string">&apos;./types&apos;</span>
 
-// TypeScript infers that this function is returning SendMessageAction
-export function sendMessage(newMessage: Message) {
-  return {
-    type: SEND_MESSAGE,
+<span class="hljs-comment">// TypeScript infers that this function is returning SendMessageAction</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendMessage</span>(<span class="hljs-params">newMessage: Message</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: SEND_MESSAGE,
     payload: newMessage
   }
 }
 
-// TypeScript infers that this function is returning DeleteMessageAction
-export function deleteMessage(timestamp: number) {
-  return {
-    type: DELETE_MESSAGE,
+<span class="hljs-comment">// TypeScript infers that this function is returning DeleteMessageAction</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteMessage</span>(<span class="hljs-params">timestamp: <span class="hljs-built_in">number</span></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: DELETE_MESSAGE,
     meta: {
       timestamp
     }
@@ -180,24 +174,24 @@ export function deleteMessage(timestamp: number) {
 }
 </code></pre>
 <p>system action &#x5E38;&#x91CF;&#x548C;&#x5F62;&#x72B6;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/system/types.ts
-export const UPDATE_SESSION = &apos;UPDATE_SESSION&apos;
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/system/types.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> UPDATE_SESSION = <span class="hljs-string">&apos;UPDATE_SESSION&apos;</span>
 
-interface UpdateSessionAction {
-  type: typeof UPDATE_SESSION
+<span class="hljs-keyword">interface</span> UpdateSessionAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-keyword">typeof</span> UPDATE_SESSION
   payload: SystemState
 }
 
-export type SystemActionTypes = UpdateSessionAction
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> SystemActionTypes = UpdateSessionAction
 </code></pre>
 <p>&#x6709;&#x4E86;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#xFF0C;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x4E5F;&#x53EF;&#x4EE5;&#x5BF9; system &#x7684; action creator &#x505A;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/system/actions.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/system/actions.ts</span>
 
-import { SystemState, UPDATE_SESSION } from &apos;./types&apos;
+<span class="hljs-keyword">import</span> { SystemState, UPDATE_SESSION } from <span class="hljs-string">&apos;./types&apos;</span>
 
-export function updateSession(newSession: SystemState) {
-  return {
-    type: UPDATE_SESSION,
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateSession</span>(<span class="hljs-params">newSession: SystemState</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: UPDATE_SESSION,
     payload: newSession
   }
 }
@@ -205,127 +199,127 @@ export function updateSession(newSession: SystemState) {
 <h2 id="&#x4E3A;-reducer-&#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;">&#x4E3A; reducer &#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;</h2>
 <p>reducer &#x53EA;&#x662F;&#x7EAF;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x8F93;&#x5165; &#x5148;&#x524D;&#x7684; state &#x548C;&#x4E00;&#x4E2A; action &#x7136;&#x540E;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A; state&#x3002;&#x5728;&#x6B64;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x663E;&#x5F0F;&#x58F0;&#x660E;&#x6B64; reducer &#x5C06;&#x63A5;&#x6536;&#x7684; action &#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x5B83;&#x5E94;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&#xFF08;&#x9002;&#x5F53;&#x7684; state &#x5207;&#x7247;&#xFF09;&#x3002; &#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x6DFB;&#x52A0;&#xFF0C;TypeScript &#x5C06;&#x5728;&#x6211;&#x4EEC;&#x7684; action &#x548C; state &#x7684;&#x5C5E;&#x6027;&#x4E0A;&#x63D0;&#x4F9B;&#x4E30;&#x5BCC;&#x7684;&#x667A;&#x80FD;&#x611F;&#x77E5;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5F53;&#x67D0;&#x4E2A;&#x6848;&#x4F8B;&#x6CA1;&#x6709;&#x8FD4;&#x56DE; <code>ChatState</code> &#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x4F1A;&#x6536;&#x5230;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#x3002;</p>
 <p>&#x5DF2;&#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x7684; chat reducer&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/chat/reducers.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/chat/reducers.ts</span>
 
-import {
+<span class="hljs-keyword">import</span> {
   ChatState,
   ChatActions,
   ChatActionTypes,
   SEND_MESSAGE,
   DELETE_MESSAGE
-} from &apos;./types&apos;
+} from <span class="hljs-string">&apos;./types&apos;</span>
 
-const initialState: ChatState = {
+<span class="hljs-keyword">const</span> initialState: ChatState = {
   messages: []
 }
 
-export function chatReducer(
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chatReducer</span>(<span class="hljs-params">
   state = initialState,
   action: ChatActionTypes
-): ChatState {
-  switch (action.type) {
-    case SEND_MESSAGE:
-      return {
+</span>): <span class="hljs-title">ChatState</span> </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> SEND_MESSAGE:
+      <span class="hljs-keyword">return</span> {
         messages: [...state.messages, action.payload]
       }
-    case DELETE_MESSAGE:
-      return {
+    <span class="hljs-keyword">case</span> DELETE_MESSAGE:
+      <span class="hljs-keyword">return</span> {
         messages: state.messages.filter(
           message =&gt; message.timestamp !== action.meta.timestamp
         )
       }
-    default:
-      return state
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
   }
 }
 </code></pre>
 <p>&#x5DF2;&#x589E;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x7684; system reducer&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/store/system/reducers.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/system/reducers.ts</span>
 
-import {
+<span class="hljs-keyword">import</span> {
   SystemActions,
   SystemState,
   SystemActionTypes,
   UPDATE_SESSION
-} from &apos;./types&apos;
+} from <span class="hljs-string">&apos;./types&apos;</span>
 
-const initialState: SystemState = {
-  loggedIn: false,
-  session: &apos;&apos;,
-  userName: &apos;&apos;
+<span class="hljs-keyword">const</span> initialState: SystemState = {
+  loggedIn: <span class="hljs-literal">false</span>,
+  session: <span class="hljs-string">&apos;&apos;</span>,
+  userName: <span class="hljs-string">&apos;&apos;</span>
 }
 
-export function systemReducer(
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">systemReducer</span>(<span class="hljs-params">
   state = initialState,
   action: SystemActionTypes
-): SystemState {
-  switch (action.type) {
-    case UPDATE_SESSION: {
-      return {
+</span>): <span class="hljs-title">SystemState</span> </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> UPDATE_SESSION: {
+      <span class="hljs-keyword">return</span> {
         ...state,
         ...action.payload
       }
     }
-    default:
-      return state
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
   }
 }
 </code></pre>
 <p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x9700;&#x8981;&#x751F;&#x6210; root reducer &#x51FD;&#x6570;&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528; <code>combineReducers</code> &#x6765;&#x5B8C;&#x6210;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x5FC5;&#x4E3A; AppState &#x663E;&#x5F0F;&#x58F0;&#x660E;&#x65B0;&#x63A5;&#x53E3;&#x3002; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>ReturnType</code> &#x4ECE; <code>rootReducer</code> &#x63A8;&#x65AD;&#x72B6;&#x6001;&#x5F62;&#x72B6;&#x3002;</p>
-<pre class="language-"><code class="lang-ts">// src/store/index.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/store/index.ts</span>
 
-import { systemReducer } from &apos;./system/reducers&apos;
-import { chatReducer } from &apos;./chat/reducers&apos;
+<span class="hljs-keyword">import</span> { systemReducer } from <span class="hljs-string">&apos;./system/reducers&apos;</span>
+<span class="hljs-keyword">import</span> { chatReducer } from <span class="hljs-string">&apos;./chat/reducers&apos;</span>
 
-const rootReducer = combineReducers({
+<span class="hljs-keyword">const</span> rootReducer = combineReducers({
   system: systemReducer,
   chat: chatReducer
 })
 
-export type AppState = ReturnType<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>typeof</span> <span class="token attr-name">rootReducer</span><span class="token punctuation">&gt;</span></span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> AppState = ReturnType&lt;<span class="hljs-keyword">typeof</span> rootReducer&gt;
 </code></pre>
 <h2 id="&#x642D;&#x914D;-react-redux">&#x642D;&#x914D; React Redux</h2>
 <p>&#x867D;&#x7136; React Redux &#x662F;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x4E8E; redux &#x672C;&#x8EAB;&#x7684;&#x5E93;&#xFF0C;&#x4F46;&#x5B83;&#x901A;&#x5E38;&#x4E0E; react &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;&#x51FA;&#x4E8E;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x672C;&#x8282;&#x524D;&#x9762;&#x4F7F;&#x7528;&#x7684;&#x76F8;&#x540C;&#x793A;&#x4F8B;&#x6765;&#x4E86;&#x89E3; React Redux &#x5982;&#x4F55;&#x4F7F;&#x7528; TypeScript&#x3002;</p>
 <p>&#x63D0;&#x793A;: React Redux &#x672C;&#x8EAB;&#x6CA1;&#x6709;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x8FD0;&#x884C; <code>npm i @types/react-redux -D</code> &#x6765;&#x5B89;&#x88C5; <code>@types/react-redux</code>&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C06;&#x5BF9; <code>mapStateToProps</code> &#x63A5;&#x6536;&#x7684;&#x53C2;&#x6570;&#x6DFB;&#x52A0;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002; &#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x901A;&#x8FC7;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4ECE; <code>rootReducer</code> &#x63A8;&#x65AD;&#x7684;&#x7C7B;&#x578B;&#x6765;&#x58F0;&#x660E; store &#x5E94;&#x8BE5;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/App.tsx
+<pre><code class="lang-ts"><span class="hljs-comment">// src/App.tsx</span>
 
-import { AppState } from &apos;./store&apos;
+<span class="hljs-keyword">import</span> { AppState } from <span class="hljs-string">&apos;./store&apos;</span>
 
-const mapStateToProps = (state: AppState) =&gt; ({
+<span class="hljs-keyword">const</span> mapStateToProps = (state: AppState) =&gt; ({
   system: state.system,
   chat: state.chat
 })
 </code></pre>
 <p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5728; <code>mapStateToProps</code> &#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5C5E;&#x6027;&#x3002; &#x8981;&#x5BF9;&#x8FD9;&#x4E9B;&#x5C5E;&#x6027;&#x505A;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x9002;&#x5F53;&#x7684; state &#x5207;&#x7247;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; interface&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/App.tsx
+<pre><code class="lang-ts"><span class="hljs-comment">// src/App.tsx</span>
 
-import { SystemState } from &apos;./store/system/types&apos;
+<span class="hljs-keyword">import</span> { SystemState } from <span class="hljs-string">&apos;./store/system/types&apos;</span>
 
-import { ChatState } from &apos;./store/chat/types&apos;
+<span class="hljs-keyword">import</span> { ChatState } from <span class="hljs-string">&apos;./store/chat/types&apos;</span>
 
-interface AppProps {
+<span class="hljs-keyword">interface</span> AppProps {
   chat: ChatState
   system: SystemState
 }
 </code></pre>
 <p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A; interface &#x6765;&#x6307;&#x5B9A;&#x76F8;&#x5E94;&#x7EC4;&#x4EF6;&#x5C06;&#x63A5;&#x6536;&#x7684; props&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/App.tsx
+<pre><code class="lang-ts"><span class="hljs-comment">// src/App.tsx</span>
 
-class App extends React.Component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AppProps</span><span class="token punctuation">&gt;</span></span> {
+<span class="hljs-keyword">class</span> App extends React.Component&lt;AppProps&gt; {
 </code></pre>
 <p>&#x5728;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x5C06; action creator &#x6620;&#x5C04;&#x5230;&#x7EC4;&#x4EF6;&#x7684; props &#x4E2D;&#x3002;&#x5728;&#x76F8;&#x540C;&#x7684; <code>AppProps</code> interface &#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x5F3A;&#x5927;&#x7684; <code>typeof</code> &#x529F;&#x80FD;&#x8BA9; TypeScript &#x4E86;&#x89E3;&#x6211;&#x4EEC;&#x7684; action creator &#x6240;&#x671F;&#x671B;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/App.tsx
+<pre><code class="lang-ts"><span class="hljs-comment">// src/App.tsx</span>
 
-import { SystemState } from &apos;./store/system/types&apos;
-import { updateSession } from &apos;./store/system/actions&apos;
+<span class="hljs-keyword">import</span> { SystemState } from <span class="hljs-string">&apos;./store/system/types&apos;</span>
+<span class="hljs-keyword">import</span> { updateSession } from <span class="hljs-string">&apos;./store/system/actions&apos;</span>
 
-import { ChatState } from &apos;./store/chat/types&apos;
-import { sendMessage } from &apos;./store/chat/actions&apos;
+<span class="hljs-keyword">import</span> { ChatState } from <span class="hljs-string">&apos;./store/chat/types&apos;</span>
+<span class="hljs-keyword">import</span> { sendMessage } from <span class="hljs-string">&apos;./store/chat/actions&apos;</span>
 
-interface AppProps {
-  sendMessage: typeof sendMessage
-  updateSession: typeof updateSession
+<span class="hljs-keyword">interface</span> AppProps {
+  sendMessage: <span class="hljs-keyword">typeof</span> sendMessage
+  updateSession: <span class="hljs-keyword">typeof</span> updateSession
   chat: ChatState
   system: SystemState
 }
@@ -333,28 +327,28 @@ interface AppProps {
 <p>&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x6DFB;&#x52A0;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x6765;&#x81EA; redux &#x4FA7;&#x7684; props &#x8FDB;&#x884C;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002; &#x60A8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x8981;&#x6269;&#x5C55; interface&#xFF0C;&#x4EE5;&#x4FBF;&#x8003;&#x8651;&#x4ECE;&#x7236;&#x7EC4;&#x4EF6;&#x4F20;&#x9012;&#x7684;&#x5176;&#x4ED6; props&#x3002;</p>
 <h2 id="&#x642D;&#x914D;-redux-thunk">&#x642D;&#x914D; Redux Thunk</h2>
 <p>Redux Thunk &#x662F;&#x5E38;&#x7528;&#x7684;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;&#x4E2D;&#x95F4;&#x4EF6;&#x3002;&#x53EF;&#x5728;<a href="https://github.com/reduxjs/redux-thunk" target="_blank">&#x6B64;&#x5904;</a>&#x67E5;&#x770B;&#x5176;&#x6587;&#x6863;&#x3002; thunk &#x662F;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x53E6;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; <code>dispatch</code> &#x548C; <code>getState</code> &#x7684;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;&#x3002; Redux Thunk &#x6709;&#x4E00;&#x4E2A;&#x5185;&#x7F6E;&#x7C7B;&#x578B; <code>ThunkAction</code>&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#xFF1A;</p>
-<pre class="language-"><code class="lang-ts">// src/thunks.ts
+<pre><code class="lang-ts"><span class="hljs-comment">// src/thunks.ts</span>
 
-import { Action } from &apos;redux&apos;
-import { sendMessage } from &apos;./store/chat/actions&apos;
-import { AppState } from &apos;./store&apos;
-import { ThunkAction } from &apos;redux-thunk&apos;
+<span class="hljs-keyword">import</span> { Action } from <span class="hljs-string">&apos;redux&apos;</span>
+<span class="hljs-keyword">import</span> { sendMessage } from <span class="hljs-string">&apos;./store/chat/actions&apos;</span>
+<span class="hljs-keyword">import</span> { AppState } from <span class="hljs-string">&apos;./store&apos;</span>
+<span class="hljs-keyword">import</span> { ThunkAction } from <span class="hljs-string">&apos;redux-thunk&apos;</span>
 
-export const thunkSendMessage = (
-  message: string
-): ThunkAction<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>void,</span> <span class="token attr-name">AppState,</span> <span class="token attr-name">null,</span> <span class="token attr-name">Action&lt;string</span><span class="token punctuation">&gt;</span></span>&gt; =&gt; async dispatch =&gt; {
-  const asyncResp = await exampleAPI()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> thunkSendMessage = (
+  message: <span class="hljs-built_in">string</span>
+): ThunkAction&lt;<span class="hljs-built_in">void</span>, AppState, <span class="hljs-literal">null</span>, Action&lt;<span class="hljs-built_in">string</span>&gt;&gt; =&gt; async dispatch =&gt; {
+  <span class="hljs-keyword">const</span> asyncResp = await exampleAPI()
   dispatch(
     sendMessage({
       message,
       user: asyncResp,
-      timestamp: new Date().getTime()
+      timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()
     })
   )
 }
 
-function exampleAPI() {
-  return Promise.resolve(&apos;Async Chat Bot&apos;)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exampleAPI</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> Promise.resolve(<span class="hljs-string">&apos;Async Chat Bot&apos;</span>)
 }
 </code></pre>
 <p>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x5728;&#x60A8;&#x7684; dispatch &#x4E2D;&#x4F7F;&#x7528; action creator&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x91CD;&#x7528;&#x5BF9;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002;</p>
@@ -1308,7 +1302,7 @@ function exampleAPI() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"next":{"title":"示例：Reddit API","level":"1.4.6","depth":2,"path":"docs/advanced/ExampleRedditAPI.md","ref":"./docs/advanced/ExampleRedditAPI.md","articles":[]},"previous":{"title":"搭配 React Router","level":"1.4.4","depth":2,"path":"docs/advanced/UsageWithReactRouter.md","ref":"./docs/advanced/UsageWithReactRouter.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/UsageWithTypeScript.md","mtime":"2020-10-18T13:47:18.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"搭配 TypeScript","level":"1.4.5","depth":2,"next":{"title":"示例：Reddit API","level":"1.4.6","depth":2,"path":"docs/advanced/ExampleRedditAPI.md","ref":"./docs/advanced/ExampleRedditAPI.md","articles":[]},"previous":{"title":"搭配 React Router","level":"1.4.4","depth":2,"path":"docs/advanced/UsageWithReactRouter.md","ref":"./docs/advanced/UsageWithReactRouter.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/advanced/UsageWithTypeScript.md","mtime":"2020-10-18T13:52:42.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1316,9 +1310,6 @@ function exampleAPI() {
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         

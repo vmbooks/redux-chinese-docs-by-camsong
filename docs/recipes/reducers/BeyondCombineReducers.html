@@ -16,12 +16,6 @@
 
     
             
-                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
-                
-            
                 <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -106,91 +100,91 @@
 <p>&#x7531;&#x4E8E;&#x76EE;&#x524D; <code>combineReducers</code> &#x53EA;&#x80FD;&#x5904;&#x7406;&#x666E;&#x901A;&#x7684; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x4E8E;&#x628A; Immutable.js Map &#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x9876;&#x5C42; state &#x6811;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x4F7F;&#x7528; <code>combineReducers</code> &#x7BA1;&#x7406;&#x5E94;&#x7528;&#x72B6;&#x6001;&#x3002;&#x56E0;&#x4E3A;&#x5F88;&#x591A;&#x5F00;&#x53D1;&#x8005;&#x91C7;&#x7528;&#x4E86; Immutable.js&#xFF0C;&#x6240;&#x4EE5;&#x6D8C;&#x73B0;&#x4E86;&#x5927;&#x91CF;&#x63D0;&#x4F9B;&#x7C7B;&#x4F3C;&#x529F;&#x80FD;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x4F8B;&#x5982; <a href="https://github.com/gajus/redux-immutable" target="_blank">redux-immutable</a>&#x3002;&#x8FD9;&#x4E2A;&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x80FD;&#x591F;&#x5904;&#x7406; Immutable Map &#x6570;&#x636E;&#x800C;&#x975E;&#x666E;&#x901A;&#x7684; JavaScript &#x5BF9;&#x8C61;&#x7684; <code>combineReducers</code>&#x3002;</p>
 <h2 id="&#x4E0D;&#x540C;-reducers-&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;">&#x4E0D;&#x540C; reducers &#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;</h2>
 <p>&#x7C7B;&#x4F3C;&#x5730;&#xFF0C;&#x5982;&#x679C; <code>sliceReducerA</code> &#x4E3A;&#x4E86;&#x5904;&#x7406;&#x7279;&#x6B8A;&#x7684; action &#x6B63;&#x597D;&#x9700;&#x8981;&#x6765;&#x81EA; <code>sliceReducerB</code> &#x7684;&#x90E8;&#x5206; state &#x6570;&#x636E;&#xFF0C;&#x6216;&#x8005; <code>sliceReducerB</code> &#x6B63;&#x597D;&#x9700;&#x8981;&#x5168;&#x90E8;&#x7684; state &#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x5355;&#x5355;&#x5C31; <code>combineReducers</code> &#x662F;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x8FD9;&#x79CD;&#x95EE;&#x9898;&#x7684;&#x3002;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x6765;&#x89E3;&#x51B3;&#xFF1A;&#x628A;&#x6240;&#x9700;&#x6570;&#x636E;&#x5F53;&#x989D;&#x5916;&#x53C2;&#x6570;&#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x9012;&#x7ED9;&#x81EA;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">combinedReducer</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;A_TYPICAL_ACTION&apos;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        a<span class="token operator">:</span> <span class="token function">sliceReducerA</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>a<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        b<span class="token operator">:</span> <span class="token function">sliceReducerB</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>b<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SOME_SPECIAL_ACTION&apos;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        <span class="token comment">// &#x660E;&#x786E;&#x5730;&#x628A; state.b &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
-        a<span class="token operator">:</span> <span class="token function">sliceReducerA</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>a<span class="token punctuation">,</span> action<span class="token punctuation">,</span> state<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        b<span class="token operator">:</span> <span class="token function">sliceReducerB</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>b<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;ANOTHER_SPECIAL_ACTION&apos;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        a<span class="token operator">:</span> <span class="token function">sliceReducerA</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>a<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token comment">// &#x660E;&#x786E;&#x5730;&#x628A;&#x5168;&#x90E8;&#x7684; state &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
-        b<span class="token operator">:</span> <span class="token function">sliceReducerB</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>b<span class="token punctuation">,</span> action<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">combinedReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;A_TYPICAL_ACTION&apos;</span>: {
+      <span class="hljs-keyword">return</span> {
+        a: sliceReducerA(state.a, action),
+        b: sliceReducerB(state.b, action)
+      }
+    }
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SOME_SPECIAL_ACTION&apos;</span>: {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-comment">// &#x660E;&#x786E;&#x5730;&#x628A; state.b &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
+        a: sliceReducerA(state.a, action, state.b),
+        b: sliceReducerB(state.b, action)
+      }
+    }
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;ANOTHER_SPECIAL_ACTION&apos;</span>: {
+      <span class="hljs-keyword">return</span> {
+        a: sliceReducerA(state.a, action),
+        <span class="hljs-comment">// &#x660E;&#x786E;&#x5730;&#x628A;&#x5168;&#x90E8;&#x7684; state &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
+        b: sliceReducerB(state.b, action, state)
+      }
+    }
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 </code></pre>
 <p>&#x53E6;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x201C;&#x5171;&#x4EAB;&#x7247;&#x6BB5;&#x6570;&#x636E;&#x66F4;&#x65B0;&#x201D; (shared-slice updates) &#x95EE;&#x9898;&#x7684;&#x7B80;&#x5355;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x7ED9; action &#x6DFB;&#x52A0;&#x989D;&#x5916;&#x6570;&#x636E;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; thunk &#x51FD;&#x6570;&#x6216;&#x8005;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x6CD5;&#x8F7B;&#x677E;&#x5B9E;&#x73B0;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">function</span> <span class="token function">someSpecialActionCreator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token punctuation">,</span> getState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">const</span> dataFromB <span class="token operator">=</span> <span class="token function">selectImportantDataFromB</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">someSpecialActionCreator</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (dispatch, getState) =&gt; {
+    <span class="hljs-keyword">const</span> state = getState()
+    <span class="hljs-keyword">const</span> dataFromB = selectImportantDataFromB(state)
 
-    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-      type<span class="token operator">:</span> <span class="token string">&apos;SOME_SPECIAL_ACTION&apos;</span><span class="token punctuation">,</span>
-      payload<span class="token operator">:</span> <span class="token punctuation">{</span>
+    dispatch({
+      type: <span class="hljs-string">&apos;SOME_SPECIAL_ACTION&apos;</span>,
+      payload: {
         dataFromB
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+      }
+    })
+  }
+}
 </code></pre>
 <p>&#x56E0;&#x4E3A; B &#x7684;&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E8E; action &#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x7684;&#x7236;&#x7EA7; reducer &#x4E0D;&#x9700;&#x8981;&#x505A;&#x4EFB;&#x4F55;&#x7279;&#x6B8A;&#x7684;&#x5904;&#x7406;&#x5C31;&#x80FD;&#x628A;&#x6570;&#x636E;&#x66B4;&#x9732;&#x7ED9; <code>sliceReducerA</code>&#x3002;</p>
 <p>&#x7B2C;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#xFF1A;&#x4F7F;&#x7528; <code>combineReducers</code> &#x7EC4;&#x5408; reducer &#x6765;&#x5904;&#x7406;&#x201C;&#x7B80;&#x5355;&#x201D;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x6BCF;&#x4E2A; reducer &#x4F9D;&#x65E7;&#x53EA;&#x66F4;&#x65B0;&#x81EA;&#x5DF1;&#x7684;&#x6570;&#x636E;&#xFF1B;&#x540C;&#x65F6;&#x65B0;&#x52A0;&#x4E00;&#x4E2A; reducer &#x6765;&#x5904;&#x7406;&#x591A;&#x5757;&#x6570;&#x636E;&#x4EA4;&#x53C9;&#x7684;&#x201C;&#x590D;&#x6742;&#x201D;&#x573A;&#x666F;&#xFF1B;&#x6700;&#x540E;&#x5199;&#x4E00;&#x4E2A;&#x5305;&#x88F9;&#x51FD;&#x6570;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#x8FD9;&#x4E24;&#x7C7B; reducer &#x5E76;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> combinedReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  a<span class="token operator">:</span> sliceReducerA<span class="token punctuation">,</span>
-  b<span class="token operator">:</span> sliceReducerB
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> combinedReducer = combineReducers({
+  a: sliceReducerA,
+  b: sliceReducerB
+})
 
-<span class="token keyword">function</span> <span class="token function">crossSliceReducer</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">&apos;SOME_SPECIAL_ACTION&apos;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        <span class="token comment">// &#x660E;&#x786E;&#x5730;&#x628A; state.b &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
-        a<span class="token operator">:</span> <span class="token function">handleSpecialCaseForA</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>a<span class="token punctuation">,</span> action<span class="token punctuation">,</span> state<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        b<span class="token operator">:</span> <span class="token function">sliceReducerB</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>b<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-      <span class="token keyword">return</span> state
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">crossSliceReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;SOME_SPECIAL_ACTION&apos;</span>: {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-comment">// &#x660E;&#x786E;&#x5730;&#x628A; state.b &#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4F20;&#x9012;</span>
+        a: handleSpecialCaseForA(state.a, action, state.b),
+        b: sliceReducerB(state.b, action)
+      }
+    }
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
 
-<span class="token keyword">function</span> <span class="token function">rootReducer</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> intermediateState <span class="token operator">=</span> <span class="token function">combinedReducer</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-  <span class="token keyword">const</span> finalState <span class="token operator">=</span> <span class="token function">crossSliceReducer</span><span class="token punctuation">(</span>intermediateState<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
-  <span class="token keyword">return</span> finalState
-<span class="token punctuation">}</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rootReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">const</span> intermediateState = combinedReducer(state, action)
+  <span class="hljs-keyword">const</span> finalState = crossSliceReducer(intermediateState, action)
+  <span class="hljs-keyword">return</span> finalState
+}
 </code></pre>
 <p>&#x5DF2;&#x7ECF;&#x6709;&#x4E00;&#x4E2A;&#x5E93; <a href="https://github.com/acdlite/reduce-reducers" target="_blank">reduce-reducers</a> &#x53EF;&#x4EE5;&#x7B80;&#x5316;&#x4EE5;&#x4E0A;&#x64CD;&#x4F5C;&#x6D41;&#x7A0B;&#x3002;&#x5B83;&#x63A5;&#x6536;&#x591A;&#x4E2A; reducer &#x7136;&#x540E;&#x5BF9;&#x5B83;&#x4EEC;&#x4F9D;&#x6B21;&#x6267;&#x884C; <code>reduce()</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x628A;&#x4EA7;&#x751F;&#x7684;&#x4E2D;&#x95F4;&#x503C;&#x4F9D;&#x6B21;&#x4F20;&#x9012;&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A; reducer&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token comment">// &#x4E0E;&#x4E0A;&#x8FF0;&#x624B;&#x52A8;&#x7F16;&#x5199;&#x7684; `rootReducer` &#x4E00;&#x6837;</span>
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">reduceReducers</span><span class="token punctuation">(</span>combinedReducers<span class="token punctuation">,</span> crossSliceReducer<span class="token punctuation">)</span>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x4E0E;&#x4E0A;&#x8FF0;&#x624B;&#x52A8;&#x7F16;&#x5199;&#x7684; `rootReducer` &#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> rootReducer = reduceReducers(combinedReducers, crossSliceReducer)
 </code></pre>
 <p>&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528; <code>reduceReducers</code> &#x4F60;&#x5E94;&#x8BE5;&#x786E;&#x4FDD;&#x7B2C;&#x4E00;&#x4E2A; reducer &#x80FD;&#x591F;&#x5B9A;&#x4E49;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x7684; state &#x6570;&#x636E;&#xFF0C;&#x56E0;&#x4E3A;&#x540E;&#x7EED;&#x7684; reducers &#x901A;&#x5E38;&#x4F1A;&#x5047;&#x5B9A; state &#x6811;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x4E5F;&#x5C31;&#x4E0D;&#x4F1A;&#x4E3A;&#x6B64;&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x72B6;&#x6001;&#x3002;</p>
 <h2 id="&#x66F4;&#x591A;&#x5EFA;&#x8BAE;">&#x66F4;&#x591A;&#x5EFA;&#x8BAE;</h2>
 <p>&#x518D;&#x6B21;&#x5F3A;&#x8C03;&#xFF0C;Reducer <em>&#x53EA;&#x662F;</em>&#x666E;&#x901A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x660E;&#x786E;&#x8FD9;&#x4E00;&#x6982;&#x5FF5;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;<code>combineReducers</code> &#x867D;&#x7136;&#x5B9E;&#x7528;&#x4E5F;&#x53EA;&#x662F;&#x51B0;&#x5C71;&#x4E00;&#x89D2;&#x3002;&#x9664;&#x4E86;&#x7528; switch &#x8BED;&#x53E5;&#x7F16;&#x5199;&#x51FD;&#x6570;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x7528;&#x6761;&#x4EF6;&#x903B;&#x8F91;&#xFF1B;&#x51FD;&#x6570;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x5F7C;&#x6B64;&#x7EC4;&#x5408;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5176;&#x4ED6;&#x51FD;&#x6570;&#x3002;&#x4E5F;&#x8BB8;&#x4F60;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A; reducer&#xFF0C;&#x5B83;&#x65E2;&#x80FD;&#x591F;&#x91CD;&#x7F6E; state&#xFF0C;&#x4E5F;&#x80FD;&#x591F;&#x54CD;&#x5E94;&#x7279;&#x5B9A;&#x7684; action&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x505A;&#xFF1A;</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> undoableFilteredSliceA <span class="token operator">=</span> <span class="token function">compose</span><span class="token punctuation">(</span>
-  undoReducer<span class="token punctuation">,</span>
-  <span class="token function">filterReducer</span><span class="token punctuation">(</span><span class="token string">&apos;ACTION_1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ACTION_2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> undoableFilteredSliceA = compose(
+  undoReducer,
+  filterReducer(<span class="hljs-string">&apos;ACTION_1&apos;</span>, <span class="hljs-string">&apos;ACTION_2&apos;</span>),
   sliceReducerA
-<span class="token punctuation">)</span>
-<span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  a<span class="token operator">:</span> undoableFilteredSliceA<span class="token punctuation">,</span>
-  b<span class="token operator">:</span> normalSliceReducerB
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+)
+<span class="hljs-keyword">const</span> rootReducer = combineReducers({
+  a: undoableFilteredSliceA,
+  b: normalSliceReducerB
+})
 </code></pre>
 <p>&#x6CE8;&#x610F; <code>combineReducers</code> &#x65E0;&#x9700;&#x77E5;&#x9053;&#x4E5F;&#x4E0D;&#x5173;&#x5FC3;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x8D1F;&#x8D23;&#x7BA1;&#x7406; <code>a</code> &#x6570;&#x636E;&#x7684; reducer&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x50CF;&#x4EE5;&#x5F80;&#x4E00;&#x6837;&#x4FEE;&#x6539; <code>combineReducers</code> &#x6765;&#x5B9E;&#x73B0;&#x64A4;&#x9500;&#x529F;&#x80FD; &#x2014;&#x2014; &#x6211;&#x4EEC;&#x53EA;&#x9700;&#x628A;&#x5404;&#x79CD;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x51FD;&#x6570;&#x5373;&#x53EF;&#x3002;</p>
 <p>&#x53E6;&#x5916; <code>combineReducers</code> &#x53EA;&#x662F; Redux &#x5185;&#x7F6E;&#x7684; reducer &#x5DE5;&#x5177;&#xFF0C;&#x5927;&#x91CF;&#x5F62;&#x5F0F;&#x5404;&#x5F02;&#x7684;&#x53EF;&#x590D;&#x7528;&#x7684;&#x7B2C;&#x4E09;&#x65B9; reducer &#x5DE5;&#x5177;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#x3002;&#x5728; <a href="https://github.com/markerikson/redux-ecosystem-links" target="_blank">Redux Addons &#x76EE;&#x5F55;</a>&#x4E2D;&#x5217;&#x4E3E;&#x4E86;&#x5F88;&#x591A;&#x53EF;&#x4F9B;&#x4F7F;&#x7528;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5DE5;&#x5177;&#x3002;&#x4E5F;&#x8BB8;&#x8FD9;&#x4E9B;&#x5DE5;&#x5177;&#x89E3;&#x51B3;&#x4E0D;&#x4E86;&#x4F60;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x4F46;&#x4F60;&#x968F;&#x65F6;&#x90FD;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x80FD;&#x591F;&#x6EE1;&#x8DB3;&#x4F60;&#x9700;&#x6C42;&#x7684;&#x5DE5;&#x5177;&#x51FD;&#x6570;&#x3002;</p>
@@ -1137,7 +1131,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"combineReducers 进阶","level":"1.5.10.6","depth":3,"next":{"title":"State 范式化","level":"1.5.10.7","depth":3,"path":"docs/recipes/reducers/NormalizingStateShape.md","ref":"./docs/recipes/reducers/NormalizingStateShape.md","articles":[]},"previous":{"title":"combineReducers 用法","level":"1.5.10.5","depth":3,"path":"docs/recipes/reducers/UsingCombineReducers.md","ref":"./docs/recipes/reducers/UsingCombineReducers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","advanced-emoji","theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"开始纠错","base":"https://github.com/camsong/redux-in-chinese/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/reducers/BeyondCombineReducers.md","mtime":"2020-10-18T13:47:18.029Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:48:00.097Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"combineReducers 进阶","level":"1.5.10.6","depth":3,"next":{"title":"State 范式化","level":"1.5.10.7","depth":3,"path":"docs/recipes/reducers/NormalizingStateShape.md","ref":"./docs/recipes/reducers/NormalizingStateShape.md","articles":[]},"previous":{"title":"combineReducers 用法","level":"1.5.10.5","depth":3,"path":"docs/recipes/reducers/UsingCombineReducers.md","ref":"./docs/recipes/reducers/UsingCombineReducers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"base":"https://github.com/camsong/redux-in-chinese/tree/master","label":"开始纠错"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-vmlite":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Redux 中文文档","language":"zh-hans","gitbook":"3.2.3"},"file":{"path":"docs/recipes/reducers/BeyondCombineReducers.md","mtime":"2020-10-18T13:52:42.380Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-18T13:53:23.262Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1145,9 +1139,6 @@
         
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/gitbook.js"></script>
     <script src="//cdn.jsdelivr.net/npm/gitbook-plugin-theme-default@1.0.7/_assets/website/theme.js"></script>
-    
-        <script src="../../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         
