@@ -6,9 +6,6 @@
     "summary": "SUMMARY.md"
   },
   "plugins": [
-    "edit-link", 
-    "prism", 
-    "advanced-emoji",
     "theme-vmlite@git+https://github.com/vmlite/gitbook-plugin-theme-vmlite.git"
   ],
   "pluginsConfig": {
